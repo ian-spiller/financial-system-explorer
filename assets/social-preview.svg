@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc"><title id="title">Financial System Explorer</title><desc id="desc">Conceptual connections between households, banks, funds, companies, government and the central bank.</desc><rect width="1200" height="630" fill="#0a101a"/>
+<rect x="580" y="46" width="604" height="530" rx="22" fill="#101b28" stroke="#26394b"/>
+<path d="M775,350 C815,350 780,260 820,260" fill="none" stroke="#54ddc4" stroke-width="2"/>
+<polygon points="820.0,260.0 812.3088665343436,264.67402032659885 811.911410366531,256.053518308501" fill="#54ddc4"/>
+<path d="M775,350 C815,350 780,440 820,440" fill="none" stroke="#54ddc4" stroke-width="2"/>
+<polygon points="820.0,440.0 811.9114103665308,443.9464816914988 812.3088665343437,435.3259796734009" fill="#54ddc4"/>
+<path d="M980,260 C1000,260 1010,260 1030,260" fill="none" stroke="#81abff" stroke-width="2"/>
+<polygon points="1030.0,260.0 1022.1017569429866,264.3148298474378 1022.1017569429866,255.68517015256216" fill="#81abff"/>
+<path d="M980,440 C1000,440 1010,440 1030,440" fill="none" stroke="#81abff" stroke-width="2"/>
+<polygon points="1030.0,440.0 1022.1017569429866,444.3148298474378 1022.1017569429866,435.6851701525622" fill="#81abff"/>
+<path d="M900,128 C900,160 900,193 900,227" fill="none" stroke="#c1a0ff" stroke-width="2" stroke-dasharray="5 6"/>
+<polygon points="900.0,227.0 895.6851701525621,219.10175694298664 904.3148298474379,219.10175694298664" fill="#c1a0ff"/>
+<path d="M1170,260 C1180,260 1180,526 1100,526" fill="none" stroke="#3d8f81" stroke-width="2"/>
+<polygon points="1100.0,526.0 1107.5923954651523,521.1672439435935 1108.1688127750053,529.777631248138" fill="#3d8f81"/>
+<path d="M1100,526 C950,526 690,550 690,388" fill="none" stroke="#3d8f81" stroke-width="2"/>
+<polygon points="690.0,388.0 694.5693870899155,395.7537540341769 685.9442913379884,396.0343778383198" fill="#3d8f81"/>
+<rect x="820.0" y="62" width="160" height="66" rx="11" fill="#152536" stroke="#8c72ba"/>
+<text x="900" y="90.94" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="700" fill="#e7edf5" text-anchor="middle">Central bank</text>
+<text x="900" y="111.02" font-family="Liberation Sans,Arial,sans-serif" font-size="11" font-weight="400" fill="#a8becf" text-anchor="middle">Rates &amp; reserves</text>
+<rect x="605.0" y="317" width="170" height="66" rx="11" fill="#152536" stroke="#419780"/>
+<text x="690" y="345.94" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="700" fill="#e7edf5" text-anchor="middle">Households</text>
+<text x="690" y="366.02" font-family="Liberation Sans,Arial,sans-serif" font-size="11" font-weight="400" fill="#a8becf" text-anchor="middle">Income &amp; savings</text>
+<rect x="820.0" y="227" width="160" height="66" rx="11" fill="#152536" stroke="#6086b3"/>
+<text x="900" y="255.94" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="700" fill="#e7edf5" text-anchor="middle">Banks</text>
+<text x="900" y="276.02" font-family="Liberation Sans,Arial,sans-serif" font-size="11" font-weight="400" fill="#a8becf" text-anchor="middle">Loans &amp; deposits</text>
+<rect x="820.0" y="407" width="160" height="66" rx="11" fill="#152536" stroke="#8c72ba"/>
+<text x="900" y="435.94" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="700" fill="#e7edf5" text-anchor="middle">Funds</text>
+<text x="900" y="456.02" font-family="Liberation Sans,Arial,sans-serif" font-size="11" font-weight="400" fill="#a8becf" text-anchor="middle">Portfolios</text>
+<rect x="1030.0" y="227" width="140" height="66" rx="11" fill="#152536" stroke="#6086b3"/>
+<text x="1100" y="255.94" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="700" fill="#e7edf5" text-anchor="middle">Companies</text>
+<text x="1100" y="276.02" font-family="Liberation Sans,Arial,sans-serif" font-size="11" font-weight="400" fill="#a8becf" text-anchor="middle">Investment</text>
+<rect x="1030.0" y="407" width="140" height="66" rx="11" fill="#152536" stroke="#aa8a57"/>
+<text x="1100" y="435.94" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="700" fill="#e7edf5" text-anchor="middle">Government</text>
+<text x="1100" y="456.02" font-family="Liberation Sans,Arial,sans-serif" font-size="11" font-weight="400" fill="#a8becf" text-anchor="middle">Public finances</text>
+<text x="900" y="186.84" font-family="Liberation Sans,Arial,sans-serif" font-size="12" font-weight="400" fill="#c1a0ff" text-anchor="middle">Rate anchor</text>
+<text x="895" y="562.66" font-family="Liberation Sans,Arial,sans-serif" font-size="13" font-weight="400" fill="#84cabc" text-anchor="middle">Interest · dividends · repayments</text>
+<text x="64" y="83.3" font-family="Liberation Sans,Arial,sans-serif" font-size="15" font-weight="700" fill="#70e6cd" text-anchor="start">FINANCIAL SYSTEM EXPLORER</text>
+<text x="64" y="205.64" font-family="Liberation Sans,Arial,sans-serif" font-size="52" font-weight="700" fill="#edf5fb" text-anchor="start">Follow the money.</text>
+<text x="64" y="261.34" font-family="Liberation Sans,Arial,sans-serif" font-size="37" font-weight="700" fill="#bcd0e1" text-anchor="start">Understand the system.</text>
+<text x="64" y="338.04" font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="400" fill="#a8bdce" text-anchor="start">From policy rates to loan pricing.</text>
+<text x="64" y="372.04" font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="400" fill="#a8bdce" text-anchor="start">From investment to value.</text>
+<text x="64" y="406.04" font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="400" fill="#a8bdce" text-anchor="start">From benchmark returns to alpha.</text>
+<rect x="64" y="444" width="99" height="37" rx="8" fill="#153535" stroke="#37766b"/>
+<text x="113.5" y="467.3" font-family="Liberation Sans,Arial,sans-serif" font-size="15" font-weight="700" fill="#87e6d2" text-anchor="middle">Banks</text>
+<rect x="175" y="444" width="82" height="37" rx="8" fill="#153535" stroke="#37766b"/>
+<text x="216.0" y="467.3" font-family="Liberation Sans,Arial,sans-serif" font-size="15" font-weight="700" fill="#87e6d2" text-anchor="middle">NPV</text>
+<rect x="269" y="444" width="92" height="37" rx="8" fill="#153535" stroke="#37766b"/>
+<text x="315.0" y="467.3" font-family="Liberation Sans,Arial,sans-serif" font-size="15" font-weight="700" fill="#87e6d2" text-anchor="middle">Alpha</text>
+<text x="64" y="565.76" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#b2c5d4" text-anchor="start">An interactive financial-system map.</text>
+<text x="64" y="599.66" font-family="Liberation Sans,Arial,sans-serif" font-size="13" font-weight="400" fill="#6d9f99" text-anchor="start">ian-spiller · MIT</text>
+</svg>

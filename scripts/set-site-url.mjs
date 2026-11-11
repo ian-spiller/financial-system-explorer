@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const file=path.join(path.dirname(path.dirname(fileURLToPath(import.meta.url))),'index.html');
+const url=new URL(process.argv[2]);
+if(!['https:','http:'].includes(url.protocol)||url.search||url.hash||url.username||url.password)throw Error('Use a public HTTP(S) base URL without query, hash or credentials.');
+url.pathname=url.pathname.replace(/\/?$/,'/');
+let html=fs.readFileSync(file,'utf8');
+html=html.replace(/(<link rel="canonical" href=")[^"]+/,(_,a)=>a+url.href).replace(/(<meta property="og:url" content=")[^"]+/,(_,a)=>a+url.href).replace(/(<meta (?:property="og:image"|name="twitter:image") content=")[^"]+/g,(_,a)=>a+new URL('assets/social-preview.png',url).href);
+fs.writeFileSync(file,html);
+console.log('Updated canonical URL and social image metadata: '+url.href);

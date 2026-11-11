@@ -1,0 +1,13 @@
+name: Check the explorer
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - run: node scripts/check.mjs
+      - run: python3 scripts/check-html.py
