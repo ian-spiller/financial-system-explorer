@@ -148,3 +148,5 @@ The consumption-to-price bridge was also checked against CFA Institute, *2024 Le
 - [Natural real rate](https://www.bde.es/wbe/en/areas-actuacion/politica-monetaria/preguntas-frecuentes/papel-tipos-interes/que-es-el-tipo-de-interes-natural-de-la-economia-.html)
 - [Gross and net returns](https://www.gipsstandards.org/qadatabase/4952/)
 - [Consumption MRS and budget constraint](https://people.brandeis.edu/~ghall/econ303/build/html/consumption_theory.html)
+
+- [CFA Institute — Rates and Returns: time value and risk-premium building blocks](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/rates-and-returns)
