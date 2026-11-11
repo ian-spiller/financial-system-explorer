@@ -139,3 +139,12 @@ The consumption-to-price bridge was also checked against CFA Institute, *2024 Le
 
 - [ECB: Nominal and real interest rates](https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me/html/nominal_and_real_interest_rates.en.html) — inflation and purchasing power.
 - [ECB: Key interest rates](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html) — the overnight deposit facility used as the policy reference here.
+
+
+## Economic consistency review — 11 November 2026
+
+- [Bank deposits, reserves and money creation](https://www.bankofengland.co.uk/explainers/how-is-money-created)
+- [ECB deposit facility and short-rate transmission](https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me/html/what-is-the-deposit-facility-rate.en.html)
+- [Natural real rate](https://www.bde.es/wbe/en/areas-actuacion/politica-monetaria/preguntas-frecuentes/papel-tipos-interes/que-es-el-tipo-de-interes-natural-de-la-economia-.html)
+- [Gross and net returns](https://www.gipsstandards.org/qadatabase/4952/)
+- [Consumption MRS and budget constraint](https://people.brandeis.edu/~ghall/econ303/build/html/consumption_theory.html)
