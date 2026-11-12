@@ -1150,119 +1150,69 @@
 /* Required-return foundation: shared time value, then asset-specific risk. */
 
 
-/* Required returns: open stages, one policy accent, two clear outcomes. */
-.fund-required-return{margin:0;background:#122735;border-color:#345265;padding:24px}
-.frr-lean h4{font-size:23px;margin:0 0 24px;line-height:1.3;letter-spacing:-.025em;color:#edf5ff}
-.frr-natural-start{display:grid;grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr) 42px minmax(0,1fr);align-items:stretch}
-.frr-natural-start>button,.frr-natural-market{min-width:0;min-height:144px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:16px 12px;border:0;border-radius:16px;background:transparent;color:#e3edf8;font:inherit;text-align:center}
-.frr-natural-start>button{cursor:pointer;transition:background .18s ease,transform .18s ease}
-.frr-natural-start strong{font-size:20px;line-height:1.35}
-.frr-natural-start small{font-size:14px;line-height:1.5;color:#b5c9d9}
-.frr-natural-reference:hover{background:#ffffff05}
-.frr-natural-equation{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr);align-items:center;gap:9px;width:100%;line-height:1.35}
-.frr-natural-equation>span{min-width:0}
-.frr-real-input{display:flex;flex-direction:column;align-items:center;gap:4px}
-.frr-real-input>strong{font-size:38px;font-weight:650;line-height:1;letter-spacing:-.04em;color:#ecf7ff}
-.frr-real-input>small{font-size:13px;line-height:1.35;white-space:normal}
-.frr-inflation-input{font-size:16px;font-weight:550;line-height:1.4;color:#efc574}
-.frr-natural-equation i{font-style:normal;font-weight:400;font-size:26px;color:#86a3ba}
-.frr-natural-reference>strong{font-size:17px;padding-top:13px;border-top:1px solid #ffffff16;width:100%;color:#e8f2fa}
-.frr-natural-start>.frr-lean-policy{background:#aa88f411;box-shadow:inset 0 0 0 1px #ad8be62e;color:#e2d1ff;gap:13px;padding:20px 12px}
-.frr-policy-heading{display:flex;align-items:center;justify-content:center;gap:10px;min-width:0}
-.frr-policy-heading svg{width:27px;height:27px;flex:0 0 27px;fill:none;stroke:#c4a3ff;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.frr-policy-heading strong{font-size:20px;letter-spacing:-.02em}
-.frr-lean-policy>small{font-size:13px;color:#bdafd5}
-.frr-natural-arrow{align-self:center;position:relative;height:1px;margin:0 10px;background:#8dabc15c;font-size:0}
-.frr-natural-arrow:after{content:'';position:absolute;right:0;top:0;width:6px;height:6px;border-top:1.5px solid #a6bad0;border-right:1.5px solid #a6bad0;transform:translateY(-50%) rotate(45deg)}
-.frr-natural-market{gap:9px}
-.frr-natural-market>strong{font-size:21px;line-height:1.3;letter-spacing:-.025em;color:#b5dcff}
-.frr-natural-market>span{font-size:14px;line-height:1.5;color:#b7ccdf}
-.frr-natural-market>small{font-size:14px;color:#c5b1e9}
-.frr-lean-fork{height:58px;position:relative}
-.frr-lean-fork svg{display:block;width:100%;height:58px;overflow:visible}
-.frr-lean-fork path{stroke:#7498b4;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.frr-lean-fork .frr-lean-narrow{display:none}
-.frr-lean-fork>span{position:absolute;left:50%;top:38px;transform:translate(-50%,-50%);background:#122735;padding:0 14px;color:#a9c0d3;white-space:nowrap;font-size:13px;line-height:1.4}
-.frr-lean-assets{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:0 8px}
-.frr-lean-assets article{min-width:0;padding:10px 8px 0;display:flex;flex-direction:column;align-items:stretch;text-align:center;background:transparent;border:0}
-.frr-lean-assets h5{font-size:19px;line-height:1.35;margin:0 0 10px;font-weight:650;letter-spacing:-.01em;color:#dfedfb}
-.frr-lean-risk{min-height:74px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
-.frr-lean-risk>span{font-size:14px;line-height:1.45;padding:9px 15px;border:0;border-radius:8px;background:#f79ec612;color:#f5b5d0}
-.frr-lean-risk>span:last-child{color:#f2cc87;background:#f3c06312}
-.frr-lean-risk>b{font-size:19px;color:#8da9bf;font-weight:400}
-.frr-lean-factors{flex-direction:column;gap:8px}
-.frr-lean-factors>span{border:0;border-radius:0;background:none;color:#aebed0;padding:0;font-size:13px}
-.frr-lean-factors>button{border:0;background:#bc97f814;border-radius:8px;padding:7px 14px;color:#d9c0ff;font:inherit;font-size:14px;line-height:1.5;cursor:pointer}
-.frr-lean-down{font-size:0;width:1px;height:20px;background:#7297b3;align-self:center;position:relative;margin:8px 0 13px}
-.frr-lean-down:after{content:'';position:absolute;left:50%;bottom:0;width:6px;height:6px;border-right:1.5px solid #94b1c7;border-bottom:1.5px solid #94b1c7;transform:translateX(-50%) rotate(45deg)}
-.frr-lean-result{width:100%;padding:16px 10px;margin-top:auto;border:1px solid #6ea8d63b;border-radius:12px;background:#23476173;color:#d1eaff;font:inherit;cursor:pointer;transition:background .18s ease,transform .18s ease}
-.frr-lean-result strong{font-size:18px;font-weight:650;line-height:1.4;letter-spacing:-.015em}
-.frr-lean-tail{white-space:nowrap}
-.frr-lean-equity .frr-lean-result{background:#66508b40;border-color:#b38ae647;color:#e3cfff}
-.frr-lean-company{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 12px;width:100%;padding:17px 0 0;margin-top:20px;border:0;border-top:1px solid #ffffff12;background:transparent;color:#aabed0;font:inherit;font-size:13px;line-height:1.5;cursor:pointer}
-.frr-lean-company b{color:#a3bad0;font-size:20px;font-weight:400}
-.frr-lean-company strong{color:#d7e6f7;font-weight:550}
-.frr-lean button:hover{filter:none}
-.frr-lean-policy:hover,.frr-lean-result:hover{transform:translateY(-2px);filter:brightness(1.16)}
-.frr-lean button:focus-visible,.ecbs-return-link:focus-visible{outline:2px solid #47e1d1;outline-offset:4px}
+
+/* One horizontal row of boxed numerical building blocks. */
+.fund-required-return.rrline{margin:0;padding:22px 20px;background:#122735;border:1px solid #3b596d;scroll-margin-top:90px}
+.rrline-heading{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:22px}
+.rrline-heading h4{margin:0;font-size:22px;line-height:1.3;letter-spacing:-.02em;color:#edf5ff}
+.rrline-heading>small{font-size:11px;line-height:1.4;color:#a9bfd0;text-align:right}
+.rrline-scroll{overflow-x:auto;overflow-y:hidden;padding:2px 1px 12px;scrollbar-color:#5c7e99 #142937;scrollbar-width:thin;overscroll-behavior-inline:contain}
+.rrline-track{display:grid;grid-template-columns:minmax(165px,1.1fr) 20px minmax(138px,.86fr) 20px minmax(178px,1.12fr) 20px minmax(168px,1fr) 20px minmax(175px,1.1fr);min-width:970px;align-items:stretch}
+.rrline-box{min-width:0;min-height:282px;display:flex;flex-direction:column;padding:16px 12px;border:1px solid #4b687e;border-radius:12px;background:#162e3d;text-align:center}
+.rrline-title{display:flex;align-items:center;justify-content:center;min-height:40px;width:100%;margin:0 0 14px;padding:0 0 12px;border:0;border-bottom:1px solid #ffffff15;background:transparent;color:#e0edfb;font:inherit;font-size:16px;font-weight:650;line-height:1.3;text-align:center;letter-spacing:-.01em}
+button.rrline-title{cursor:pointer}
+.rrline-policy{background:#272a40;border-color:#7d6a9d}
+.rrline-policy .rrline-title{color:#ddcaff}
+.rrline-market{background:#1a3346;border-color:#5a85a4}
+.rrline-arrow{align-self:center;text-align:center;color:#a8bed0;font-size:22px;line-height:1;font-weight:400}
+.rrline-sum{display:grid;grid-template-columns:1fr 14px 1fr;gap:4px;align-items:end;min-height:75px}
+.rrline-sum span{display:flex;flex-direction:column;gap:7px;min-width:0}
+.rrline-sum small{font-size:11px;line-height:1.45;min-height:32px;color:#b9ccdc}
+.rrline-sum strong{font-size:24px;line-height:1.2;color:#e8f3ff;font-weight:650}
+.rrline-sum span:last-child strong{color:#eac27d}
+.rrline-sum b{align-self:end;margin-bottom:4px;font-size:18px;font-weight:400;color:#8daabe}
+.rrline-total{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding-top:17px;margin-top:auto;border-top:1px solid #ffffff16}
+.rrline-total small{font-size:11px;line-height:1.4;color:#b9ccdc}
+.rrline-total strong{font-size:31px;line-height:1.1;color:#e4f3ff;font-weight:700;letter-spacing:-.03em}
+.rrline-single{display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding-bottom:8px}
+.rrline-single>small{font-size:12px;line-height:1.4;color:#c1b8d4}
+.rrline-single>strong{font-size:42px;line-height:1;font-weight:700;letter-spacing:-.04em;color:#e1cbff}
+.rrline-status{padding:5px 10px;border-radius:6px;background:#c2a0ff13;font-size:12px;color:#cdb9ea}
+.rrline-component{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;text-align:left}
+.rrline-component span{font-size:11px;line-height:1.4;color:#b9ccdc}
+.rrline-component strong{font-size:18px;line-height:1.2;white-space:nowrap;font-weight:650;color:#cfe6fd}
+.rrline-component:nth-of-type(2) strong{font-size:16px;color:#c9b2eb}
+.rrline-market .rrline-total{padding-top:12px}
+.rrline-premium{display:flex;flex-direction:column;align-items:center;gap:6px;margin:0 0 14px}
+.rrline-premium>span{font-size:12px;color:#c9d9e8}
+.rrline-premium>strong{font-size:26px;line-height:1.1;font-weight:700;color:#b9ddff;letter-spacing:-.025em}
+.rrline-premium>small{font-size:10px;line-height:1.4;color:#a4bbce}
+.rrline-equity{margin-top:auto;margin-bottom:0;padding-top:12px;border-top:1px solid #ffffff12}
+.rrline-equity>strong{color:#d4bbff}
+.rrline-equity>button{font:inherit;font-size:10px;line-height:1.5;padding:0;border:0;background:transparent;color:#baa5db;cursor:pointer}
+.rrline-returns{padding:16px 10px 11px}
+.rrline-returns .rrline-title{margin-bottom:10px}
+.rrline-output{display:grid;grid-template-columns:1fr auto;gap:3px 5px;align-items:center;width:100%;margin-bottom:10px;padding:10px 9px;border:1px solid #6da4ce40;border-radius:8px;background:#24476266;color:#cce8ff;font:inherit;text-align:left;cursor:pointer}
+.rrline-output>span{font-size:12px}
+.rrline-output>strong{font-size:28px;line-height:1.15;font-weight:700;letter-spacing:-.03em}
+.rrline-output>small{grid-column:1/-1;font-size:10px;line-height:1.4;color:#adc4d8}
+.rrline-output-equity{background:#66508b36;border-color:#ab8ad442;color:#decaff}
+.rrline-output-equity>small{color:#bcaace}
+.rrline-company{width:100%;padding:0;margin-top:auto;border:0;background:transparent;font:inherit;font-size:10px;line-height:1.5;color:#b4c7d8;text-align:center;cursor:pointer}
+.rrline button:hover{filter:brightness(1.18)}
+.rrline button:focus-visible,.rrline-scroll:focus-visible,.ecbs-return-link:focus-visible{outline:2px solid #47e1d1;outline-offset:3px}
 .ecbs-return-link{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:7px 12px;width:100%;margin-top:18px;padding:14px 12px;border:1px solid #536d86;border-radius:9px;background:#1a2e40;color:#c8dcf7;font:inherit;font-size:12px;line-height:1.5;cursor:pointer}
 .ecbs-return-link b{color:#c1a0ff;font-size:19px}
 .ecbs-return-link strong{color:#d9c5ff}
-.fund-required-return,.fund-compact-outcome{scroll-margin-top:90px}
-
-@media(min-width:801px) and (max-width:1100px){
- .frr-policy-heading{gap:7px}
- .frr-policy-heading svg{width:22px;height:22px;flex-basis:22px}
- .frr-policy-heading strong{font-size:18px}
- .frr-natural-reference>strong{font-size:15px}
- .frr-real-input>small{font-size:12px}
- .frr-inflation-input{font-size:14px}
- .frr-natural-market>strong{font-size:19px}
- .frr-natural-market>span,.frr-natural-market>small{font-size:13px}
-}
-@media(max-width:800px){
- .frr-natural-start{grid-template-columns:1fr}
- .frr-natural-start>button,.frr-natural-market{min-height:82px;max-width:520px;width:100%;margin:0 auto;padding:12px 16px;gap:9px}
- .frr-natural-equation{max-width:320px;margin:0 auto}
- .frr-real-input>strong{font-size:32px}
- .frr-natural-reference>strong{max-width:320px;font-size:16px;padding-top:10px}
- .frr-natural-start>.frr-lean-policy{min-height:88px}
- .frr-policy-heading strong{font-size:19px}
- .frr-natural-start small,.frr-natural-market>span,.frr-natural-market>small{font-size:13px}
- .frr-natural-market>strong{font-size:20px}
- .frr-natural-arrow{height:20px;width:1px;justify-self:center;margin:7px 0}
- .frr-natural-arrow:after{right:auto;left:50%;top:auto;bottom:0;transform:translateX(-50%) rotate(135deg)}
- .frr-lean-fork .frr-lean-wide{display:none}
- .frr-lean-fork .frr-lean-narrow{display:block}
-}
+.fund-compact-outcome{scroll-margin-top:90px}
 @media(max-width:650px){
- .fund-required-return{padding:18px 14px}
- .frr-lean h4{font-size:20px;margin-bottom:16px}
- .frr-natural-start>button,.frr-natural-market{padding:10px 5px}
- .frr-natural-start>.frr-lean-policy{padding:16px 8px}
- .frr-natural-equation{gap:4px;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr)}
- .frr-real-input>small{font-size:12px}
- .frr-inflation-input{font-size:15px}
- .frr-natural-reference>strong{font-size:15px}
- .frr-policy-heading{gap:8px}
- .frr-policy-heading svg{width:24px;height:24px;flex-basis:24px}
- .frr-policy-heading strong{font-size:18px}
- .frr-natural-market>strong{font-size:19px}
- .frr-lean-fork>span{font-size:12px;padding:0 10px}
- .frr-lean-assets{gap:14px;padding:0}
- .frr-lean-assets article{padding:10px 0 0}
- .frr-lean-assets h5{font-size:18px;margin-bottom:7px}
- .frr-lean-risk{min-height:96px;gap:6px;align-content:center}
- .frr-lean-risk>span{font-size:12px;padding:8px}
- .frr-lean-risk>b{font-size:16px}
- .frr-lean-factors>span{font-size:11px;line-height:1.5;padding:0}
- .frr-lean-factors>button{font-size:12px;padding:6px 8px;max-width:100%}
- .frr-lean-down{height:16px;margin:7px 0 11px}
- .frr-lean-result{padding:13px 7px;min-height:70px}
- .frr-lean-result strong{font-size:15px;line-height:1.4}
- .frr-lean-company{font-size:12px;gap:5px 9px;margin-top:16px;padding-top:14px}
+ .fund-required-return.rrline{padding:18px 12px 12px}
+ .rrline-heading{align-items:flex-start;flex-direction:column;gap:7px;margin-bottom:18px}
+ .rrline-heading h4{font-size:20px}
+ .rrline-heading>small{text-align:left;font-size:11px}
+ .rrline-track{grid-template-columns:190px 22px 170px 22px 205px 22px 190px 22px 205px;min-width:1048px}
+ .rrline-box{min-height:278px}
 }
-@media(prefers-reduced-motion:reduce){.frr-lean button{transition:none}.frr-lean-policy:hover,.frr-lean-result:hover{transform:none}}
 
 </style></head>
 <body><noscript><div class="noscript">Enable JavaScript to use the map. This file works offline.</div></noscript>
@@ -1825,19 +1775,21 @@ function fundsPortfolioProcess(){return `<p class="fund-one-line fund-geography-
 function fundsCompactImplementation(){return `<div class="fund-path-fork"><div><strong>Passive</strong><span>Track the agreed index</span></div><div><strong>Active</strong><span>Deviate to outperform</span></div></div><small class="fund-path-foot">Within the agreed mandate.</small>`}
 function fundsAlphaStep(n,title,body){return sysStep(n,title,body).replace('class="bes-block sys-block"','class="bes-block sys-block fund-alpha-box fund-alpha-box-'+n+'"')}
 function fundsActivePassiveChoice(){const p=fundsPolicyExample();return `<div class="fund-alpha-policy"><div class="fund-alpha-policy-route"><span>Goals &amp; constraints</span><i>→</i><span>Desired exposures &amp; allocation</span><i>→</i><strong>Agreed benchmark</strong></div><small>Illustrative policy: ${sysN(p.equityWeight*100)}% equities / ${sysN(p.bondWeight*100)}% bonds · numerical example follows equities.</small></div><div class="fund-alpha-reference"><span>Equity reference · agree before investing</span>${sysChoices('fundBenchmark',[['market','Broad-market equity'],['style','Value-style equity']])}</div><div class="fund-alpha-fork"><article class="fund-alpha-passive"><small>PASSIVE</small><strong>Track the chosen index</strong><div class="fund-alpha-matching"><span>Index weights</span><i>≈</i><span>Fund weights</span></div><p>Keep tracking differences and costs low.</p></article><article class="fund-alpha-active"><small>ACTIVE</small><strong>Take different bets</strong><div class="fund-alpha-bets"><span>Allocation</span><span>Factor tilts</span><span>Timing</span><span>Stock selection</span></div><p>Aim to beat the agreed benchmark after costs.</p></article></div><div class="fund-alpha-value-example"><span>Choose value exposure</span><i>→</i><span>Track a value index</span><i>→</i><b>Passive implementation</b></div><small class="fund-alpha-caption">Choosing the exposure and implementing it are separate decisions. Active allocation can also use index funds.</small>`}
+function fundsReturnPathExample(){
+ const naturalReal=2,expectedInflation=2,neutralNominal=naturalReal+expectedInflation,ecbNominal=4,expectedShort=4,termPremium=.5,marketBase=expectedShort+termPremium;
+ const bondCredit=1,bondLiquidity=.5,bondPremium=bondCredit+bondLiquidity;
+ const equityMarket=1*4,equityValue=.5*1,equitySize=.5*1,equityPremium=equityMarket+equityValue+equitySize;
+ return {naturalReal,expectedInflation,neutralNominal,ecbNominal,expectedShort,termPremium,marketBase,bondCredit,bondLiquidity,bondPremium,equityMarket,equityValue,equitySize,equityPremium,bondYield:marketBase+bondPremium,equityReturn:marketBase+equityPremium};
+}
 function fundsRequiredReturnFoundation(){
- return '<section class="bes-block fund-required-return frr-lean" aria-label="From the natural rate through ECB policy and market expectations to required returns">'
- +'<h4>From the natural rate to required returns</h4>'
- +'<div class="frr-natural-start" role="group" aria-label="Natural real rate plus expected inflation gives an approximate neutral nominal reference; ECB policy can be above or below it; expected future short rates and term premia shape the market base">'
- +'<button class="frr-natural-reference" data-rates-open="" aria-label="Explore the natural rate and policy stance in Interest rates"><span class="frr-natural-equation"><span class="frr-real-input"><strong>r*</strong><small>Natural real rate</small></span><i aria-hidden="true">+</i><span class="frr-inflation-input">Expected<br>inflation</span></span><strong>≈ Neutral nominal <span class="frr-lean-tail">rate ↗</span></strong></button>'
- +'<b class="frr-natural-arrow" aria-hidden="true">→</b>'
- +'<button class="frr-lean-policy" data-sys-node="cb"><span class="frr-policy-heading"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 12 16 5l12 7M6 13h20M8 16v8m8-8v8m8-8v8M5 27h22"/></svg><strong>ECB nominal <span class="frr-lean-tail">rate ↗</span></strong></span><small>Set above or below neutral</small></button>'
- +'<b class="frr-natural-arrow" aria-hidden="true">→</b>'
- +'<div class="frr-natural-market" aria-label="Matched-maturity nominal risk-free market reference"><strong>Risk-free market base</strong><span>Average expected short rates</span><small>+ Term premium</small></div></div>'
- +'<div class="frr-lean-fork"><svg class="frr-lean-wide" viewBox="0 0 1000 58" preserveAspectRatio="none" aria-hidden="true"><path d="M840 0V8Q840 20 828 20H512Q500 20 500 32V38M250 56V50Q250 38 262 38H738Q750 38 750 50V56m-5-5 5 5 5-5M245 51l5 5 5-5"/></svg><svg class="frr-lean-narrow" viewBox="0 0 1000 58" preserveAspectRatio="none" aria-hidden="true"><path d="M500 0V38M250 56V50Q250 38 262 38H738Q750 38 750 50V56m-5-5 5 5 5-5M245 51l5 5 5-5"/></svg><span>Add risk premia</span></div>'
- +'<div class="frr-lean-assets"><article class="frr-lean-bond"><h5>Bonds</h5><div class="frr-lean-risk"><span>Credit</span><b>+</b><span>Liquidity</span></div><span class="frr-lean-down" aria-hidden="true">↓</span><button class="frr-lean-result" data-sys-node="bonds"><strong>Required bond <span class="frr-lean-tail">yield ↗</span></strong></button></article>'
- +'<article class="frr-lean-equity"><h5>Equities</h5><div class="frr-lean-risk frr-lean-factors"><span>Factor exposures × expected premia</span><button data-sys-node="funds" data-sys-anchor=".fund-compact-outcome" aria-label="Market, value and size: explore factor returns and alpha in step 4">Market · Value · Size · … ↓</button></div><span class="frr-lean-down" aria-hidden="true">↓</span><button class="frr-lean-result" data-sys-node="equities"><strong>Required equity <span class="frr-lean-tail">return ↗</span></strong></button></article></div>'
- +'<button class="frr-lean-company" data-sys-node="firms"><span>Required returns</span><b aria-hidden="true">→</b><strong>Company’s cost of capital ↗</strong></button></section>'
+ const m=fundsReturnPathExample(),p=n=>sysN(n)+'%',pp=n=>'+'+sysN(n)+' pp',arrow='<span class="rrline-arrow" aria-hidden="true">→</span>';
+ return '<section class="bes-block fund-required-return rrline" aria-label="One-line example: natural rate, ECB, market base, risk premia and required returns"><header class="rrline-heading"><h4>From the natural rate to required returns</h4><small>Illustrative example · % per year</small></header>'
+ +'<div class="rrline-scroll" tabindex="0" role="group" aria-label="Required-return sequence; scroll horizontally on smaller screens"><div class="rrline-track">'
+ +'<article class="rrline-box rrline-neutral"><button class="rrline-title" data-rates-open="">Neutral reference ↗</button><div class="rrline-sum"><span><small>Natural real rate</small><strong>'+p(m.naturalReal)+'</strong></span><b aria-hidden="true">+</b><span><small>Expected inflation</small><strong>'+p(m.expectedInflation)+'</strong></span></div><div class="rrline-total"><small>Neutral nominal rate</small><strong>≈ '+p(m.neutralNominal)+'</strong></div></article>'+arrow
+ +'<article class="rrline-box rrline-policy"><button class="rrline-title" data-sys-node="cb">ECB rate ↗</button><div class="rrline-single"><small>Nominal policy rate</small><strong>'+p(m.ecbNominal)+'</strong><span class="rrline-status">= neutral</span></div></article>'+arrow
+ +'<article class="rrline-box rrline-market"><h5 class="rrline-title">Market base</h5><div class="rrline-component"><span>Average expected<br>short rates</span><strong>'+p(m.expectedShort)+'</strong></div><div class="rrline-component"><span>Term premium</span><strong>'+pp(m.termPremium)+'</strong></div><div class="rrline-total"><small>Risk-free reference</small><strong>'+p(m.marketBase)+'</strong></div></article>'+arrow
+ +'<article class="rrline-box rrline-premia"><h5 class="rrline-title">Risk premia</h5><div class="rrline-premium"><span>Bonds</span><strong>'+pp(m.bondPremium)+'</strong><small>Credit + liquidity</small></div><div class="rrline-premium rrline-equity"><span>Equities</span><strong>'+pp(m.equityPremium)+'</strong><button data-sys-node="funds" data-sys-anchor=".fund-compact-outcome" aria-label="Explore factor returns and alpha">Market · Value · Size ↘</button></div></article>'+arrow
+ +'<article class="rrline-box rrline-returns"><h5 class="rrline-title">Required returns</h5><button class="rrline-output" data-sys-node="bonds"><span>Bonds ↗</span><strong>'+p(m.bondYield)+'</strong><small>'+sysN(m.marketBase)+' + '+sysN(m.bondPremium)+'</small></button><button class="rrline-output rrline-output-equity" data-sys-node="equities"><span>Equities ↗</span><strong>'+p(m.equityReturn)+'</strong><small>'+sysN(m.marketBase)+' + '+sysN(m.equityPremium)+'</small></button><button class="rrline-company" data-sys-node="firms">Company’s cost of capital ↗</button></article></div></div></section>';
 }
 function essentialFunds(){const arrow='<div class="fund-step-link" aria-hidden="true">↓</div>';return '<h3 class="es-title">From investor goals to portfolio results.</h3><div class="fund-connected-story fund-alpha-story fund-investor-story fund-story-connected fund-unified">'+fundsRequiredReturnFoundation()+arrow+'<div class="fund-plan-route" role="group" aria-label="Investor goals, allocation and implementation">'+fundsPlanStage(1,'Investor &amp; goals',fundsInvestorGoals())+arrow+fundsPlanStage(2,'Asset allocation',fundsGoalsToAllocation())+arrow+fundsPlanStage(3,'Implementation',fundsImplementAllocation()+fundsExposureImplementationExamples())+'</div>'+arrow+'<div class="sys-story" id="sysLessonBody">'+systemFundBody()+'</div></div>'}
 
