@@ -17,7 +17,7 @@ A visual, interactive explanation of how money, financing and interest rates con
 - **Companies:** invested capital, required return, annual surplus, NPV and firm value.
 - **Funds:** investor goals, allocation, active/passive implementation, benchmarks and factor attribution.
 
-Stock and bond valuation are linked from Funds. The expandable **Interest rates** tile at the centre of the desktop map connects saving decisions, company investment, public deficits and the ECB real policy stance. Dashed conceptual links connect it to the participants even while closed. Click or tap to open it; hovering only highlights the tile. Two rate cards connect to a single graph: the natural real reference and real policy rate. Compact participant links lead to all six lessons and back. Explore any participant in the order you choose.
+Stock and bond valuation are linked from Funds and the shared **Interest rates** overview. The central tile connects planned saving, company investment, public deficits, ECB policy stance and required returns. Two rate cards connect to one graph; a horizontal row of numerical boxes then shows neutral reference → ECB rate → market base → risk premia → required returns. All six lessons link to the relevant part of this overview. Funds follows investor goals → allocation → implementation → benchmark and return attribution. Click or tap the central tile to open it; hovering only highlights it. Explore participants in the order you choose.
 
 ## Use the map
 
