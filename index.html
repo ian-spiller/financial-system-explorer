@@ -1148,106 +1148,73 @@
 @media(max-width:720px){#ratesHub .rh-chart text{font-size:15px}#ratesHub .rh-chart .rh-key-number-natural{font-size:10px}#ratesHub .rh-chart .rh-gap-zero{display:none}#ratesHub .rh-chart .rh-policy-gap-text,#ratesHub .rh-chart .rh-gap-zero{font-size:14px}}
 
 /* Required-return foundation: shared time value, then asset-specific risk. */
-.fund-required-return{margin:0;background:#132834}
-.fund-required-return h4{font-size:21px;margin:0 0 20px;line-height:1.3}
-.frr-base{display:grid;grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr) 24px minmax(0,1.15fr);gap:10px;align-items:stretch}
-.frr-base>div,.frr-base>button{display:flex;flex-direction:column;justify-content:center;min-height:94px;padding:15px 12px;border:1px solid #3b6577;border-radius:10px;text-align:center;background:#142e3a;min-width:0}
-.frr-base>div strong,.frr-base>button strong{font-size:17px;line-height:1.3;color:#d8e8ff}
-.frr-base>div small,.frr-base>button small{font-size:11px;line-height:1.5;margin-top:8px;color:#b6c9d9}
-.frr-base>b{align-self:center;text-align:center;font-size:23px;font-weight:500;color:#b6c9d9}
-.frr-base>.frr-inflation{border-color:#76694f;background:#302d26}
-.frr-base>.frr-inflation strong{color:#f5c477}
-.frr-base>.frr-reference{border-color:#659ac0;background:#1b344a}
-.frr-fork{display:flex;align-items:center;justify-content:center;gap:14px;color:#b6c9d9;font-size:12px;margin:20px 0 14px;text-align:center}
-.frr-fork>i{height:1px;background:#507186;flex:1;position:relative}
-.frr-fork>i:first-child:before,.frr-fork>i:last-child:after{content:'';position:absolute;width:7px;height:7px;border-right:1px solid #507186;border-bottom:1px solid #507186;transform:rotate(45deg);bottom:-4px}
-.frr-fork>i:first-child:before{left:0}.frr-fork>i:last-child:after{right:0}
-.frr-assets{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.frr-assets article{min-width:0;padding:14px;border:1px solid #4a647a;border-radius:10px;background:#10232f;display:flex;flex-direction:column;align-items:stretch;text-align:center}
-.frr-assets h5{font-size:16px;margin:0 0 12px;color:#d8e8ff}
-.frr-premia{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;min-height:40px}
-.frr-premia span{padding:9px 12px;border:1px solid #7e596b;border-radius:7px;background:#392a39;color:#f7b5ce;font-size:12px;line-height:1.4}
-.frr-bond .frr-premia span:last-child{color:#f5c477;background:#332f27;border-color:#77664b}
-.frr-equity .frr-premia span{background:#2b2841;border-color:#7867a0;color:#d7bfff}
-.frr-down{font-size:21px;color:#9ab4c9;line-height:1.1;margin:10px 0}
-.frr-assets button{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:auto;padding:12px;border:1px solid #6885ab;border-radius:8px;background:#1a3348;color:#c4daff;cursor:pointer}
-.frr-assets button strong{font-size:15px;line-height:1.3}
-.frr-equity button{background:#302b45;border-color:#8c77b2;color:#d7bfff}
-.frr-assets button:hover,.frr-foot button:hover{filter:brightness(1.14)}
-.frr-foot{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:16px}
-.frr-foot>small{font-size:10px;line-height:1.5;color:#aabfd0;text-align:center}
-.frr-foot>button{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:12px;border:0;border-top:1px solid #3c5b70;background:transparent;color:#d1e2f2;font-size:12px;line-height:1.5;cursor:pointer}
-.frr-foot>button b{color:#c1a0ff;font-size:20px}
-@media(max-width:650px){
- .fund-required-return h4{font-size:19px;margin-bottom:16px}
- .frr-base{grid-template-columns:minmax(0,1fr);gap:7px}
- .frr-base>div{min-height:66px;padding:12px}
- .frr-base>div strong{font-size:16px}
- .frr-base>div small{margin-top:4px}
- .frr-base>b{font-size:20px;line-height:1}
- .frr-fork{font-size:11px;margin-top:18px;gap:8px}
- .frr-assets{gap:10px}
- .frr-assets article{padding:12px 9px}
- .frr-assets h5{font-size:15px}
- .frr-premia{min-height:76px;gap:6px;align-content:center}
- .frr-premia span{font-size:11px;padding:8px}
- .frr-assets button{padding:10px 6px;gap:5px;min-height:62px}
- .frr-assets button strong{font-size:13px}
- .frr-foot>button{flex-wrap:wrap;gap:6px 10px;font-size:11px}
-}
 
-/* Market-reference bridge and expected versus realized factor returns. */
-.frr-base>button{font:inherit;cursor:pointer;color:inherit}
-.frr-base>button:hover,.frr-policy-path button:hover{filter:brightness(1.14)}
-.frr-base>button:focus-visible,.frr-policy-path button:focus-visible,.frr-attribution-link:focus-visible,.ecbs-return-link:focus-visible{outline:2px solid #47e1d1;outline-offset:3px}
-.frr-policy-path{display:grid;grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr) 24px minmax(0,1.15fr);gap:10px;align-items:stretch;margin-top:22px}
-.frr-policy-path>div,.frr-policy-path>button{min-width:0;border:1px solid #5b4d7b;border-radius:8px;background:#24283c;padding:12px 10px;text-align:center;display:flex;flex-direction:column;justify-content:center;color:#ddcaff;font:inherit}
-.frr-policy-path strong{font-size:13px;line-height:1.45}
-.frr-policy-path small{font-size:10px;line-height:1.4;margin-top:5px;color:#b9c7db}
-.frr-policy-path>button{cursor:pointer}
-.frr-policy-path>b{align-self:center;text-align:center;color:#c1a0ff;font-size:21px;font-weight:500}
-.frr-policy-market{position:relative}
-.frr-policy-market>span{position:absolute;bottom:calc(100% + 1px);left:50%;transform:translateX(-50%);font-size:22px;line-height:21px;color:#c1a0ff}
-.frr-policy-effect{display:flex;flex-direction:column;gap:4px;text-align:center;margin:14px 0 0}
-.frr-policy-effect strong{font-size:13px;color:#c7dcf5}
-.frr-policy-effect small{font-size:10px;line-height:1.5;color:#aabfd0}
-.frr-fork{margin-top:16px}
-.frr-assets article{justify-content:space-between}
-.frr-bond .frr-premia{flex:1}
-.frr-factor-models{display:grid;gap:8px;text-align:center}
-.frr-factor-models>div{padding:8px;border:1px solid #68547d;border-radius:7px;background:#29263b;display:flex;flex-direction:column;gap:4px}
-.frr-factor-models small{font-size:10px;color:#baa0df;line-height:1.3}
-.frr-factor-models strong{font-size:12px;color:#dfcbff;font-weight:500;line-height:1.5}
-.frr-factor-models sub{font-size:9px}
-.frr-attribution-link{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:5px 9px;width:100%;padding:12px 4px 0;border:0;background:transparent;color:#b8cadb;font:inherit;font-size:11px;line-height:1.5;text-align:center;cursor:pointer}
-.frr-attribution-link b{font-size:17px;color:#c1a0ff}
-.frr-attribution-link strong{color:#d9c5ff;font-weight:500}
-.frr-foot{margin-top:12px}
+/* One connected path from policy rates to investor-required returns. */
+.fund-required-return{margin:0;background:#132834}
+.frr-lean h4{font-size:21px;margin:0 0 18px;line-height:1.3}
+.frr-lean-start{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.6fr) minmax(0,1.4fr);align-items:stretch}
+.frr-lean-start>button{min-width:0;min-height:82px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px solid #786699;border-radius:10px;padding:14px 12px;background:#29263b;color:#dfceff;font:inherit;text-align:center;cursor:pointer}
+.frr-lean-start>button strong{font-size:17px;line-height:1.3}
+.frr-lean-start>button small{font-size:11px;line-height:1.45;color:#bdcce0}
+.frr-lean-start>.frr-lean-base{background:#1b344a;border-color:#659ac0;color:#d8e8ff}
+.frr-lean-link{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;padding:0 8px}
+.frr-lean-link small{font-size:11px;line-height:1.4;color:#c7b4e6}
+.frr-lean-link b{font-size:25px;font-weight:500;line-height:1;color:#c1a0ff}
+.frr-lean-fork{height:58px;position:relative}
+.frr-lean-fork svg{display:block;width:100%;height:58px;overflow:visible}
+.frr-lean-fork path{stroke:#7394b2;stroke-width:1.3;fill:none;vector-effect:non-scaling-stroke}
+.frr-lean-fork .frr-lean-narrow{display:none}
+.frr-lean-fork>span{position:absolute;left:50%;top:35px;transform:translate(-50%,-50%);background:#132834;padding:0 12px;color:#b8cadb;white-space:nowrap;font-size:12px;line-height:1.4}
+.frr-lean-assets{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.frr-lean-assets article{min-width:0;padding:14px;border:1px solid #4a647a;border-radius:10px;background:#10232f;display:flex;flex-direction:column;align-items:stretch;text-align:center}
+.frr-lean-assets h5{font-size:16px;margin:0 0 10px;color:#d8e8ff}
+.frr-lean-risk{min-height:58px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap}
+.frr-lean-risk>span{font-size:12px;line-height:1.45;padding:8px 12px;border:1px solid #7e596b;border-radius:7px;background:#392a39;color:#f7b5ce}
+.frr-lean-risk>span:last-child{color:#f5c477;background:#332f27;border-color:#77664b}
+.frr-lean-risk>b{font-size:17px;color:#97adc0;font-weight:500}
+.frr-lean-factors{flex-direction:column;gap:5px}
+.frr-lean-factors>span{border:0;border-radius:0;background:none;color:#d5c3ec;padding:0;font-size:11px}
+.frr-lean-factors>button{border:1px solid #7867a0;background:#2b2841;border-radius:7px;padding:7px 12px;color:#dfcbff;font:inherit;font-size:12px;line-height:1.4;cursor:pointer}
+.frr-lean-down{font-size:22px;line-height:1.1;color:#9ab4c9;margin:9px 0}
+.frr-lean-result{width:100%;padding:12px 8px;margin-top:auto;border:1px solid #6885ab;border-radius:8px;background:#1a3348;color:#c4daff;font:inherit;cursor:pointer}
+.frr-lean-result strong{font-size:15px;line-height:1.3}
+.frr-lean-tail{white-space:nowrap}
+.frr-lean-equity .frr-lean-result{background:#302b45;border-color:#8c77b2;color:#d7bfff}
+.frr-lean-company{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:7px 11px;width:100%;padding:14px 0 0;margin-top:14px;border:0;border-top:1px solid #3c5b70;background:transparent;color:#c8d9e9;font:inherit;font-size:12px;line-height:1.5;cursor:pointer}
+.frr-lean-company b{color:#c1a0ff;font-size:20px}
+.frr-lean-company strong{color:#d8e8ff;font-weight:600}
+.frr-lean button:hover{filter:brightness(1.14)}
+.frr-lean button:focus-visible,.ecbs-return-link:focus-visible{outline:2px solid #47e1d1;outline-offset:3px}
 .ecbs-return-link{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:7px 12px;width:100%;margin-top:18px;padding:14px 12px;border:1px solid #536d86;border-radius:9px;background:#1a2e40;color:#c8dcf7;font:inherit;font-size:12px;line-height:1.5;cursor:pointer}
 .ecbs-return-link b{color:#c1a0ff;font-size:19px}
 .ecbs-return-link strong{color:#d9c5ff}
+.fund-required-return,.fund-compact-outcome{scroll-margin-top:90px}
 @media(max-width:650px){
- .frr-base>button{min-height:66px;padding:12px}
- .frr-base>button strong{font-size:16px}
- .frr-base>button small{margin-top:4px}
- .frr-policy-path{grid-template-columns:1fr;gap:5px;margin-top:14px}
- .frr-policy-path>div,.frr-policy-path>button{min-height:48px;padding:8px 12px}
- .frr-policy-path strong{font-size:12px}
- .frr-policy-path small{margin-top:2px}
- .frr-policy-path>b{transform:rotate(90deg);font-size:18px;line-height:1}
- .frr-policy-market>span{display:none}
- .frr-policy-market:after{content:'Shapes the nominal reference above ↑';font-size:10px;color:#c1a0ff;margin-top:4px}
- .frr-policy-effect strong{font-size:12px}
- .frr-policy-effect small{font-size:10px}
- .frr-assets article{padding:12px 8px}
- .frr-factor-models strong{font-size:11px}
- .frr-factor-models>div{padding:7px 5px}
- .frr-factor-models small{font-size:9px}
- .frr-attribution-link{font-size:10px}
+ .frr-lean h4{font-size:19px;margin-bottom:14px}
+ .frr-lean-start{grid-template-columns:1fr}
+ .frr-lean-start>button{min-height:66px;padding:12px}
+ .frr-lean-start>button strong{font-size:16px}
+ .frr-lean-start>button small{font-size:11px}
+ .frr-lean-link{padding:8px 0;gap:2px;flex-direction:row}
+ .frr-lean-link small{font-size:10px;text-align:left}
+ .frr-lean-link small br{display:none}
+ .frr-lean-link b{font-size:22px;transform:rotate(90deg);margin-left:7px}
+ .frr-lean-fork .frr-lean-wide{display:none}
+ .frr-lean-fork .frr-lean-narrow{display:block}
+ .frr-lean-fork>span{font-size:11px;padding:0 8px}
+ .frr-lean-assets{gap:10px}
+ .frr-lean-assets article{padding:12px 8px}
+ .frr-lean-assets h5{font-size:15px}
+ .frr-lean-risk{min-height:82px;gap:5px;align-content:center}
+ .frr-lean-risk>span{font-size:11px;padding:7px}
+ .frr-lean-risk>b{font-size:14px}
+ .frr-lean-factors>span{font-size:10px;line-height:1.45;padding:0}
+ .frr-lean-factors>button{font-size:10px;padding:6px;max-width:100%}
+ .frr-lean-result{padding:10px 5px;min-height:56px}
+ .frr-lean-result strong{font-size:13px}
+ .frr-lean-company{font-size:11px}
 }
 
-
-.fund-required-return,.fund-compact-outcome{scroll-margin-top:90px}
 </style></head>
 <body><noscript><div class="noscript">Enable JavaScript to use the map. This file works offline.</div></noscript>
 <div class="shell"><header class="clean-title"><h1>How does the financial system work?</h1></header><main><div class="workspace"><section class="mapcard" aria-label="Financial system map"><div id="compactMap" class="compact-map" role="group" aria-label="Explore the six parts of the financial system"></div><div class="diagram" id="diagram"><svg id="map" viewBox="55 -5 1105 715" role="group" aria-label="Interactive map: household savings connect to company investment through banks, funds and direct investing. Banks also create deposits when they lend. Interest, dividends and repayments return to households directly or through banks and funds."><defs id="defs"></defs><g id="scene"><g id="columns"></g><g id="ratesBridge" aria-hidden="true"></g><g id="edges"></g><g id="returnLoop"></g><g id="nodes"></g><g id="ratesHubNode" role="button" tabindex="0" aria-label="Interest rates: expand the shared graph" aria-expanded="false" aria-controls="ratesHubPanel"></g></g></svg><div class="maptools"><button id="zoomIn" aria-label="Zoom in">＋</button><button id="zoomOut" aria-label="Zoom out">−</button><button id="resetView" title="Reset map">Reset</button><button id="expand" aria-pressed="false" title="Expand map">⤢</button><button id="motion" aria-pressed="true" title="Animate or pause flows">Flows ⏸</button><button id="aboutMap" aria-label="About this map and its sources" title="About this map and sources">ⓘ</button></div></div><section id="ratesHub" class="rates-hub" aria-label="Interest rates: saving, investment and ECB"><button id="ratesHubToggle" class="rh-toggle" aria-expanded="false" aria-controls="ratesHubPanel"><svg viewBox="0 0 100 70" aria-hidden="true"><path d="M8 7 V60 H94" stroke="#68869b" fill="none"/><path d="M12 56 L87 11" stroke="#54ddc4" stroke-width="3"/><path d="M12 11 L87 56" stroke="#f5c477" stroke-width="3"/><path d="M9 25 H94" stroke="#c1a0ff" stroke-width="2" stroke-dasharray="5 3"/></svg><span><strong>Interest rates</strong></span><b aria-hidden="true">↗</b></button><div id="ratesHubPanel" hidden></div></section></section><aside class="map-arrow-legend mal-unified" aria-label="Map arrow legend"><div class="mal-items"><span><i class="mal-line" style="--mal-color:#54ddc4" aria-hidden="true"></i>Money flows</span><span><i class="mal-line" style="--mal-color:#81abff" aria-hidden="true"></i>Financing</span><span><i class="mal-line mal-dashed" style="--mal-color:#c1a0ff" aria-hidden="true"></i>Rate influences</span></div></aside></div></main></div>
@@ -1810,24 +1777,16 @@ function fundsCompactImplementation(){return `<div class="fund-path-fork"><div><
 function fundsAlphaStep(n,title,body){return sysStep(n,title,body).replace('class="bes-block sys-block"','class="bes-block sys-block fund-alpha-box fund-alpha-box-'+n+'"')}
 function fundsActivePassiveChoice(){const p=fundsPolicyExample();return `<div class="fund-alpha-policy"><div class="fund-alpha-policy-route"><span>Goals &amp; constraints</span><i>→</i><span>Desired exposures &amp; allocation</span><i>→</i><strong>Agreed benchmark</strong></div><small>Illustrative policy: ${sysN(p.equityWeight*100)}% equities / ${sysN(p.bondWeight*100)}% bonds · numerical example follows equities.</small></div><div class="fund-alpha-reference"><span>Equity reference · agree before investing</span>${sysChoices('fundBenchmark',[['market','Broad-market equity'],['style','Value-style equity']])}</div><div class="fund-alpha-fork"><article class="fund-alpha-passive"><small>PASSIVE</small><strong>Track the chosen index</strong><div class="fund-alpha-matching"><span>Index weights</span><i>≈</i><span>Fund weights</span></div><p>Keep tracking differences and costs low.</p></article><article class="fund-alpha-active"><small>ACTIVE</small><strong>Take different bets</strong><div class="fund-alpha-bets"><span>Allocation</span><span>Factor tilts</span><span>Timing</span><span>Stock selection</span></div><p>Aim to beat the agreed benchmark after costs.</p></article></div><div class="fund-alpha-value-example"><span>Choose value exposure</span><i>→</i><span>Track a value index</span><i>→</i><b>Passive implementation</b></div><small class="fund-alpha-caption">Choosing the exposure and implementing it are separate decisions. Active allocation can also use index funds.</small>`}
 function fundsRequiredReturnFoundation(){
- return '<section class="bes-block fund-required-return" aria-label="Building a required return">'
- +'<h4>From interest rates to required returns</h4>'
- +'<div class="frr-base" role="group" aria-label="Market real rate plus expected inflation gives the nominal reference">'
- +'<button class="frr-time" data-rates-open="pricing"><strong>Market real risk-free rate</strong><small>Compensation for waiting<br>Interest rates ↗</small></button>'
- +'<b aria-hidden="true">+</b><div class="frr-inflation"><strong>Expected inflation</strong><small>Preserve purchasing power</small></div>'
- +'<b aria-hidden="true">≈</b><div class="frr-reference"><strong>Nominal risk-free reference</strong><small>Same currency &amp; maturity</small></div></div>'
- +'<div class="frr-policy-path" role="group" aria-label="ECB policy steers overnight market rates; expected future short rates and term premia shape the reference above">'
- +'<button data-sys-node="cb"><strong>ECB policy ↗</strong><small>Short nominal rate</small></button><b aria-hidden="true">→</b>'
- +'<div><strong>Overnight<br>market rates</strong></div><b aria-hidden="true">→</b>'
- +'<div class="frr-policy-market"><strong>Expected rate path<br>+ term premia</strong><small>Market pricing by maturity</small><span aria-hidden="true">↑</span></div></div>'
- +'<p class="frr-policy-effect"><strong>Higher market base → higher required returns</strong><small>At unchanged premia. Long rates need not follow ECB changes one-for-one.</small></p>'
- +'<div class="frr-fork" aria-hidden="true"><i></i><span>Add the relevant risk premia</span><i></i></div>'
- +'<div class="frr-assets"><article class="frr-bond"><h5>Bond</h5><div class="frr-premia"><span>+ Credit risk</span><span>+ Liquidity</span></div><span class="frr-down" aria-hidden="true">↓</span>'
- +'<button data-sys-node="bonds"><strong>Required bond yield</strong><span aria-hidden="true">↗</span></button></article>'
- +'<article class="frr-equity"><h5>Equity</h5><div class="frr-factor-models"><div><small>CAPM</small><strong>β<sub>M</sub> × Market premium</strong></div><div><small>Multifactor · additional factors</small><strong>+ β<sub>V</sub> × Value + β<sub>S</sub> × Size + …</strong></div></div>'
- +'<span class="frr-down" aria-hidden="true">↓</span><button data-sys-node="equities"><strong>Required equity return</strong><span aria-hidden="true">↗</span></button></article></div>'
- +'<button class="frr-attribution-link" data-sys-node="funds" data-sys-anchor=".fund-compact-outcome"><span>Expected factor premia here</span><b aria-hidden="true">→</b><strong>Actual factor returns &amp; alpha · step 4 ↓</strong></button>'
- +'<div class="frr-foot"><button data-sys-node="firms"><span>Investor’s required return</span><b aria-hidden="true">→</b><strong>Company’s cost of capital ↗</strong></button></div></section>'
+ return '<section class="bes-block fund-required-return frr-lean" aria-label="From policy and market rates to required returns">'
+ +'<h4>From policy rates to required returns</h4>'
+ +'<div class="frr-lean-start" role="group" aria-label="ECB policy steers short rates; expectations and term premia shape the market base">'
+ +'<button class="frr-lean-policy" data-sys-node="cb"><strong>ECB policy ↗</strong><small>Steers short rates</small></button>'
+ +'<div class="frr-lean-link"><small>Expected rate path<br> + term premia</small><b aria-hidden="true">→</b></div>'
+ +'<button class="frr-lean-base" data-rates-open="pricing"><strong>Risk-free market base ↗</strong><small>Nominal ≈ real + expected inflation</small></button></div>'
+ +'<div class="frr-lean-fork"><svg class="frr-lean-wide" viewBox="0 0 1000 58" preserveAspectRatio="none" aria-hidden="true"><path d="M766 0V16H500V35M250 54V35H750V54m-5-5 5 5 5-5M245 49l5 5 5-5"/></svg><svg class="frr-lean-narrow" viewBox="0 0 1000 58" preserveAspectRatio="none" aria-hidden="true"><path d="M500 0V35M250 54V35H750V54m-5-5 5 5 5-5M245 49l5 5 5-5"/></svg><span>Add risk premia</span></div>'
+ +'<div class="frr-lean-assets"><article class="frr-lean-bond"><h5>Bonds</h5><div class="frr-lean-risk"><span>Credit</span><b>+</b><span>Liquidity</span></div><span class="frr-lean-down" aria-hidden="true">↓</span><button class="frr-lean-result" data-sys-node="bonds"><strong>Required bond <span class="frr-lean-tail">yield ↗</span></strong></button></article>'
+ +'<article class="frr-lean-equity"><h5>Equities</h5><div class="frr-lean-risk frr-lean-factors"><span>Factor exposures × expected premia</span><button data-sys-node="funds" data-sys-anchor=".fund-compact-outcome" aria-label="Market, value and size: explore factor returns and alpha in step 4">Market · Value · Size · … ↓</button></div><span class="frr-lean-down" aria-hidden="true">↓</span><button class="frr-lean-result" data-sys-node="equities"><strong>Required equity <span class="frr-lean-tail">return ↗</span></strong></button></article></div>'
+ +'<button class="frr-lean-company" data-sys-node="firms"><span>Required returns</span><b aria-hidden="true">→</b><strong>Company’s cost of capital ↗</strong></button></section>'
 }
 function essentialFunds(){const arrow='<div class="fund-step-link" aria-hidden="true">↓</div>';return '<h3 class="es-title">From investor goals to portfolio results.</h3><div class="fund-connected-story fund-alpha-story fund-investor-story fund-story-connected fund-unified">'+fundsRequiredReturnFoundation()+arrow+'<div class="fund-plan-route" role="group" aria-label="Investor goals, allocation and implementation">'+fundsPlanStage(1,'Investor &amp; goals',fundsInvestorGoals())+arrow+fundsPlanStage(2,'Asset allocation',fundsGoalsToAllocation())+arrow+fundsPlanStage(3,'Implementation',fundsImplementAllocation()+fundsExposureImplementationExamples())+'</div>'+arrow+'<div class="sys-story" id="sysLessonBody">'+systemFundBody()+'</div></div>'}
 
