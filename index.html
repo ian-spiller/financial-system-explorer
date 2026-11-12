@@ -1152,18 +1152,40 @@
 /* One connected path from policy rates to investor-required returns. */
 .fund-required-return{margin:0;background:#132834}
 .frr-lean h4{font-size:21px;margin:0 0 18px;line-height:1.3}
-.frr-lean-start{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.6fr) minmax(0,1.4fr);align-items:stretch}
-.frr-lean-start>button{min-width:0;min-height:82px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px solid #786699;border-radius:10px;padding:14px 12px;background:#29263b;color:#dfceff;font:inherit;text-align:center;cursor:pointer}
-.frr-lean-start>button strong{font-size:17px;line-height:1.3}
-.frr-lean-start>button small{font-size:11px;line-height:1.45;color:#bdcce0}
-.frr-lean-start>.frr-lean-base{background:#1b344a;border-color:#659ac0;color:#d8e8ff}
-.frr-lean-link{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;padding:0 8px}
-.frr-lean-link small{font-size:11px;line-height:1.4;color:#c7b4e6}
-.frr-lean-link b{font-size:25px;font-weight:500;line-height:1;color:#c1a0ff}
+
+.frr-natural-start{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr);align-items:stretch}
+.frr-natural-start>button,.frr-natural-market{min-width:0;min-height:116px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border:1px solid #786699;border-radius:10px;padding:14px 12px;background:#29263b;color:#dfceff;font:inherit;text-align:center}
+.frr-natural-start>button{cursor:pointer}
+.frr-natural-start strong{font-size:16px;line-height:1.35}
+.frr-natural-start small{font-size:11px;line-height:1.45;color:#bdcce0}
+.frr-natural-start>.frr-natural-reference{background:#17313c;border-color:#8eaebc;color:#e5f0f5;gap:11px}
+.frr-natural-equation{display:grid;grid-template-columns:minmax(0,1fr) 16px minmax(0,1fr);align-items:center;gap:6px;width:100%;font-size:12px;line-height:1.4;color:#c7dde6}
+.frr-natural-equation>span{min-width:0}
+.frr-natural-equation>span:last-child{color:#f5c477}
+.frr-natural-equation i{font-style:normal;font-size:18px;color:#b9ccd9}
+.frr-natural-reference>strong{font-size:14px;padding-top:8px;border-top:1px solid #49626c;width:100%}
+.frr-natural-arrow{align-self:center;text-align:center;font-size:24px;font-weight:500;color:#c1a0ff}
+.frr-natural-market{background:#1b344a;border-color:#659ac0;color:#d8e8ff;gap:7px}
+.frr-natural-market>span{font-size:12px;line-height:1.4;color:#c4d7e6}
+.frr-natural-market>small{color:#c1a0ff;font-size:12px}
+@media(max-width:800px){
+ .frr-natural-start{grid-template-columns:1fr}
+ .frr-natural-start>button,.frr-natural-market{min-height:66px;padding:12px;gap:7px}
+ .frr-natural-equation{font-size:12px}
+ .frr-natural-reference>strong{font-size:14px;padding-top:7px}
+ .frr-natural-arrow{transform:rotate(90deg);font-size:20px;line-height:1;padding:4px 0}
+ .frr-natural-start>button strong{font-size:16px}
+ .frr-natural-start>.frr-natural-reference>strong{font-size:14px}
+ .frr-natural-market strong{font-size:16px}
+ .frr-natural-market>span,.frr-natural-market>small{font-size:11px}
+ .frr-lean-fork .frr-lean-wide{display:none}
+ .frr-lean-fork .frr-lean-narrow{display:block}
+}
 .frr-lean-fork{height:58px;position:relative}
 .frr-lean-fork svg{display:block;width:100%;height:58px;overflow:visible}
 .frr-lean-fork path{stroke:#7394b2;stroke-width:1.3;fill:none;vector-effect:non-scaling-stroke}
 .frr-lean-fork .frr-lean-narrow{display:none}
+@media(max-width:800px){.frr-lean-fork .frr-lean-wide{display:none}.frr-lean-fork .frr-lean-narrow{display:block}}
 .frr-lean-fork>span{position:absolute;left:50%;top:35px;transform:translate(-50%,-50%);background:#132834;padding:0 12px;color:#b8cadb;white-space:nowrap;font-size:12px;line-height:1.4}
 .frr-lean-assets{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .frr-lean-assets article{min-width:0;padding:14px;border:1px solid #4a647a;border-radius:10px;background:#10232f;display:flex;flex-direction:column;align-items:stretch;text-align:center}
@@ -1191,14 +1213,6 @@
 .fund-required-return,.fund-compact-outcome{scroll-margin-top:90px}
 @media(max-width:650px){
  .frr-lean h4{font-size:19px;margin-bottom:14px}
- .frr-lean-start{grid-template-columns:1fr}
- .frr-lean-start>button{min-height:66px;padding:12px}
- .frr-lean-start>button strong{font-size:16px}
- .frr-lean-start>button small{font-size:11px}
- .frr-lean-link{padding:8px 0;gap:2px;flex-direction:row}
- .frr-lean-link small{font-size:10px;text-align:left}
- .frr-lean-link small br{display:none}
- .frr-lean-link b{font-size:22px;transform:rotate(90deg);margin-left:7px}
  .frr-lean-fork .frr-lean-wide{display:none}
  .frr-lean-fork .frr-lean-narrow{display:block}
  .frr-lean-fork>span{font-size:11px;padding:0 8px}
@@ -1777,13 +1791,15 @@ function fundsCompactImplementation(){return `<div class="fund-path-fork"><div><
 function fundsAlphaStep(n,title,body){return sysStep(n,title,body).replace('class="bes-block sys-block"','class="bes-block sys-block fund-alpha-box fund-alpha-box-'+n+'"')}
 function fundsActivePassiveChoice(){const p=fundsPolicyExample();return `<div class="fund-alpha-policy"><div class="fund-alpha-policy-route"><span>Goals &amp; constraints</span><i>→</i><span>Desired exposures &amp; allocation</span><i>→</i><strong>Agreed benchmark</strong></div><small>Illustrative policy: ${sysN(p.equityWeight*100)}% equities / ${sysN(p.bondWeight*100)}% bonds · numerical example follows equities.</small></div><div class="fund-alpha-reference"><span>Equity reference · agree before investing</span>${sysChoices('fundBenchmark',[['market','Broad-market equity'],['style','Value-style equity']])}</div><div class="fund-alpha-fork"><article class="fund-alpha-passive"><small>PASSIVE</small><strong>Track the chosen index</strong><div class="fund-alpha-matching"><span>Index weights</span><i>≈</i><span>Fund weights</span></div><p>Keep tracking differences and costs low.</p></article><article class="fund-alpha-active"><small>ACTIVE</small><strong>Take different bets</strong><div class="fund-alpha-bets"><span>Allocation</span><span>Factor tilts</span><span>Timing</span><span>Stock selection</span></div><p>Aim to beat the agreed benchmark after costs.</p></article></div><div class="fund-alpha-value-example"><span>Choose value exposure</span><i>→</i><span>Track a value index</span><i>→</i><b>Passive implementation</b></div><small class="fund-alpha-caption">Choosing the exposure and implementing it are separate decisions. Active allocation can also use index funds.</small>`}
 function fundsRequiredReturnFoundation(){
- return '<section class="bes-block fund-required-return frr-lean" aria-label="From policy and market rates to required returns">'
- +'<h4>From policy rates to required returns</h4>'
- +'<div class="frr-lean-start" role="group" aria-label="ECB policy steers short rates; expectations and term premia shape the market base">'
- +'<button class="frr-lean-policy" data-sys-node="cb"><strong>ECB policy ↗</strong><small>Steers short rates</small></button>'
- +'<div class="frr-lean-link"><small>Expected rate path<br> + term premia</small><b aria-hidden="true">→</b></div>'
- +'<button class="frr-lean-base" data-rates-open="pricing"><strong>Risk-free market base ↗</strong><small>Nominal ≈ real + expected inflation</small></button></div>'
- +'<div class="frr-lean-fork"><svg class="frr-lean-wide" viewBox="0 0 1000 58" preserveAspectRatio="none" aria-hidden="true"><path d="M766 0V16H500V35M250 54V35H750V54m-5-5 5 5 5-5M245 49l5 5 5-5"/></svg><svg class="frr-lean-narrow" viewBox="0 0 1000 58" preserveAspectRatio="none" aria-hidden="true"><path d="M500 0V35M250 54V35H750V54m-5-5 5 5 5-5M245 49l5 5 5-5"/></svg><span>Add risk premia</span></div>'
+ return '<section class="bes-block fund-required-return frr-lean" aria-label="From the natural rate through ECB policy and market expectations to required returns">'
+ +'<h4>From the natural rate to required returns</h4>'
+ +'<div class="frr-natural-start" role="group" aria-label="Natural real rate plus expected inflation gives an approximate neutral nominal reference; ECB policy can be above or below it; expected future short rates and term premia shape the market base">'
+ +'<button class="frr-natural-reference" data-rates-open="" aria-label="Explore the natural rate and policy stance in Interest rates"><span class="frr-natural-equation"><span>Natural real rate <b>r*</b></span><i aria-hidden="true">+</i><span>Expected inflation</span></span><strong>≈ Neutral nominal rate ↗</strong></button>'
+ +'<b class="frr-natural-arrow" aria-hidden="true">→</b>'
+ +'<button class="frr-lean-policy" data-sys-node="cb"><strong>ECB nominal rate ↗</strong><small>Set above or below neutral</small></button>'
+ +'<b class="frr-natural-arrow" aria-hidden="true">→</b>'
+ +'<div class="frr-natural-market" aria-label="Matched-maturity nominal risk-free market reference"><strong>Risk-free market base</strong><span>Average expected short rates</span><small>+ Term premium</small></div></div>'
+ +'<div class="frr-lean-fork"><svg class="frr-lean-wide" viewBox="0 0 1000 58" preserveAspectRatio="none" aria-hidden="true"><path d="M840 0V16H500V35M250 54V35H750V54m-5-5 5 5 5-5M245 49l5 5 5-5"/></svg><svg class="frr-lean-narrow" viewBox="0 0 1000 58" preserveAspectRatio="none" aria-hidden="true"><path d="M500 0V35M250 54V35H750V54m-5-5 5 5 5-5M245 49l5 5 5-5"/></svg><span>Add risk premia</span></div>'
  +'<div class="frr-lean-assets"><article class="frr-lean-bond"><h5>Bonds</h5><div class="frr-lean-risk"><span>Credit</span><b>+</b><span>Liquidity</span></div><span class="frr-lean-down" aria-hidden="true">↓</span><button class="frr-lean-result" data-sys-node="bonds"><strong>Required bond <span class="frr-lean-tail">yield ↗</span></strong></button></article>'
  +'<article class="frr-lean-equity"><h5>Equities</h5><div class="frr-lean-risk frr-lean-factors"><span>Factor exposures × expected premia</span><button data-sys-node="funds" data-sys-anchor=".fund-compact-outcome" aria-label="Market, value and size: explore factor returns and alpha in step 4">Market · Value · Size · … ↓</button></div><span class="frr-lean-down" aria-hidden="true">↓</span><button class="frr-lean-result" data-sys-node="equities"><strong>Required equity <span class="frr-lean-tail">return ↗</span></strong></button></article></div>'
  +'<button class="frr-lean-company" data-sys-node="firms"><span>Required returns</span><b aria-hidden="true">→</b><strong>Company’s cost of capital ↗</strong></button></section>'
