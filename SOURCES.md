@@ -178,3 +178,5 @@ The consumption-to-price bridge was also checked against CFA Institute, *2024 Le
 
 - [CFA Institute: Economics and Investment Markets](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/economics-and-investment-markets) — real default-free rates, inflation and asset-specific risk.
 - [CFA Institute: Capital Market Expectations, Part II](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/capital-market-expectations-part-ii) — term, credit and liquidity contributions; credit spread versus expected return.
+
+- [ECB: Interest-rate risk and the term premium](https://www.ecb.europa.eu/press/key/date/2017/html/ecb.sp171011.en.html) — compensation for duration risk and the effect of central-bank bond purchases.

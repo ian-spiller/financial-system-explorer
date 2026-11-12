@@ -1471,7 +1471,7 @@ button.rrline-title{cursor:pointer}
 .rrb-base-label{padding-top:8px}
 .rrb-term>.rrb-number{margin:10px 0 7px}.rrb-term-assumption{color:#c9b8e1!important;font-size:10px!important}
 .rrb-term-check{display:flex;flex-direction:column;gap:4px;margin-top:9px;padding-top:8px;border-top:1px solid #9a91bc44;width:100%}
-.rrb-term-check>strong{font-size:15px;font-weight:600;line-height:1.3;color:#d4c9ee;white-space:nowrap}
+.rrb-term-check>strong{font-size:13px;font-weight:600;line-height:1.3;color:#d4c9ee;white-space:nowrap}
 .rrb-term-check>span{font-size:10px;line-height:1.35;color:#b8bfd3}
 .rrb-branches .rrb-box{min-height:0;padding:10px 12px;gap:9px}
 .rrb-branch-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:8px;border-bottom:1px solid #ffffff16;min-width:0}
@@ -1485,7 +1485,7 @@ button.rrline-title{cursor:pointer}
 .rrb-footer{margin-top:12px;padding-top:9px}
 @media(max-width:600px){
  .rrb-short-pair .rrb-box{min-height:125px}.rrb-short-pair .rrb-number{font-size:32px}
- .rrb-term,.rrb-base{min-height:192px}.rrb-track>.rrb-op{margin-top:68px}.rrb-term-check>strong{font-size:14px}.rrb-term-check>span{font-size:9px}
+ .rrb-term,.rrb-base{min-height:192px}.rrb-track>.rrb-op{margin-top:68px}.rrb-term-check>strong{font-size:12px}.rrb-term-check>span{font-size:9px}
  .rrb-branches .rrb-box{min-height:0;padding:10px 8px;gap:8px}
  .rrb-branch-heading{flex-direction:column;justify-content:center;gap:4px;padding-bottom:7px}
  .rrb-risks{display:flex;flex-direction:column;gap:5px}
@@ -2116,7 +2116,7 @@ function fundsRequiredReturnFoundation(){
  return '<section class="bes-block fund-required-return rrline rrb-story rh-pricing-story" aria-label="Real base plus inflation plus term premium; separate bond and equity risk premia"><header class="rrline-heading"><h4>Build the required return</h4><small>Illustrative · flat short-rate scenario</small></header>'
  +'<div class="rrb-layout" role="group" aria-label="Rate building blocks above; separate bond and equity paths below"><div class="rrb-track">'
  +'<div class="rrb-short-pair"><article class="rrb-box rrb-real rrline-neutral"><h5>Real base</h5><strong class="rrb-number" data-rate-block="real">'+p(m.realBase)+'</strong><small>Short-term real rate</small></article>'+op('+')+'<article class="rrb-box rrb-inflation"><h5>Inflation</h5><strong class="rrb-number" data-rate-block="inflation">'+p(m.expectedInflation)+'</strong><small>Expected · not a risk premium</small></article><div class="rrb-short-total rrline-policy"><span>Short nominal base <strong>'+p(m.shortNominal)+'</strong></span><button data-sys-node="cb">ECB '+p(m.ecbNominal)+(neutral?' · neutral':' · '+(m.ecbNominal>m.neutralNominal?'restrictive':'accommodative'))+' ↗</button></div></div>'+op('+')
- +'<article class="rrb-box rrb-term"><h5>Term premium</h5><strong class="rrb-number" data-rate-block="term">'+sysN(m.termPremium)+' pp'+'</strong><small class="rrb-term-assumption">Assumed · not estimated</small><div class="rrb-term-check"><strong>'+p(m.marketBase)+' − '+p(m.shortNominal)+'</strong><span>5Y yield − expected<br>short-rate component</span></div></article>'+op('=')
+ +'<article class="rrb-box rrb-term"><h5>Term premium</h5><strong class="rrb-number" data-rate-block="term">'+sysN(m.termPremium)+' pp'+'</strong><small class="rrb-term-assumption">Assumed · not estimated</small><div class="rrb-term-check"><strong>Interest-rate risk</strong><span>Uncertainty · bond supply<br>Investor demand</span></div></article>'+op('=')
  +'<article class="rrb-box rrb-base rrline-market"><h5>5-year base</h5><strong class="rrb-number" data-rate-block="base">'+p(m.marketBase)+'</strong><small>'+sysN(m.realBase)+' + '+sysN(m.expectedInflation)+' + '+sysN(m.termPremium)+'</small><span class="rrb-base-label">Same base for both paths</span></article>'
  +'<div class="rrb-branches rrline-premia rrline-returns" role="group" aria-label="Two separate paths from the same market base"><article class="rrb-box rrb-bond rrline-risk-group"><header class="rrb-branch-heading"><h5>Bonds</h5><span class="rrb-branch-base">'+p(m.marketBase)+' base</span></header><div class="rrb-risks rrb-bond-risks">'+row('Credit',m.bondCredit)+row('Liquidity',m.bondLiquidity)+'</div><button class="rrb-output rrline-output" data-sys-node="bonds"><span>Required yield ↗</span><strong data-rate-block="bonds">'+p(m.bondYield)+'</strong></button></article>'
  +'<article class="rrb-box rrb-equity rrline-risk-group rrline-risk-equity"><header class="rrb-branch-heading"><h5>Equities</h5><span class="rrb-branch-base">'+p(m.marketBase)+' base</span></header><div class="rrb-risks rrb-equity-risks">'+row('Market',m.equityMarket)+row('Value',m.equityValue)+row('Size',m.equitySize)+'</div><button class="rrb-output rrline-output rrline-output-equity" data-sys-node="equities"><span>Required return ↗</span><strong data-rate-block="equities">'+p(m.equityReturn)+'</strong></button></article></div></div></div><footer class="rrb-footer"><span>'+(flatAtECB?'Short nominal base = ECB rate in this flat-rate example.':'Short nominal base is a separate market assumption.')+'</span><button class="rrline-company" data-sys-node="firms">Company’s cost of capital ↗</button></footer></section>';

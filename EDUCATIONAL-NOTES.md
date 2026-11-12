@@ -89,6 +89,10 @@ The default uses a neutral, flat short-rate scenario, rather than a forecast. Aw
 
 Term premium compensates for bearing longer-horizon interest-rate/inflation uncertainty rather than merely waiting longer. The assumed 0.5 percentage-point premium is not estimated and need not always be positive. Expected inflation compensation is distinct from uncertainty about inflation. The simplified term-risk allowance does not separately estimate an inflation-risk premium. The additive decomposition approximates exact compounding. The common five-year reference used for equity valuation is a teaching proxy, not an assertion that equities mature in five years.
 
-### Term-premium illustration
+### Origin and estimation of the term premium
 
-The compact card labels 0.5 percentage points as assumed, not estimated. The numerical check is 4.5% five-year default-free yield minus the 4% expected short-rate component in the flat-rate scenario. This displays the decomposition; it does not derive an independent term-premium estimate, since the example constructs its long reference using that same assumed premium. In practice the expected short-rate component is model- or survey-dependent and spans the bond horizon; the difference from today’s ECB setting alone is not a general estimate. The decomposition follows the Federal Reserve’s yield-term-premium convention, which can include a convexity component.
+The card treats 0.5 percentage points as a teaching assumption, not an estimate. The long reference is constructed as 4% plus this assumed premium. Subtracting 4% from that constructed 4.5% would only recover the assumption, so the interface does not present that subtraction as a calculation of the premium.
+
+Economically, the premium is market compensation for bearing longer-horizon interest-rate risk. Its level depends on uncertainty, the amount of duration risk the private sector must absorb, investors’ risk-bearing capacity and demand for long bonds. Central-bank bond purchases can reduce the duration risk held by investors and compress the premium. The premium need not be positive.
+
+Empirically, observed long yields can be decomposed using models and/or surveys to estimate the expected short-rate component over the relevant horizon. This component and the term premium are not directly observable. The yield-minus-expected-short-rate relation defines the decomposition; it does not independently explain an assumed numerical premium. Today’s ECB setting alone is insufficient to identify it.
