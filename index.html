@@ -1561,8 +1561,117 @@ button.sr-tile{cursor:pointer}button.sr-tile:hover{border-color:#86bedf;backgrou
 @media(max-width:650px){.npv-surplus-story .npve-equation strong{font-size:clamp(19px,5.5vw,24px)}.npv-surplus-story .npve-split strong{font-size:clamp(21px,6.5vw,28px)}}@media(max-width:350px){.npv-surplus-story .npve-equation{grid-template-columns:1fr;gap:7px}.npv-surplus-story .npve-equation>div{min-height:72px}.npv-surplus-story .npve-equation strong{font-size:25px}}
 
 .model-clarification{margin:10px 0 14px;color:var(--muted);font-size:12px;line-height:1.55}.rrline-heading+.model-clarification{margin:0 0 14px}.npve-equation+.model-clarification{text-align:center;margin:10px 0 14px}.sys-note+.model-clarification{margin-top:8px}@media(max-width:650px){.model-clarification{font-size:11px;line-height:1.5}}
+
+/* A quieter reading hierarchy: steps stay visible; calculations stay intact. */
+body.calm-layout{--calm-line:#3c5364;--calm-text:#dbe7ef;--calm-muted:#a8bdcd;--calm-result:#83dcc5}
+body.calm-layout .es-view .es-title{font-size:clamp(27px,3.3vw,34px);line-height:1.22;letter-spacing:-.025em;margin-bottom:24px}
+body.calm-layout .es-view .es-title em{color:#a3d9cb}
+body.calm-layout .es-view .bes-block,body.calm-layout .es-view .fund-plan-stage,body.calm-layout .es-view .fund-alpha-box,body.calm-layout .rh-clean-panel .fund-required-return{box-shadow:none;background:#14232f;border-color:#344b5d;border-radius:13px}
+body.calm-layout .es-view h4,body.calm-layout .rh-clean-panel h4{font-weight:600;letter-spacing:-.01em}
+body.calm-layout .es-view h4>span:first-child,body.calm-layout .fund-plan-number{box-shadow:none}
+body.calm-layout .es-view .sys-choices>button,body.calm-layout .rh-clean-panel [data-rates-key],body.calm-layout .es-view .ccbu-contract>button{background:#111f2c;border-color:#34495b;box-shadow:none;color:#bccdda}
+body.calm-layout .es-view .sys-choices>button[aria-pressed="true"],body.calm-layout .rh-clean-panel [data-rates-key][aria-pressed="true"],body.calm-layout .es-view .ccbu-contract>button[aria-pressed="true"]{background:#1d393b;border-color:#6bafa1;color:#e4f3ed}
+body.calm-layout .es-view button:focus-visible,body.calm-layout .rh-clean-panel button:focus-visible{outline:2px solid #84d6c3;outline-offset:3px}
+body.calm-layout .es-view .model-clarification,body.calm-layout .rh-clean-panel .model-clarification{color:#a8bdcd}
+/* One consistent set of source tiles and results. */
+body.calm-layout .sr-tile{background:#182b39;border-color:#405766;box-shadow:none}
+body.calm-layout .sr-tile>strong{color:#dbe7ef}
+body.calm-layout .sr-tile>span{color:#b3c7d4}
+body.calm-layout .sr-tile.sr-result{background:#203c3d;border-color:#517a73}
+body.calm-layout .sr-tile.sr-result>strong{color:var(--calm-result)}
+body.calm-layout .sr-tile.sr-inflation,body.calm-layout .sr-tile.sr-policy{background:#182b39}
+body.calm-layout .sr-step>.sr-operator{color:#8ca4b6}
+/* The shared rates mechanism keeps its boxes, with color concentrated at outputs. */
+body.calm-layout .rh-clean-panel .rh-rate-definition{background:#152631;box-shadow:none;border-color:#3b5162}
+body.calm-layout .rh-clean-panel .rh-rate-real{border-color:#7e7496}
+body.calm-layout .rh-clean-panel .rrb-box{background:#162a38;border-color:#405766;box-shadow:none}
+body.calm-layout .rh-clean-panel .rrb-box h5{color:#c4d4df}
+body.calm-layout .rh-clean-panel .rrb-number{color:#dbe7ef}
+body.calm-layout .rh-clean-panel .rrb-base{background:#1b343e;border-color:#527783}
+body.calm-layout .rh-clean-panel .rrb-base .rrb-number{color:#b0e0df}
+body.calm-layout .rh-clean-panel .rrb-short-total{background:transparent;border-color:#405766}
+body.calm-layout .rh-clean-panel .rrb-term-check{border-color:#344d5e;color:#a8bdcd}
+body.calm-layout .rh-clean-panel .rrb-term-check strong{color:#a8bdcd;font-weight:500}
+body.calm-layout .rh-clean-panel .rrline-risk-row{background:transparent;border:0;border-bottom:1px solid #385160;border-radius:0}
+body.calm-layout .rh-clean-panel .rrline-risk-row strong{color:#d4e2ec;font-weight:600}
+body.calm-layout .rh-clean-panel .rrb-output{background:#203c3d;border-color:#517a73;box-shadow:none}
+body.calm-layout .rh-clean-panel .rrb-output>strong{color:var(--calm-result)}
+body.calm-layout .rh-clean-panel .rrb-branch-base{color:#9eb5c5}
+/* Companies: lighter working rows, prominent cost of capital and surplus. */
+body.calm-layout .es-view .ccbu-branch{background:transparent;border-color:#3c5364;box-shadow:none}
+body.calm-layout .es-view .ccbu-market,body.calm-layout .es-view .ccbu-funding{background:transparent;border:0;border-bottom:1px solid #3b5261;border-radius:0}
+body.calm-layout .es-view .ccbu-market strong{color:#dbe7ef}
+body.calm-layout .es-view .ccbu-charge-grid>div,body.calm-layout .es-view .sr-company-factors>div{background:transparent;border:0;border-left:1px solid #344e5f;border-radius:0}
+body.calm-layout .es-view .ccbu-charge-grid>div:first-child,body.calm-layout .es-view .sr-company-factors>div:first-child{border-left:0}
+body.calm-layout .es-view .ccbu-charge-grid strong,body.calm-layout .es-view .sr-company-factors strong{color:#dbe7ef}
+body.calm-layout .es-view .sr-company-factors small{color:#a0b7c7}
+body.calm-layout .es-view .ccbu-result{background:#203c3d;border-color:#517a73;box-shadow:none}
+body.calm-layout .es-view .ccbu-result strong,body.calm-layout .es-view .ccbu-result span{color:var(--calm-result)}
+body.calm-layout .es-view .ccbu-weight strong{color:#c5d8e5}
+body.calm-layout .es-view .ccbu-wacc{background:#1c3640;border-color:#577d85}
+body.calm-layout .es-view .ccbu-wacc>strong{color:var(--calm-result)}
+body.calm-layout .es-view .npve-equation>div{background:transparent;border-color:#3b5365}
+body.calm-layout .es-view .npve-equation strong{color:#dbe7ef}
+body.calm-layout .es-view .npve-pv-year{background:transparent;border:0;border-left:1px solid #344e5f;border-radius:0}
+body.calm-layout .es-view .npve-pv-year:first-child{border-left:0}
+body.calm-layout .es-view .npve-pv-year strong{color:#ccdce7}
+body.calm-layout .es-view .npve-pv-total{background:#23383f;border-color:#547b75}
+body.calm-layout .es-view .npve-pv-total strong{color:var(--calm-result)}
+body.calm-layout .es-view .npve-value-equation>div{background:transparent;border-color:#405a6d}
+body.calm-layout .es-view .npve-value-equation>div:last-child{background:#203c3d;border-color:#517a73}
+body.calm-layout .es-view .npve-value-equation>div:last-child strong{color:var(--calm-result)}
+/* Banks: keep both pricing branches and their connectors, soften nested frames. */
+body.calm-layout .es-view .brv-risk-card,body.calm-layout .es-view .brv-liquidity,body.calm-layout .es-view .brv-interest{background:transparent;box-shadow:none;border-color:#3c5364}
+body.calm-layout .es-view .bes-assets,body.calm-layout .es-view .bes-liabilities{background:transparent;border-color:#3c5364;box-shadow:none}
+body.calm-layout .es-view .bes-row{border-color:#304957}
+body.calm-layout .es-view .bes-row>strong{color:#dbe7ef}
+body.calm-layout .es-view .bes-branch{background:transparent;border-color:#3c5364;box-shadow:none}
+body.calm-layout .es-view .bes-included{background:transparent;border:0;border-left:2px solid #9c8b65;border-radius:0}
+body.calm-layout .es-view .bes-common>div{background:transparent;border:0;border-top:1px solid #3c5364;border-radius:0;box-shadow:none}
+body.calm-layout .es-view .bes-common>div.bbf-cost{border-top-color:#c0a970}
+body.calm-layout .es-view .bes-common .bbf-cost-value>b{color:#dbe7ef}
+body.calm-layout .es-view .bes-final-rate strong{color:var(--calm-result)}
+/* ECB: arrows carry the causal story, without a different fill on every stage. */
+body.calm-layout .es-view .ecbs-path>div{background:transparent;border-color:#3c5364;box-shadow:none}
+body.calm-layout .es-view .ecbs-path>div>span{color:#c4d4df}
+body.calm-layout .es-view .ecbs-path>div>strong{color:#b8dfd4}
+body.calm-layout .es-view .ecbs-demand-start{background:#1b343b;border-color:#487066}
+body.calm-layout .es-view .ecbq-party{background:transparent;border-color:#3c5364;box-shadow:none}
+body.calm-layout .es-view .ecbq-party strong{font-weight:600}
+/* Government: bars keep their categories; supporting panels become quiet. */
+body.calm-layout .es-view .gov-categories>span{background:transparent;border-color:transparent;box-shadow:none}
+body.calm-layout .es-view .gov3-old,body.calm-layout .es-view .gov3-new{background:transparent;border-color:#3c5364;box-shadow:none}
+body.calm-layout .es-view .gov3-refinance,body.calm-layout .es-view .gov3-gap{background:transparent;border-color:#3c5364;box-shadow:none}
+body.calm-layout .es-view .gov3-total{background:#203c3d;border-color:#517a73}
+/* Funds: separate choices with space, not more colored card layers. */
+body.calm-layout .es-view .fund-goal-choices>button{background:transparent;border-color:#3c5364;box-shadow:none}
+body.calm-layout .es-view .fund-goal-choices>button[aria-pressed="true"]{background:#1d393b;border-color:#6bafa1}
+body.calm-layout .es-view .sr-fund-pricing{background:transparent;border:0;border-top:1px solid #3b5261;border-radius:0;padding-left:0;padding-right:0}
+body.calm-layout .es-view .sr-fund-pair>article{background:transparent;border-color:#3c5364;box-shadow:none}
+body.calm-layout .es-view .sr-fund-risk-row>span{background:transparent;border:0;border-bottom:1px solid #344e5f;border-radius:0}
+body.calm-layout .es-view .sr-fund-risk-row b{color:#dbe7ef}
+body.calm-layout .es-view .sr-fund-result{background:#203c3d;border-color:#517a73;color:var(--calm-result)}
+body.calm-layout .es-view .fund-sleeve-implementation{background:transparent;border-color:#3c5364;box-shadow:none}
+body.calm-layout .es-view .fund-sleeve-story-choices>button{background:transparent;border-color:#3c5364;box-shadow:none}
+body.calm-layout .es-view .fund-sleeve-story-choices>button[aria-pressed="true"]{background:#1c353b;border-color:#6bafa1}
+body.calm-layout .es-view .fund-choice-insights>article{background:transparent;border:0;border-top:1px solid #3c5364;border-radius:0}
+body.calm-layout .es-view .fund-return-route>article{background:transparent;border-color:#3c5364;box-shadow:none}
+body.calm-layout .es-view .fund-return-gap strong{color:var(--calm-result)}
+/* Households and detail valuations retain their diagrams and readable comparisons. */
+body.calm-layout .es-view .hhw-compare>div{background:transparent;border-color:#3c5364;box-shadow:none}
+body.calm-layout .es-view .hhw-compare>div:first-child>strong{color:#c7b4e0}
+body.calm-layout .es-view .hhw-compare>div:last-child>strong{color:var(--calm-result)}
+body.calm-layout .es-view .hhw-choice-panel{background:#1a3039;border-color:#405f6d;box-shadow:none}
+body.calm-layout .es-view .sys-equation,body.calm-layout .es-view .sys-cash-dates>div{background:transparent;border-color:#3c5364;box-shadow:none}
+body.calm-layout .es-view .sys-cash-dates>div{border-radius:6px}
+@media(max-width:650px){body.calm-layout .es-view .es-title{font-size:27px;margin-bottom:20px}body.calm-layout .es-view .npve-pv-year{border-left:0;border-bottom:1px solid #344e5f}body.calm-layout .es-view .ccbu-charge-grid>div,body.calm-layout .es-view .sr-company-factors>div{border-left:0;border-bottom:1px solid #344e5f}}
+
+body.calm-layout .es-view .fund-return-gap.fund-return-loss strong{color:#efb2ac}
+
+body.calm-layout .es-view .npve-split .npve-required{background:#1a2d3a}body.calm-layout .es-view .npve-split .npve-required strong{color:#dbe7ef}body.calm-layout .es-view .npve-split .npve-surplus{background:#203c3d}body.calm-layout .es-view .npve-split .npve-surplus strong,body.calm-layout .es-view .npve-value-equation>.npve-surplus-value strong{color:var(--calm-result)}body.calm-layout .es-view .npve-value-equation>div:first-child strong{color:#dbe7ef}
+
 </style></head>
-<body><noscript><div class="noscript">Enable JavaScript to use the map. This file works offline.</div></noscript>
+<body class="calm-layout"><noscript><div class="noscript">Enable JavaScript to use the map. This file works offline.</div></noscript>
 <div class="shell"><header class="clean-title"><h1>How does the financial system work?</h1></header><main><div class="workspace"><section class="mapcard" aria-label="Financial system map"><div id="compactMap" class="compact-map" role="group" aria-label="Explore the six parts of the financial system"></div><div class="diagram" id="diagram"><svg id="map" viewBox="55 -5 1105 715" role="group" aria-label="Interactive map: household savings connect to company investment through banks, funds and direct investing. Banks also create deposits when they lend. Interest, dividends and repayments return to households directly or through banks and funds."><defs id="defs"></defs><g id="scene"><g id="columns"></g><g id="ratesBridge" aria-hidden="true"></g><g id="edges"></g><g id="returnLoop"></g><g id="nodes"></g><g id="ratesHubNode" role="button" tabindex="0" aria-label="Interest rates: expand the shared graph" aria-expanded="false" aria-controls="ratesHubPanel"></g></g></svg><div class="maptools"><button id="zoomIn" aria-label="Zoom in">＋</button><button id="zoomOut" aria-label="Zoom out">−</button><button id="resetView" title="Reset map">Reset</button><button id="expand" aria-pressed="false" title="Expand map">⤢</button><button id="motion" aria-pressed="true" title="Animate or pause flows">Flows ⏸</button><button id="aboutMap" aria-label="About this map and its sources" title="About this map and sources">ⓘ</button></div></div><section id="ratesHub" class="rates-hub" aria-label="Interest rates: saving, investment and ECB"><button id="ratesHubToggle" class="rh-toggle" aria-expanded="false" aria-controls="ratesHubPanel"><svg viewBox="0 0 100 70" aria-hidden="true"><path d="M8 7 V60 H94" stroke="#68869b" fill="none"/><path d="M12 56 L87 11" stroke="#54ddc4" stroke-width="3"/><path d="M12 11 L87 56" stroke="#f5c477" stroke-width="3"/><path d="M9 25 H94" stroke="#c1a0ff" stroke-width="2" stroke-dasharray="5 3"/></svg><span><strong>Interest rates</strong></span><b aria-hidden="true">↗</b></button><div id="ratesHubPanel" hidden></div></section></section><aside class="map-arrow-legend mal-unified" aria-label="Map arrow legend"><div class="mal-items"><span><i class="mal-line" style="--mal-color:#54ddc4" aria-hidden="true"></i>Money flows</span><span><i class="mal-line" style="--mal-color:#81abff" aria-hidden="true"></i>Financing</span><span><i class="mal-line mal-dashed" style="--mal-color:#c1a0ff" aria-hidden="true"></i>Rate influences</span></div></aside></div></main></div>
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modaltitle"><div class="modalbox"><div class="modalhead"><h2 id="modaltitle"></h2><button id="essentialBack" class="es-back" hidden>← Key ideas</button><button id="copyLessonLink" hidden>Copy link</button><span id="publicationStatus" class="sr-only" role="status" aria-live="polite"></span><button class="close" id="closeModal" aria-label="Close dialog">×</button></div><div id="copyLinkFallback" class="copy-link-fallback" hidden><label for="copyLinkValue">Copy this link</label><input id="copyLinkValue" type="text" readonly></div><div class="modalcontent" id="modalcontent"></div></div></div>
 <script>'use strict';
