@@ -92,3 +92,15 @@ for(const policy of [2,4,6])for(const expected of [3,4,5])for(const source of ['
  const project=run('companySurplusValueModel()');near(project.npv,project.classicNPV);
 }
 run('Object.assign(ratesHubState,{scenario:"base",policy:2,expectedShort:4});bankLoanContract.type="fixed";systemLesson.equityBeta=1;systemLesson.bondCorporateSpread=1.5;systemLesson.bondGovernmentSpread=.4;systemLesson.companyDebtSource="bond"');
+
+// Expected short-rate averages are computed from five annual expectations.
+for(const policy of [2,4,6])for(const scenario of ['flat','rising','falling']){
+ run('ratesHubState.policy='+policy+';chooseExpectedShortPath('+JSON.stringify(scenario)+')');
+ const path=run('expectedShortPathModel()'),c=run('marketRateCurve()'),shared=run('fundsReturnPathExample()');
+ assert.equal(path.rates.length,5);near(path.average,path.rates.reduce((s,r)=>s+r,0)/5);near(c.expectedShort,path.average);near(c.marketBase,path.average+.5);near(shared.marketBase,c.marketBase);near(run('systemEquityModel().riskFree'),c.marketBase);near(run('systemBondModel().reference'),c.marketBase);
+ const before=c.expectedShort;run('ratesHubState.policy='+Number(policy+1));near(run('marketRateCurve().expectedShort'),before);
+ const view=run('fundsRequiredReturnFoundation()');assert.equal((view.match(/data-path-year=/g)||[]).length,5);assert.ok(!/NaN|undefined|Infinity/.test(view));
+}
+run('ratesHubState.policy=2;chooseExpectedShortPath("rising")');{const p=run('expectedShortPathModel()');assert.deepEqual(Array.from(p.rates),[2.5,3,4,5,5.5]);near(p.sum,20);near(p.average,4);near(run('marketRateCurve().marketBase'),4.5);}
+run('chooseExpectedShortPath("flat")');near(run('marketRateCurve().expectedShort'),2.1);near(run('marketRateCurve().marketBase'),2.6);
+run('chooseExpectedShortPath("rising")');

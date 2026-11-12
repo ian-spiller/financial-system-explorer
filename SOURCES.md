@@ -160,3 +160,9 @@ The consumption-to-price bridge was also checked against CFA Institute, *2024 Le
 
 - [CFA Institute: Cost of Capital — Advanced Topics](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/cost-capital-advanced-topics) — debt and equity required returns, WACC, target capital structure and tax assumptions.
 - [ECB: Transmission mechanism](https://www.ecb.europa.eu/mopo/intro/transmission/html/index.en.html) — short market rates, lending-rate transmission and longer-rate expectations.
+
+
+## Expected future short rates and the term premium
+
+- [Banco de España: What is the yield curve?](https://www.bde.es/wbe/en/areas-actuacion/politica-monetaria/preguntas-frecuentes/papel-tipos-interes/que-es-la-curva-de-tipos-de-interes.html) — expectations about future short rates and their relation to longer-term rates.
+- [Federal Reserve: Three-Factor Nominal Term Structure Model](https://www.federalreserve.gov/data/three-factor-nominal-term-structure-model.htm) — the expectations component and term-premium decomposition.
