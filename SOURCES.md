@@ -166,3 +166,10 @@ The consumption-to-price bridge was also checked against CFA Institute, *2024 Le
 
 - [Banco de España: What is the yield curve?](https://www.bde.es/wbe/en/areas-actuacion/politica-monetaria/preguntas-frecuentes/papel-tipos-interes/que-es-la-curva-de-tipos-de-interes.html) — expectations about future short rates and their relation to longer-term rates.
 - [Federal Reserve: Three-Factor Nominal Term Structure Model](https://www.federalreserve.gov/data/three-factor-nominal-term-structure-model.htm) — the expectations component and term-premium decomposition.
+
+
+## Neutral benchmarks and the policy response
+
+- [ECB: Natural rate estimates — insights, uncertainties and shortcomings](https://www.ecb.europa.eu/press/economic-bulletin/focus/2025/html/ecb.ebbox202501_08~3be5a005f9.en.html) — interpretation and uncertainty of r*.
+- [ECB: The analytics of the monetary policy tightening cycle](https://www.ecb.europa.eu/press/key/date/2024/html/ecb.sp240502~4066265c78.en.html) — inflation outlook, transmission, restrictive policy and possible below-neutral easing.
+- [Federal Reserve: Monetary policy rules and stabilisation](https://www.federalreserve.gov/monetarypolicy/2020-02-mpr-part2.htm) — how inflation and resource slack inform illustrative policy prescriptions; not a description of a fixed ECB rule.

@@ -104,3 +104,13 @@ for(const policy of [2,4,6])for(const scenario of ['flat','rising','falling']){
 run('ratesHubState.policy=2;chooseExpectedShortPath("rising")');{const p=run('expectedShortPathModel()');assert.deepEqual(Array.from(p.rates),[2.5,3,4,5,5.5]);near(p.sum,20);near(p.average,4);near(run('marketRateCurve().marketBase'),4.5);}
 run('chooseExpectedShortPath("flat")');near(run('marketRateCurve().expectedShort'),2.1);near(run('marketRateCurve().marketBase'),2.6);
 run('chooseExpectedShortPath("rising")');
+
+// Recovery is anchored to neutral; current policy need not equal neutral.
+for(const scenario of ['base','saving','investment'])for(const policy of [2,4,6]){
+ run('ratesHubState.scenario='+JSON.stringify(scenario)+';ratesHubState.policy='+policy+';chooseExpectedShortPath("rising")');
+ const ref=run('ratesHubModel()'),p=run('expectedShortPathModel()'),o=run('policyOutlookModel()'),c=run('marketRateCurve()');
+ near(o.neutral,ref.rStar+ref.expectedInflation);near(o.gap,policy-o.neutral);near(p.average,o.neutral);near(c.marketBase,p.average+.5);assert.equal(p.linkedToNeutral,true);near(p.rates[2],o.neutral);assert.ok(p.rates[0]<o.neutral&&p.rates[4]>o.neutral);
+ if(o.gap<-.001)assert.ok(o.motive.includes('support demand'));else if(o.gap>.001)assert.ok(o.motive.includes('cool demand'));else assert.ok(o.motive.includes('neutral benchmark'));
+ const view=run('fundsRequiredReturnFoundation()');assert.ok(view.includes('Neutral is a benchmark, not a required ECB setting.'));assert.ok(view.includes('rrp-neutral-guide'));assert.ok(!/undefined|NaN|Infinity/.test(view));
+}
+run('ratesHubState.scenario="base";ratesHubState.policy=2;chooseExpectedShortPath("rising")');near(run('marketRateCurve().marketBase'),4.5);

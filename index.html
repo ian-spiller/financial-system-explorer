@@ -1436,6 +1436,24 @@ button.rrline-title{cursor:pointer}
 
 
 .rrp-year{grid-template-rows:16px 40px 13px}.rrp-year>span{height:40px}.rrp-base-equation{display:flex;align-items:center;justify-content:center;gap:6px;width:100%}.rrp-base-equation>span{font-size:10px;color:#c0d7e9;line-height:1.5;white-space:nowrap}.rrp-base-equation>b{font-size:17px;font-weight:400;color:#abc9de}.rrline-market .rrp-base-equation>strong{font-size:28px}
+
+/* Neutral is a reference; the outlook explains a possible policy response. */
+.rpm-bridge{margin:-4px 0 18px;padding:11px 12px;border:1px solid #4c687f;border-radius:9px;background:#172e3e}
+.rpm-steps{display:grid;grid-template-columns:minmax(0,1fr) 18px minmax(0,1.25fr) 18px minmax(0,1.1fr);gap:9px;align-items:stretch}
+.rpm-card{display:flex;min-width:0;flex-direction:column;justify-content:center;gap:7px;padding:4px 6px}
+.rpm-card>small{font-size:10px;line-height:1.35;color:#afc6d9}
+.rpm-card>strong{font-size:20px;line-height:1.15;letter-spacing:-.015em;font-weight:650;color:#e1ccff}
+.rpm-card>span{font-size:11px;line-height:1.4;color:#c1d4e2}
+.rpm-outlook>strong{color:#f0cc8a;font-size:18px}.rpm-path>strong{color:#b8dbfa;font-size:19px;white-space:nowrap}
+.rpm-arrow{align-self:center;color:#96b6ce;font-size:21px;font-weight:400;text-align:center}
+.rpm-note{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:5px 14px;margin-top:10px;padding-top:8px;border-top:1px solid #6e8da03c;color:#acbfd0;font-size:10px;line-height:1.4}.rpm-note>small{font-size:9px;color:#9db5c8}
+.rrp-years{position:relative}.rrp-neutral-guide{position:absolute;left:0;right:0;z-index:1;border-top:1px dashed #d6e2e799;pointer-events:none}
+.rrp-neutral-key{display:block;font-size:9px;color:#d1dde5;margin-top:3px;line-height:1.4}
+.rrline-market .rrp-path .rh-choices button{font-size:9px;padding:4px 2px}
+@media(max-width:720px){.rpm-steps{grid-template-columns:1fr;gap:7px}.rpm-card{padding:7px 4px;border-bottom:1px solid #6c899e33;gap:5px}.rpm-card:last-child{border-bottom:0}.rpm-arrow{display:none}.rpm-card>strong{font-size:19px}.rpm-note{margin-top:5px}.rpm-note>small{flex-basis:100%}}
+
+
+.rpm-bridge{padding:9px 10px;margin-bottom:12px}.rpm-card{padding:2px 4px;gap:6px}.rpm-note{margin-top:8px;padding-top:6px}@media(min-width:721px){.rh-clean-panel .rh-pricing-story{scroll-margin-top:32px}}
 </style></head>
 <body><noscript><div class="noscript">Enable JavaScript to use the map. This file works offline.</div></noscript>
 <div class="shell"><header class="clean-title"><h1>How does the financial system work?</h1></header><main><div class="workspace"><section class="mapcard" aria-label="Financial system map"><div id="compactMap" class="compact-map" role="group" aria-label="Explore the six parts of the financial system"></div><div class="diagram" id="diagram"><svg id="map" viewBox="55 -5 1105 715" role="group" aria-label="Interactive map: household savings connect to company investment through banks, funds and direct investing. Banks also create deposits when they lend. Interest, dividends and repayments return to households directly or through banks and funds."><defs id="defs"></defs><g id="scene"><g id="columns"></g><g id="ratesBridge" aria-hidden="true"></g><g id="edges"></g><g id="returnLoop"></g><g id="nodes"></g><g id="ratesHubNode" role="button" tabindex="0" aria-label="Interest rates: expand the shared graph" aria-expanded="false" aria-controls="ratesHubPanel"></g></g></svg><div class="maptools"><button id="zoomIn" aria-label="Zoom in">＋</button><button id="zoomOut" aria-label="Zoom out">−</button><button id="resetView" title="Reset map">Reset</button><button id="expand" aria-pressed="false" title="Expand map">⤢</button><button id="motion" aria-pressed="true" title="Animate or pause flows">Flows ⏸</button><button id="aboutMap" aria-label="About this map and its sources" title="About this map and sources">ⓘ</button></div></div><section id="ratesHub" class="rates-hub" aria-label="Interest rates: saving, investment and ECB"><button id="ratesHubToggle" class="rh-toggle" aria-expanded="false" aria-controls="ratesHubPanel"><svg viewBox="0 0 100 70" aria-hidden="true"><path d="M8 7 V60 H94" stroke="#68869b" fill="none"/><path d="M12 56 L87 11" stroke="#54ddc4" stroke-width="3"/><path d="M12 11 L87 56" stroke="#f5c477" stroke-width="3"/><path d="M9 25 H94" stroke="#c1a0ff" stroke-width="2" stroke-dasharray="5 3"/></svg><span><strong>Interest rates</strong></span><b aria-hidden="true">↗</b></button><div id="ratesHubPanel" hidden></div></section></section><aside class="map-arrow-legend mal-unified" aria-label="Map arrow legend"><div class="mal-items"><span><i class="mal-line" style="--mal-color:#54ddc4" aria-hidden="true"></i>Money flows</span><span><i class="mal-line" style="--mal-color:#81abff" aria-hidden="true"></i>Financing</span><span><i class="mal-line mal-dashed" style="--mal-color:#c1a0ff" aria-hidden="true"></i>Rate influences</span></div></aside></div></main></div>
@@ -1691,15 +1709,27 @@ function sysEUR(x){return '€'+sysN(x,2)}
 function sysSigned(x,d=2){return(x<0?'−':'+')+sysN(Math.abs(x),d)}
 function systemGovernmentModel(s=systemLesson){const revenue=100,openingDebt=200,oldRate=2.5,interest=openingDebt*oldRate/100,primary=s.governmentSpending-interest,deficit=s.governmentSpending-revenue,issuance=Math.max(0,deficit+s.maturing),closingDebt=openingDebt+deficit,nextInterest=(openingDebt-s.maturing)*oldRate/100+issuance*s.governmentYield/100;return{revenue,openingDebt,oldRate,interest,primary,spending:s.governmentSpending,deficit,maturing:s.maturing,issuance,closingDebt,marketYield:s.governmentYield,nextInterest,interestChange:nextInterest-interest}}
 function systemCycleModel(s=systemLesson){const supply=s.cycle==='supply',hot=s.cycle==='hot',potential=supply?95:100,output=hot?105:95;return{supply,hot,potential,output,gap:(output/potential-1)*100}}
-function expectedShortPathModel(){
- const rates=(ratesHubState.expectedPath||[2.5,3,4,5,5.5]).map(Number);if(rates.length!==5||rates.some(x=>!Number.isFinite(x)))throw Error('Expected path needs five annual rates.');
- const sum=rates.reduce((s,r)=>s+r,0),average=sum/rates.length;
- return{rates,sum,average,years:rates.map((rate,i)=>({year:i+1,rate})),scenario:ratesHubState.pathScenario||'custom'};
+function policyOutlookModel(){
+ const m=ratesHubModel(),path=expectedShortPathModel(),neutral=path.neutralNominal,gap=m.policy-neutral,equal=Math.abs(gap)<.001;
+ const motive=equal?'At the estimated neutral benchmark':gap<0?'Can support demand when activity or inflation is weak':'Can cool demand and inflation pressure';
+ const scenario=path.scenario,forecast=scenario==='rising'?{title:'Recovery scenario',headline:'Demand & growth recover',detail:'If demand outruns capacity → inflation pressure ↑',response:'Support is withdrawn; restraint may follow'}:scenario==='flat'?{title:'Persistent weakness',headline:'Demand stays weak',detail:'Low inflation pressure → support may remain',response:'Markets expect little change'}:scenario==='falling'?{title:'Cooling scenario',headline:'Demand weakens further',detail:'Inflation pressure ↓ → further easing may follow',response:'Markets price additional rate cuts'}:{title:'Chosen expectations',headline:'Alternative market view',detail:'The selected annual path is held as an assumption',response:'Not a mechanical policy prediction'};
+ return{...forecast,motive,gap,neutral,policy:m.policy,relation:equal?'≈':gap<0?'&lt;':'&gt;',first:path.rates[0],middle:path.rates[2],last:path.rates[4],linkedToNeutral:path.linkedToNeutral};
 }
-function chooseExpectedShortPath(scenario){const now=Number(ratesHubState.policy),overnight=now+.1;ratesHubState.expectedPath=scenario==='rising'?[now+.5,now+1,now+2,now+3,now+3.5]:scenario==='falling'?Array.from({length:5},(_,i)=>overnight-i*.5):Array(5).fill(overnight);ratesHubState.pathScenario=scenario}
+function policyOutlookGraphic(){
+ const m=policyOutlookModel(),n=v=>sysN(v)+'%';
+ return '<section class="rpm-bridge" aria-label="Illustrative link from current policy and the economic outlook to expected future rates"><div class="rpm-steps"><div class="rpm-card rpm-now"><small>ECB now vs neutral estimate</small><strong>'+n(m.policy)+' '+m.relation+' '+n(m.neutral)+'</strong><span>'+m.motive+'</span></div><b class="rpm-arrow" aria-hidden="true">→</b><div class="rpm-card rpm-outlook"><small>'+m.title+'</small><strong>'+m.headline+'</strong><span>'+m.detail+'</span></div><b class="rpm-arrow" aria-hidden="true">→</b><div class="rpm-card rpm-path"><small>Expected short-rate path</small><strong>'+n(m.first)+' → '+n(m.middle)+' → '+n(m.last)+'</strong><span>'+m.response+'</span></div></div><div class="rpm-note"><span>Neutral is a benchmark, not a required ECB setting.</span><small>Illustrative outlook &amp; response · not a forecast</small></div></section>';
+}
+
+function expectedShortPathModel(){
+ const ref=ratesHubModel(),neutralNominal=ref.rStar+ref.expectedInflation,scenario=ratesHubState.pathScenario||'custom',linkedToNeutral=scenario==='rising'&&ratesHubState.pathBasis==='neutral';
+ const adjustments=[-1.5,-1,0,1,1.5],rates=(linkedToNeutral?adjustments.map(a=>neutralNominal+a):(ratesHubState.expectedPath||[2.5,3,4,5,5.5])).map(Number);if(rates.length!==5||rates.some(x=>!Number.isFinite(x)))throw Error('Expected path needs five annual rates.');
+ const sum=rates.reduce((s,r)=>s+r,0),average=sum/rates.length;
+ return{rates,sum,average,years:rates.map((rate,i)=>({year:i+1,rate})),scenario,neutralNominal,linkedToNeutral,adjustments:rates.map(r=>r-neutralNominal)};
+}
+function chooseExpectedShortPath(scenario){const now=Number(ratesHubState.policy),overnight=now+.1,ref=ratesHubModel(),neutral=ref.rStar+ref.expectedInflation;ratesHubState.pathBasis=scenario==='rising'?'neutral':'manual';ratesHubState.expectedPath=scenario==='rising'?[-1.5,-1,0,1,1.5].map(a=>neutral+a):scenario==='falling'?Array.from({length:5},(_,i)=>overnight-i*.5):Array(5).fill(overnight);ratesHubState.pathScenario=scenario}
 function expectedShortPathGraphic(){
  const m=expectedShortPathModel(),ceiling=10,sum=m.rates.map(r=>sysN(r)).join(' + '),labels=m.years.map(y=>'Year '+y.year+': '+sysN(y.rate)+' percent').join(', ');
- return '<div class="rrp-path"><small class="rrp-caption">Expected short rates · annual averages</small><div class="rrp-years" role="img" aria-label="Illustrative market expectation. '+labels+'">'+m.years.map(y=>'<div class="rrp-year" data-path-year="'+y.year+'" data-path-rate="'+y.rate+'"><strong>'+sysN(y.rate)+'%</strong><span><i style="height:'+Math.max(0,y.rate)/ceiling*100+'%"></i></span><small>Y'+y.year+'</small></div>').join('')+'</div>'+ratesHubChoice('pathScenario',[['flat','Flat'],['rising','Rise'],['falling','Fall']])+'<div class="rrp-average"><small>('+sum+') ÷ 5</small><span>Expected average <strong>'+sysN(m.average)+'%</strong></span></div></div>';
+ return '<div class="rrp-path"><small class="rrp-caption">Expected annual short rates<span class="rrp-neutral-key">--- Neutral ≈ '+sysN(m.neutralNominal)+'%</span></small><div class="rrp-years" role="img" aria-label="Illustrative market expectation. '+labels+'. Estimated neutral nominal reference '+sysN(m.neutralNominal)+' percent."><span class="rrp-neutral-guide" style="bottom:'+(16+m.neutralNominal/10*40)+'px" aria-hidden="true"></span>'+m.years.map(y=>'<div class="rrp-year" data-path-year="'+y.year+'" data-path-rate="'+y.rate+'"><strong>'+sysN(y.rate)+'%</strong><span><i style="height:'+Math.max(0,y.rate)/ceiling*100+'%"></i></span><small>Y'+y.year+'</small></div>').join('')+'</div>'+ratesHubChoice('pathScenario',[['flat','Weak'],['rising','Recovery'],['falling','Cooling']])+'<div class="rrp-average"><small>('+sum+') ÷ 5</small><span>Expected average <strong>'+sysN(m.average)+'%</strong></span></div></div>';
 }
 
 function marketRateCurve(source=ratesHubModel()){
@@ -1710,7 +1740,8 @@ function sharedEquityRisk(s=systemLesson){const marketBeta=Number(s.equityBeta),
 function installSharedRateInputs(){
  const link=(obj,key,get,set)=>Object.defineProperty(obj,key,{get,set,enumerable:true,configurable:true});
  if(!Array.isArray(ratesHubState.expectedPath)){ratesHubState.expectedPath=[2.5,3,4,5,5.5];ratesHubState.pathScenario='rising';}
- link(ratesHubState,'expectedShort',()=>expectedShortPathModel().average,v=>{ratesHubState.expectedPath=Array(5).fill(Number(v));ratesHubState.pathScenario='custom'});
+ if(!ratesHubState.pathBasis)ratesHubState.pathBasis='neutral';
+ link(ratesHubState,'expectedShort',()=>expectedShortPathModel().average,v=>{ratesHubState.expectedPath=Array(5).fill(Number(v));ratesHubState.pathScenario='custom';ratesHubState.pathBasis='manual'});
  link(bankPolicyExample,'depositRate',()=>marketRateCurve().ecbNominal);
  link(bankLoanPricing,'base',()=>marketRateCurve().overnight);
  link(bankRateQuotes,'short',()=>marketRateCurve().overnight);
@@ -2054,7 +2085,7 @@ function fundsReturnPathExample(source=ratesHubModel()){
 function fundsRequiredReturnFoundation(){
  const m=fundsReturnPathExample(),p=n=>sysN(n)+'%',pp=n=>'+'+sysN(n)+' pp',arrow='<span class="rrline-arrow" aria-hidden="true">→</span>';
  const row=(label,value)=>'<div class="rrline-risk-row"><span>'+label+'</span><strong>'+pp(value)+'</strong></div>';
- return '<section class="bes-block fund-required-return rrline rh-pricing-story" aria-label="One-line example: natural rate, ECB, market base, risk premia and required returns"><header class="rrline-heading"><h4>From the natural rate to required returns</h4><small>Illustrative example · % per year</small></header><div class="rrp-context"><span>Inflation &amp; growth outlook</span><b>→</b><span>Expected ECB decisions</span><b>→</b><strong>Future short rates</strong><small>Illustrative expectations · not a forecast</small></div>'
+ return '<section class="bes-block fund-required-return rrline rh-pricing-story" aria-label="One-line example: natural rate, ECB, market base, risk premia and required returns"><header class="rrline-heading"><h4>From the natural rate to required returns</h4><small>Illustrative example · % per year</small></header>'+policyOutlookGraphic()+''
  +'<div class="rrline-scroll" tabindex="0" role="group" aria-label="Required-return sequence; scroll horizontally on smaller screens"><div class="rrline-track">'
  +'<article class="rrline-box rrline-neutral"><button class="rrline-title" data-rates-open="" data-rates-anchor=".rh-rate-guide">Neutral reference ↗</button><div class="rrline-sum"><span><small>Natural real rate</small><strong>'+p(m.naturalReal)+'</strong></span><b aria-hidden="true">+</b><span><small>Expected inflation</small><strong>'+p(m.expectedInflation)+'</strong></span></div><div class="rrline-total"><small>Neutral nominal rate</small><strong>≈ '+p(m.neutralNominal)+'</strong></div></article>'+arrow
  +'<article class="rrline-box rrline-policy"><button class="rrline-title" data-sys-node="cb">ECB rate ↗</button><div class="rrline-single"><small>Nominal policy rate</small><strong>'+p(m.ecbNominal)+'</strong><small class="rrline-overnight">→ Overnight market <b>'+p(m.overnight)+'</b></small><span class="rrline-status">'+(Math.abs(m.ecbNominal-m.neutralNominal)<1e-8?'= neutral':m.ecbNominal>m.neutralNominal?'Above neutral':'Below neutral')+'</span></div></article>'+arrow
