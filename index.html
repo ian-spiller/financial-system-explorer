@@ -1158,7 +1158,7 @@
 .rrline-heading>small{font-size:11px;line-height:1.4;color:#a9bfd0;text-align:right}
 .rrline-scroll{overflow-x:auto;overflow-y:hidden;padding:2px 1px 12px;scrollbar-color:#5c7e99 #142937;scrollbar-width:thin;overscroll-behavior-inline:contain}
 .rrline-track{display:grid;grid-template-columns:minmax(165px,1.1fr) 20px minmax(138px,.86fr) 20px minmax(178px,1.12fr) 20px minmax(168px,1fr) 20px minmax(175px,1.1fr);min-width:970px;align-items:stretch}
-.rrline-box{min-width:0;min-height:282px;display:flex;flex-direction:column;padding:16px 12px;border:1px solid #4b687e;border-radius:12px;background:#162e3d;text-align:center}
+.rrline-box{min-width:0;min-height:330px;display:flex;flex-direction:column;padding:16px 12px;border:1px solid #4b687e;border-radius:12px;background:#162e3d;text-align:center}
 .rrline-title{display:flex;align-items:center;justify-content:center;min-height:40px;width:100%;margin:0 0 14px;padding:0 0 12px;border:0;border-bottom:1px solid #ffffff15;background:transparent;color:#e0edfb;font:inherit;font-size:16px;font-weight:650;line-height:1.3;text-align:center;letter-spacing:-.01em}
 button.rrline-title{cursor:pointer}
 .rrline-policy{background:#272a40;border-color:#7d6a9d}
@@ -1183,13 +1183,20 @@ button.rrline-title{cursor:pointer}
 .rrline-component strong{font-size:18px;line-height:1.2;white-space:nowrap;font-weight:650;color:#cfe6fd}
 .rrline-component:nth-of-type(2) strong{font-size:16px;color:#c9b2eb}
 .rrline-market .rrline-total{padding-top:12px}
-.rrline-premium{display:flex;flex-direction:column;align-items:center;gap:6px;margin:0 0 14px}
-.rrline-premium>span{font-size:12px;color:#c9d9e8}
-.rrline-premium>strong{font-size:26px;line-height:1.1;font-weight:700;color:#b9ddff;letter-spacing:-.025em}
-.rrline-premium>small{font-size:10px;line-height:1.4;color:#a4bbce}
-.rrline-equity{margin-top:auto;margin-bottom:0;padding-top:12px;border-top:1px solid #ffffff12}
-.rrline-equity>strong{color:#d4bbff}
-.rrline-equity>button{font:inherit;font-size:10px;line-height:1.5;padding:0;border:0;background:transparent;color:#baa5db;cursor:pointer}
+
+.rrline-term-caption{display:block;font-size:10px;color:#9fb8cc;line-height:1.4;margin-top:3px}
+.rrline-risk-group{display:flex;flex-direction:column;gap:4px}
+.rrline-risk-head{display:flex;align-items:center;justify-content:space-between;gap:6px;padding-bottom:3px}
+.rrline-risk-head>span,.rrline-risk-head>button{font:inherit;font-size:11px;line-height:1.4;color:#c9d9e8}
+.rrline-risk-head>button{border:0;background:none;padding:0;text-align:left;cursor:pointer}
+.rrline-risk-head>strong{font-size:18px;line-height:1.2;color:#bedfff;font-weight:700;white-space:nowrap}
+.rrline-risk-row{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:5px 7px;border:1px solid #6d8da328;border-radius:5px;background:#0b1e2a55}
+.rrline-risk-row>span{font-size:11px;line-height:1.3;color:#bdd0e0}
+.rrline-risk-row>strong{font-size:13px;line-height:1.3;white-space:nowrap;font-weight:650;color:#cee7fc}
+.rrline-risk-equity{margin-top:12px;padding-top:10px;border-top:1px solid #ffffff16}
+.rrline-risk-equity .rrline-risk-head>strong{color:#d8c0ff}
+.rrline-risk-equity .rrline-risk-row>strong{color:#d0b6f7}
+.rrline-risk-caption{font-size:10px;line-height:1.4;color:#ad9fc6;text-align:left;margin-bottom:2px}
 .rrline-returns{padding:16px 10px 11px}
 .rrline-returns .rrline-title{margin-bottom:10px}
 .rrline-output{display:grid;grid-template-columns:1fr auto;gap:3px 5px;align-items:center;width:100%;margin-bottom:10px;padding:10px 9px;border:1px solid #6da4ce40;border-radius:8px;background:#24476266;color:#cce8ff;font:inherit;text-align:left;cursor:pointer}
@@ -1211,7 +1218,7 @@ button.rrline-title{cursor:pointer}
  .rrline-heading h4{font-size:20px}
  .rrline-heading>small{text-align:left;font-size:11px}
  .rrline-track{grid-template-columns:190px 22px 170px 22px 205px 22px 190px 22px 205px;min-width:1048px}
- .rrline-box{min-height:278px}
+ .rrline-box{min-height:330px}
 }
 
 </style></head>
@@ -1776,19 +1783,20 @@ function fundsCompactImplementation(){return `<div class="fund-path-fork"><div><
 function fundsAlphaStep(n,title,body){return sysStep(n,title,body).replace('class="bes-block sys-block"','class="bes-block sys-block fund-alpha-box fund-alpha-box-'+n+'"')}
 function fundsActivePassiveChoice(){const p=fundsPolicyExample();return `<div class="fund-alpha-policy"><div class="fund-alpha-policy-route"><span>Goals &amp; constraints</span><i>→</i><span>Desired exposures &amp; allocation</span><i>→</i><strong>Agreed benchmark</strong></div><small>Illustrative policy: ${sysN(p.equityWeight*100)}% equities / ${sysN(p.bondWeight*100)}% bonds · numerical example follows equities.</small></div><div class="fund-alpha-reference"><span>Equity reference · agree before investing</span>${sysChoices('fundBenchmark',[['market','Broad-market equity'],['style','Value-style equity']])}</div><div class="fund-alpha-fork"><article class="fund-alpha-passive"><small>PASSIVE</small><strong>Track the chosen index</strong><div class="fund-alpha-matching"><span>Index weights</span><i>≈</i><span>Fund weights</span></div><p>Keep tracking differences and costs low.</p></article><article class="fund-alpha-active"><small>ACTIVE</small><strong>Take different bets</strong><div class="fund-alpha-bets"><span>Allocation</span><span>Factor tilts</span><span>Timing</span><span>Stock selection</span></div><p>Aim to beat the agreed benchmark after costs.</p></article></div><div class="fund-alpha-value-example"><span>Choose value exposure</span><i>→</i><span>Track a value index</span><i>→</i><b>Passive implementation</b></div><small class="fund-alpha-caption">Choosing the exposure and implementing it are separate decisions. Active allocation can also use index funds.</small>`}
 function fundsReturnPathExample(){
- const naturalReal=2,expectedInflation=2,neutralNominal=naturalReal+expectedInflation,ecbNominal=4,expectedShort=4,termPremium=.5,marketBase=expectedShort+termPremium;
+ const horizonYears=5,naturalReal=2,expectedInflation=2,neutralNominal=naturalReal+expectedInflation,ecbNominal=4,expectedShort=4,termPremium=.5,marketBase=expectedShort+termPremium;
  const bondCredit=1,bondLiquidity=.5,bondPremium=bondCredit+bondLiquidity;
  const equityMarket=1*4,equityValue=.5*1,equitySize=.5*1,equityPremium=equityMarket+equityValue+equitySize;
- return {naturalReal,expectedInflation,neutralNominal,ecbNominal,expectedShort,termPremium,marketBase,bondCredit,bondLiquidity,bondPremium,equityMarket,equityValue,equitySize,equityPremium,bondYield:marketBase+bondPremium,equityReturn:marketBase+equityPremium};
+ return {horizonYears,naturalReal,expectedInflation,neutralNominal,ecbNominal,expectedShort,termPremium,marketBase,bondCredit,bondLiquidity,bondPremium,equityMarket,equityValue,equitySize,equityPremium,bondYield:marketBase+bondPremium,equityReturn:marketBase+equityPremium};
 }
 function fundsRequiredReturnFoundation(){
  const m=fundsReturnPathExample(),p=n=>sysN(n)+'%',pp=n=>'+'+sysN(n)+' pp',arrow='<span class="rrline-arrow" aria-hidden="true">→</span>';
+ const row=(label,value)=>'<div class="rrline-risk-row"><span>'+label+'</span><strong>'+pp(value)+'</strong></div>';
  return '<section class="bes-block fund-required-return rrline" aria-label="One-line example: natural rate, ECB, market base, risk premia and required returns"><header class="rrline-heading"><h4>From the natural rate to required returns</h4><small>Illustrative example · % per year</small></header>'
  +'<div class="rrline-scroll" tabindex="0" role="group" aria-label="Required-return sequence; scroll horizontally on smaller screens"><div class="rrline-track">'
  +'<article class="rrline-box rrline-neutral"><button class="rrline-title" data-rates-open="">Neutral reference ↗</button><div class="rrline-sum"><span><small>Natural real rate</small><strong>'+p(m.naturalReal)+'</strong></span><b aria-hidden="true">+</b><span><small>Expected inflation</small><strong>'+p(m.expectedInflation)+'</strong></span></div><div class="rrline-total"><small>Neutral nominal rate</small><strong>≈ '+p(m.neutralNominal)+'</strong></div></article>'+arrow
  +'<article class="rrline-box rrline-policy"><button class="rrline-title" data-sys-node="cb">ECB rate ↗</button><div class="rrline-single"><small>Nominal policy rate</small><strong>'+p(m.ecbNominal)+'</strong><span class="rrline-status">= neutral</span></div></article>'+arrow
- +'<article class="rrline-box rrline-market"><h5 class="rrline-title">Market base</h5><div class="rrline-component"><span>Average expected<br>short rates</span><strong>'+p(m.expectedShort)+'</strong></div><div class="rrline-component"><span>Term premium</span><strong>'+pp(m.termPremium)+'</strong></div><div class="rrline-total"><small>Risk-free reference</small><strong>'+p(m.marketBase)+'</strong></div></article>'+arrow
- +'<article class="rrline-box rrline-premia"><h5 class="rrline-title">Risk premia</h5><div class="rrline-premium"><span>Bonds</span><strong>'+pp(m.bondPremium)+'</strong><small>Credit + liquidity</small></div><div class="rrline-premium rrline-equity"><span>Equities</span><strong>'+pp(m.equityPremium)+'</strong><button data-sys-node="funds" data-sys-anchor=".fund-compact-outcome" aria-label="Explore factor returns and alpha">Market · Value · Size ↘</button></div></article>'+arrow
+ +'<article class="rrline-box rrline-market"><h5 class="rrline-title">'+m.horizonYears+'-year market base</h5><div class="rrline-component"><span>Average expected<br>short rates</span><strong>'+p(m.expectedShort)+'</strong></div><div class="rrline-component"><span>Term premium<small class="rrline-term-caption">Interest-rate risk</small></span><strong>'+pp(m.termPremium)+'</strong></div><div class="rrline-total"><small>Risk-free reference</small><strong>'+p(m.marketBase)+'</strong></div></article>'+arrow
+ +'<article class="rrline-box rrline-premia"><h5 class="rrline-title">Risk premia</h5><div class="rrline-risk-group"><div class="rrline-risk-head"><span>Bonds</span><strong>'+pp(m.bondPremium)+'</strong></div>'+row('Credit',m.bondCredit)+row('Liquidity',m.bondLiquidity)+'</div><div class="rrline-risk-group rrline-risk-equity"><div class="rrline-risk-head"><button data-sys-node="funds" data-sys-anchor=".fund-compact-outcome" aria-label="Explore factor returns and alpha">Equities ↘</button><strong>'+pp(m.equityPremium)+'</strong></div><small class="rrline-risk-caption">Factor contributions</small>'+row('Market',m.equityMarket)+row('Value',m.equityValue)+row('Size',m.equitySize)+'</div></article>'+arrow
  +'<article class="rrline-box rrline-returns"><h5 class="rrline-title">Required returns</h5><button class="rrline-output" data-sys-node="bonds"><span>Bonds ↗</span><strong>'+p(m.bondYield)+'</strong><small>'+sysN(m.marketBase)+' + '+sysN(m.bondPremium)+'</small></button><button class="rrline-output rrline-output-equity" data-sys-node="equities"><span>Equities ↗</span><strong>'+p(m.equityReturn)+'</strong><small>'+sysN(m.marketBase)+' + '+sysN(m.equityPremium)+'</small></button><button class="rrline-company" data-sys-node="firms">Company’s cost of capital ↗</button></article></div></div></section>';
 }
 function essentialFunds(){const arrow='<div class="fund-step-link" aria-hidden="true">↓</div>';return '<h3 class="es-title">From investor goals to portfolio results.</h3><div class="fund-connected-story fund-alpha-story fund-investor-story fund-story-connected fund-unified">'+fundsRequiredReturnFoundation()+arrow+'<div class="fund-plan-route" role="group" aria-label="Investor goals, allocation and implementation">'+fundsPlanStage(1,'Investor &amp; goals',fundsInvestorGoals())+arrow+fundsPlanStage(2,'Asset allocation',fundsGoalsToAllocation())+arrow+fundsPlanStage(3,'Implementation',fundsImplementAllocation()+fundsExposureImplementationExamples())+'</div>'+arrow+'<div class="sys-story" id="sysLessonBody">'+systemFundBody()+'</div></div>'}

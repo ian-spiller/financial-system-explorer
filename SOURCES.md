@@ -150,3 +150,7 @@ The consumption-to-price bridge was also checked against CFA Institute, *2024 Le
 - [Consumption MRS and budget constraint](https://people.brandeis.edu/~ghall/econ303/build/html/consumption_theory.html)
 
 - [CFA Institute — Rates and Returns: time value and risk-premium building blocks](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/rates-and-returns)
+
+- https://www.newyorkfed.org/research/data-indicators/term-premia-tabs
+
+- https://www.bankofengland.co.uk/speech/2026/october/catherine-mann-nomura-investor-conference
