@@ -117,3 +117,27 @@ near(run('fundsPricingModel().equityRequired'),9.5);near(run('fundsPricingModel(
 // Each main participant exposes a relevant numeric mechanism within its own card.
 for(const id of ['households','banks','cb','state','firms','funds']){const view=run('essentialContent('+JSON.stringify(id)+')');assert.ok(!/undefined|NaN|Infinity/.test(view),id);assert.ok(view.includes('data-rates-open'),id)}
 {const s=run("essentialContent('state')"),c=run("essentialContent('firms')");assert.ok(s.includes('data-bond-issuer="government"'));assert.ok(c.includes('data-bond-issuer="corporate"'))}
+
+// Cross-card consistency across every macro scenario and financing choice.
+let crossCardCases=0;
+for(const scenario of ['base','saving','investment','deficit'])for(const gap of [-2,0,2])for(const source of ['bond','bank'])for(const contract of ['variable','fixed'])for(const beta of [.5,1,1.5])for(const spread of [.5,1.5,3]){
+ run('ratesHubState.scenario='+JSON.stringify(scenario));const neutral=run('ratesHubModel().rStar+ratesHubModel().expectedInflation'),policy=neutral+gap;
+ run('Object.assign(ratesHubState,'+JSON.stringify({policy,shortNominal:policy})+');Object.assign(systemLesson,'+JSON.stringify({companyDebtSource:source,equityBeta:beta,bondCorporateSpread:spread})+');bankLoanContract.type='+JSON.stringify(contract));
+ const curve=run('marketRateCurve()'),bank=run('bankContractPricing()'),company=run('systemCompanyModel()'),build=run('companyCostBuildUpModel()'),bond=run('systemBondModel()'),gov=run('systemGovernmentModel()'),project=run('companySurplusValueModel()');
+ near(curve.realBase+curve.expectedInflation+curve.termPremium,curve.marketBase);near(company.debtRate,source==='bond'?bond.corporate:bank.fundingTotal);near(build.debtBuilt,company.debtRate);near(build.equityBuilt,run('systemEquityModel().required'));near(company.wacc,.4*company.debtRate*.75+.6*build.equityBuilt);
+ near(project.charge,company.wacc);near(project.cash,project.charge+project.surplus);near(project.npv,[1,2,3,4,5].reduce((sum,t)=>sum+(15+(t===5?100:0))/(1+company.wacc/100)**t,0)-100);near(project.value,100+project.npv);
+ near(gov.marketYield,bond.government);near(gov.nextInterest,(gov.openingDebt-gov.maturing)*gov.oldRate/100+gov.issuance*gov.marketYield/100);
+ const v=run("essentialContent('firms')");assert.ok(v.includes('>'+run('sysN('+company.wacc+',3)')+'%<'));assert.ok(!/undefined|NaN|Infinity|\+−|\+ -/.test(v));crossCardCases++;
+}
+run('Object.assign(ratesHubState,{scenario:"base",policy:4,shortNominal:4});Object.assign(systemLesson,{companyDebtSource:"bond",equityBeta:1,bondCorporateSpread:1.5,bondGovernmentSpread:.4,fundScenario:"tilt",fundFee:0});bankLoanContract.type="fixed"');
+for(const implementation of ['active','passive'])for(const benchmark of ['market','style'])for(const mix of ['value','valueSize']){
+ run('Object.assign(systemLesson,'+JSON.stringify({fundEquityImplementation:implementation,fundBenchmark:benchmark,fundFactorMix:mix})+')');
+ const f=run('fundsPricingModel()'),v=run("equityValuationModel(systemLesson,'funds')"),c=run("equityValuationModel(systemLesson,'firms')");near(v.required,f.equityRequired);near(v.factors.value,f.value);near(v.factors.size,f.size);near(v.value,v.dividend/((v.required-v.growth)/100));near(c.required,run('systemEquityModel().required'));
+ assert.ok(v.required>v.growth);
+}
+run('Object.assign(systemLesson,{fundEquityImplementation:"active",fundBenchmark:"market",fundFactorMix:"valueSize"});essentialView.marketOrigin="rates"');
+{const view=run('ecbPolicyRateChannel()');assert.ok(view.includes('data-open-bank-contract="variable"'));near(run("bankContractPricing(bankDualPricingModel(),'variable').fundingTotal"),7)}
+if(!process.argv.includes('--views'))console.log('PASS: '+crossCardCases+' cross-card pricing scenarios, funding identities, valuation contexts and NPV calculations.');
+
+// Negative real-policy rates stay inside the chart's plotting area.
+for(const state of [{scenario:'saving',policy:1.2},{scenario:'base',policy:4},{scenario:'investment',policy:6.8}]){const chart=run('ratesHubChart(ratesHubModel('+JSON.stringify(state)+'))'),policy=chart.match(/<path class="rh-policy" d="M[\d.]+ ([\d.-]+) H/);assert.ok(policy);assert.ok(Number(policy[1])>=40&&Number(policy[1])<=250);if(state.policy<2)assert.ok(/>[-−]2<\/text>/.test(chart))}

@@ -45,7 +45,7 @@ Run the supplied checks with Node.js 20+ and Python 3.10+:
 
 `python scripts/check-html.py`
 
-Checks cover model identities, loan pricing, NPV, factor attribution, deep-link validation and HTML structure. They do not replace a visual browser review. The repository workflow runs these checks on pushes and pull requests.
+Checks cover 432 cross-card pricing scenarios, model identities, loan pricing, NPV, factor attribution, valuation-link context, negative real-rate chart bounds, deep-link validation and HTML structure. They do not replace a visual browser review. The repository workflow runs these checks on pushes and pull requests.
 
 ## Scope and assumptions
 
