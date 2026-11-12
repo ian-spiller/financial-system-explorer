@@ -75,3 +75,17 @@ if(process.argv.includes('--views'))process.stdout.write(JSON.stringify(views));
 // Present value of annual economic surplus equals the standard project NPV.
 for(const contract of ['variable','fixed'])for(const beta of [.5,1,1.5]){run('bankLoanContract.type='+JSON.stringify(contract)+';systemLesson.equityBeta='+beta);const s=run('companySurplusValueModel()'),base=run('companyEndValueModel()');near(s.charge,s.investment*s.wacc/100);near(s.cash,s.charge+s.surplus);near(s.npv,s.rows.reduce((sum,y)=>sum+y.pv,0));near(s.npv,base.classicNPV);near(s.value,s.investment+s.npv);assert.equal(s.rows.length,5);for(const y of s.rows){near(y.pv,y.surplus*y.factor);near(y.factor,(1+s.wacc/100)**(-y.year))}}
 run('bankLoanContract.type="variable";systemLesson.equityBeta=1');{const s=run('companySurplusValueModel()');near(s.investment,100);near(s.wacc,6.39);near(s.charge,6.39);near(s.surplus,8.61);near(s.npv,35.88687317403128)}
+
+// Company financing build-up stays linked to bank quotes and the equity model.
+for(const contract of ['variable','fixed'])for(const beta of [.5,1,1.5])for(const rf of [1,3,5]){
+ run('bankLoanContract.type='+JSON.stringify(contract)+';systemLesson.equityBeta='+beta+';systemLesson.riskFree='+rf);
+ const b=run('companyCostBuildUpModel()'),c=run('systemCompanyModel()'),bank=run('bankContractPricing()');
+ near(b.debtBuilt,bank.fundingTotal);near(b.debtBuilt,c.debtRate);
+ near(b.equityBuilt,rf+beta*5);near(b.equityBuilt,c.equityRate);
+ near(b.debtContribution,.4*b.debtBuilt*.75);near(b.equityContribution,.6*b.equityBuilt);
+ near(b.wacc,b.debtContribution+b.equityContribution);
+ assert.equal(b.debtCharges.length,4);assert.equal(b.debtCharges.filter(x=>x.key==='liquidity').length,1);
+ const view=run("essentialContent('firms')");assert.equal((view.match(/class="ccbu-result"/g)||[]).length,2);assert.ok(!/undefined|NaN|Infinity/.test(view));
+}
+run('bankLoanContract.type="variable";systemLesson.equityBeta=1;systemLesson.riskFree=3');
+{const b=run('companyCostBuildUpModel()');near(b.debtMarket,2.1);near(b.debtFundingAdjustment,.4);near(b.debtChargesTotal,2.8);near(b.debtBuilt,5.3);near(b.equityBase,3);near(b.equityRisk,5);near(b.equityBuilt,8);near(b.wacc,6.39);}

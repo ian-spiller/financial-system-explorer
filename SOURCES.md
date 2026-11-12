@@ -154,3 +154,9 @@ The consumption-to-price bridge was also checked against CFA Institute, *2024 Le
 - https://www.newyorkfed.org/research/data-indicators/term-premia-tabs
 
 - https://www.bankofengland.co.uk/speech/2026/october/catherine-mann-nomura-investor-conference
+
+
+## Company financing build-up
+
+- [CFA Institute: Cost of Capital — Advanced Topics](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/cost-capital-advanced-topics) — debt and equity required returns, WACC, target capital structure and tax assumptions.
+- [ECB: Transmission mechanism](https://www.ecb.europa.eu/mopo/intro/transmission/html/index.en.html) — short market rates, lending-rate transmission and longer-rate expectations.

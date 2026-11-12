@@ -14,7 +14,7 @@ A visual, interactive explanation of how money, financing and interest rates con
 - **Commercial banks:** maturity transformation, liquidity and rate risk, funding costs and loan pricing.
 - **Central bank:** demand, inflation, policy rates and the balance-sheet mechanics of QE.
 - **Government:** deficits, refinancing and the feedback between interest costs and debt.
-- **Companies:** invested capital, required return, annual surplus, NPV and firm value.
+- **Companies:** visible market-reference and compensation build-ups for debt and equity, their contributions to WACC, then invested capital → annual surplus → NPV → firm value.
 - **Funds:** investor goals, allocation, active/passive implementation, benchmarks and factor attribution.
 
 Stock and bond valuation are linked from Funds and the shared **Interest rates** overview. The central tile connects planned saving, company investment, public deficits, ECB policy stance and required returns. Two rate cards connect to one graph; a horizontal row of numerical boxes then shows neutral reference → ECB rate → market base → risk premia → required returns. Inputs inside all six lessons link directly to their place in this overview: saving and financing demand, the ECB rate, the market reference, or bond and equity required returns. The relevant path is highlighted, and a return button brings readers back to the same input in the originating lesson. Funds follows investor goals → allocation → implementation → benchmark and return attribution. Click or tap the central tile to open it; hovering only highlights it. Explore participants in the order you choose.
