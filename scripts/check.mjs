@@ -98,3 +98,22 @@ run('Object.assign(ratesHubState,{scenario:"base",policy:4,shortNominal:4});syst
 {const r=run('ratesHubModel()'),c=run('marketRateCurve()'),e=run('fundsReturnPathExample()');near(r.realPolicy,r.rStar);near(c.ecbNominal,r.rStar+r.expectedInflation);near(c.realBase,2);near(c.shortNominal,4);near(c.marketBase,4.5);near(e.bondYield,6);near(e.equityReturn,9.5);near(c.marketBase,c.realBase+c.expectedInflation+c.termPremium);near(e.bondYield,c.marketBase+e.bondCredit+e.bondLiquidity);near(e.equityReturn,c.marketBase+e.equityMarket+e.equityValue+e.equitySize);const view=run('ratesHubPanel()');assert.ok(view.includes('ECB 4% · neutral'));assert.ok(!/rrp-average|rrp-path|rpm-bridge|Recovery|Expected annual|average|data-path-year/i.test(view));assert.equal((view.match(/data-rate-block=/g)||[]).length,6);assert.equal((view.match(/class="rrb-box/g)||[]).length,6);for(const id of ['cb','firms','bonds','equities'])assert.ok(view.includes('data-sys-node="'+id+'"'));}
 for(const policy of [2,4,6]){run('ratesHubState.policy='+policy+';ratesHubState.shortNominal='+policy);const c=run('marketRateCurve()');near(c.realBase,policy-2);near(c.marketBase,policy+.5);near(run('systemEquityModel().riskFree'),c.marketBase);near(run('systemBondModel().reference'),c.marketBase);near(run('bankRateQuotes.fixed'),c.marketBase);assert.ok(!/undefined|NaN|Infinity/.test(run('ratesHubPanel()')));}
 run('Object.assign(ratesHubState,{scenario:"base",policy:4,shortNominal:4})');
+
+// Shared household benchmark follows the real curve; custom teaching choices stay independent.
+run('systemLesson.householdRealRateMode="shared"');
+for(const policy of [2,4,6]){run('ratesHubState.policy='+policy+';ratesHubState.shortNominal='+policy);const c=run('marketRateCurve()'),h=run('householdWaitingModel()');near(h.offered,c.realBase);near(h.offeredFuture,1+c.realBase/100)}
+run('systemLesson.householdRealRate=15;ratesHubState.policy=4;ratesHubState.shortNominal=4');near(run('householdWaitingModel().offered'),15);assert.equal(run('systemLesson.householdRealRateMode'),'custom');
+run('systemLesson.householdRealRateMode="shared"');near(run('householdWaitingModel().offered'),2);
+
+// Expected sleeve returns use chosen exposures, while realized attribution uses its own observed period.
+for(const implementation of ['active','passive'])for(const benchmark of ['market','style'])for(const mix of ['value','valueSize'])for(const issuer of ['government','corporate']){
+ run('Object.assign(systemLesson,'+JSON.stringify({fundEquityImplementation:implementation,fundBenchmark:benchmark,fundFactorMix:mix,bondIssuer:issuer})+')');
+ const f=run('systemFundModel()'),p=run('fundsPricingModel()'),c=run('marketRateCurve()'),b=run('systemBondModel()');
+ near(p.equityRequired,c.marketBase+f.marketBeta*4+f.valueBeta+f.sizeBeta);near(p.bondRequired,c.marketBase+p.bondSpread);near(p.bondRequired,b.yield);assert.equal(p.issuer,issuer);
+ const before=f.gross;run('ratesHubState.shortNominal=6');near(run('systemFundModel().gross'),before);near(run('fundsPricingModel().equityRequired'),p.equityRequired+2);run('ratesHubState.shortNominal=4');
+}
+run('Object.assign(systemLesson,{fundEquityImplementation:"active",fundBenchmark:"market",fundFactorMix:"valueSize",bondIssuer:"corporate",householdRequiredReturn:2});systemLesson.householdRealRateMode="shared"');
+near(run('fundsPricingModel().equityRequired'),9.5);near(run('fundsPricingModel().bondRequired'),6);
+// Each main participant exposes a relevant numeric mechanism within its own card.
+for(const id of ['households','banks','cb','state','firms','funds']){const view=run('essentialContent('+JSON.stringify(id)+')');assert.ok(!/undefined|NaN|Infinity/.test(view),id);assert.ok(view.includes('data-rates-open'),id)}
+{const s=run("essentialContent('state')"),c=run("essentialContent('firms')");assert.ok(s.includes('data-bond-issuer="government"'));assert.ok(c.includes('data-bond-issuer="corporate"'))}
