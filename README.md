@@ -60,3 +60,6 @@ Corrections are welcome. Please identify the participant, the selected inputs an
 ## License
 
 [MIT](LICENSE), copyright 2026 ian-spiller. The license covers this project's code and original graphics; referenced publications retain their own rights.
+
+
+The nominal pricing lessons share one rate curve. The ECB/overnight inputs are separate from the expected five-year average short rate. By default, overnight is 2.1% and the five-year reference is 4% expected short rates + 0.5 percentage-point term premium = 4.5%. Companies, bond valuation, equity valuation, bank fixed-rate pricing and sovereign refinancing read the same five-year reference. Change the expected-rate preset in Interest rates to carry the new reference through the calculations. Companies starts with five-year corporate bonds (6%) and equity (9.5%), giving WACC 7.5%; Bank loan is an alternative financing source. All rates and risk contributions are illustrative assumptions.
