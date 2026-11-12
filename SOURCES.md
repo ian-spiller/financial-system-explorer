@@ -173,3 +173,8 @@ The consumption-to-price bridge was also checked against CFA Institute, *2024 Le
 - [ECB: Natural rate estimates — insights, uncertainties and shortcomings](https://www.ecb.europa.eu/press/economic-bulletin/focus/2025/html/ecb.ebbox202501_08~3be5a005f9.en.html) — interpretation and uncertainty of r*.
 - [ECB: The analytics of the monetary policy tightening cycle](https://www.ecb.europa.eu/press/key/date/2024/html/ecb.sp240502~4066265c78.en.html) — inflation outlook, transmission, restrictive policy and possible below-neutral easing.
 - [Federal Reserve: Monetary policy rules and stabilisation](https://www.federalreserve.gov/monetarypolicy/2020-02-mpr-part2.htm) — how inflation and resource slack inform illustrative policy prescriptions; not a description of a fixed ECB rule.
+
+## Required-return building blocks
+
+- [CFA Institute: Economics and Investment Markets](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/economics-and-investment-markets) — real default-free rates, inflation and asset-specific risk.
+- [CFA Institute: Capital Market Expectations, Part II](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/capital-market-expectations-part-ii) — term, credit and liquidity contributions; credit spread versus expected return.
