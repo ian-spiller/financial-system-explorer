@@ -25,7 +25,7 @@ Stock and bond valuation are linked from Funds and the shared **Interest rates**
 
 Click or tap a participant. On narrow screens the map becomes a readable participant flow. Use **Tab** to move between controls, **Enter** or **Space** to activate them, and **Escape** to close a dialog.
 
-Hosted card links use hashes such as `#banks`, `#firms`, `#funds`, `#bonds`, `#cb` and the shared overview `#rates`. **Copy link** is available when hosted over HTTP or HTTPS. Links open the initial example; they do not save every input choice. **About this map** opens project information and sources.
+Hosted card links use hashes such as `#banks`, `#firms`, `#funds`, `#bonds`, `#cb` and the shared overview `#rates`. Links open the initial example; they do not save every input choice. **About this map** opens project information and sources.
 
 ## Hosting
 
