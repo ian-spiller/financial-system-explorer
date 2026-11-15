@@ -20,7 +20,7 @@ for(const id of ['households','banks','cb','state','firms','funds','equities','b
  near(m.rStar,1);near(m.realPolicy,1);near(m.policy,3);near(m.expectedInflation,2);near(m.quantity,75);near(m.investment,65);near(m.stance,0);
  near(c.overnight,3.1);near(c.marketBase,3.5);near(g.marketYield,3.9);near(g.nextInterest,6.2);
  near(s.wacc,6.6);near(s.surplus,8.4);near(s.npv,34.813698511233305);near(v.value,134.8136985112333);near(v.debt,40);near(v.equityValue,94.8136985112333);
- near(run('householdWaitingModel().offered'),1);near(run('systemFundModel().gross'),11);near(run('systemFundModel().benchmark'),8);
+ near(run('householdWaitingModel().offered'),1);near(run('householdWaitingModel().required'),1);near(run('householdMRSModel().balance'),0);near(run('householdMRSModel().optimumNow'),100);near(run('householdMRSModel().optimumLater'),100);near(run('systemFundModel().gross'),11);near(run('systemFundModel().benchmark'),8);
  assert.ok(html.includes('Teaching example · not current market rates'));
  for(const id of ['households','banks','cb','state','firms','funds','equities','bonds'])assert.ok(views[id].includes('Teaching example · not current market rates'),id);
  const panel=run('ratesHubPanel()');assert.ok(panel.includes('Teaching example · not current market rates'));assert.ok(panel.includes('ECB 3% · neutral'));
@@ -41,7 +41,7 @@ const q=run('companyEndValueModel()');
 const pv=[1,2,3,4,5].reduce((s,y)=>s+(15+(y===5?100:0))/(1+q.wacc/100)**y,0);
 near(q.classicNPV,pv-100);near(q.excess,q.classicNPV*q.compoundFactor);
 const g=run('systemGovernmentModel()');near(g.issuance,g.deficit+g.maturing);near(g.closingDebt,g.openingDebt-g.maturing+g.issuance);
-for(const required of [2,15,30])for(const offered of [0,3,15,30]){run('householdPreviousRates=householdWaitingModel()');run('Object.assign(systemLesson,'+JSON.stringify({householdRequiredReturn:required,householdRealRate:offered})+')');const h=run('householdWaitingModel()');near(h.requiredFuture,h.amount*(1+required/100));near(h.offeredFuture,h.amount*(1+offered/100));near(h.mrs,1+required/100);assert.equal(h.choice,offered>required?'wait':offered<required?'now':'equal');const view=run("essentialContent('households')");assert.ok(!/undefined|NaN|Infinity/.test(view));assert.equal((view.match(/<details/g)||[]).length,0);assert.ok(!view.includes('Why not borrow more?'));assert.ok(view.includes('hhw-mrs-title'));const g=run('householdMRSModel()');near(g.currentMRS,h.mrs);near(g.balanceMRS,g.gross);assert.ok(g.optimumNow>0&&g.optimumNow<250&&g.optimumLater>0&&g.optimumLater<250);near(g.optimumLater+g.gross*g.optimumNow,g.budgetLater);near(g.optimumLater/(g.beta*g.optimumNow),g.gross);assert.ok(g.curve.every(p=>p.now>0&&p.now<=250&&p.later>0&&p.later<=250));for(const p of g.curve)near(Math.log(p.now)+g.beta*Math.log(p.later),g.utility);if(h.choice==='wait')assert.ok(g.balance>0);if(h.choice==='now')assert.ok(g.balance<0);if(h.choice==='equal')near(g.balance,0);views['household-'+required+'-'+offered]=view}
+for(const required of [0,1,2])for(const offered of [0,1,2,3]){run('householdPreviousRates=householdWaitingModel()');run('Object.assign(systemLesson,'+JSON.stringify({householdRequiredReturn:required,householdRealRate:offered})+')');const h=run('householdWaitingModel()');near(h.requiredFuture,h.amount*(1+required/100));near(h.offeredFuture,h.amount*(1+offered/100));near(h.mrs,1+required/100);assert.equal(h.choice,offered>required?'wait':offered<required?'now':'equal');const view=run("essentialContent('households')");assert.ok(!/undefined|NaN|Infinity/.test(view));assert.equal((view.match(/<details/g)||[]).length,0);assert.ok(!view.includes('Why not borrow more?'));assert.ok(view.includes('hhw-mrs-title'));const g=run('householdMRSModel()');near(g.currentMRS,h.mrs);near(g.balanceMRS,g.gross);assert.ok(g.optimumNow>0&&g.optimumNow<250&&g.optimumLater>0&&g.optimumLater<250);near(g.optimumLater+g.gross*g.optimumNow,g.budgetLater);near(g.optimumLater/(g.beta*g.optimumNow),g.gross);assert.ok(g.curve.every(p=>p.now>0&&p.now<=250&&p.later>0&&p.later<=250));for(const p of g.curve)near(Math.log(p.now)+g.beta*Math.log(p.later),g.utility);if(h.choice==='wait')assert.ok(g.balance>0);if(h.choice==='now')assert.ok(g.balance<0);if(h.choice==='equal')near(g.balance,0);views['household-'+required+'-'+offered]=view}
 {const h=run('householdWaitingModel({householdRequiredReturn:15,householdRealRate:0})'),g=run('householdMRSModel(householdWaitingModel({householdRequiredReturn:15,householdRealRate:0}))');near(h.incomeNow,100);near(h.incomeLater,100);near(h.amount,1);near(g.budgetNow,200);near(-g.balance,6.97674418604651);near(g.optimumNow,106.97674418604652);near(g.optimumLater,93.02325581395348);assert.ok(-g.balance<h.incomeLater/g.gross)}
 near(run('bondTeachingPrice(3,5).price'),1000);assert.ok(run('bondTeachingPrice(5,5).price<bondTeachingPrice(2,5).price'));
 for(const implementation of ['active','passive'])for(const benchmark of ['market','style'])for(const mix of ['value','valueSize'])for(const model of ['capm','marketValue','ff3','ff5']){run('Object.assign(systemLesson,'+JSON.stringify({fundEquityImplementation:implementation,fundBenchmark:benchmark,fundFactorMix:mix,fundModel:model})+')');const m=run('systemFundModel()'),a=run('fundsBenchmarkAttribution()');near(a.explainedActive,m.active);if(implementation==='passive')near(m.gross,m.benchmark);views['fund-'+implementation+'-'+benchmark+'-'+mix+'-'+model]=run("essentialContent('funds')")}
@@ -111,7 +111,7 @@ run('Object.assign(ratesHubState,{scenario:"base",policy:3,shortNominal:3});syst
 for(const policy of [1,3,5]){run('ratesHubState.policy='+policy+';ratesHubState.shortNominal='+policy);const c=run('marketRateCurve()');near(c.realBase,policy-2);near(c.marketBase,policy+.5);near(run('systemEquityModel().riskFree'),c.marketBase);near(run('systemBondModel().reference'),c.marketBase);near(run('bankRateQuotes.fixed'),c.marketBase);assert.ok(!/undefined|NaN|Infinity/.test(run('ratesHubPanel()')));}
 run('Object.assign(ratesHubState,{scenario:"base",policy:3,shortNominal:3})');
 
-// Shared household benchmark follows the real curve; custom teaching choices stay independent.
+// Shared household benchmark follows the real curve; custom model inputs remain supported.
 run('systemLesson.householdRealRateMode="shared"');
 for(const policy of [1,3,5]){run('ratesHubState.policy='+policy+';ratesHubState.shortNominal='+policy);const c=run('marketRateCurve()'),h=run('householdWaitingModel()');near(h.offered,c.realBase);near(h.offeredFuture,1+c.realBase/100)}
 run('systemLesson.householdRealRate=15;ratesHubState.policy=3;ratesHubState.shortNominal=3');near(run('householdWaitingModel().offered'),15);assert.equal(run('systemLesson.householdRealRateMode'),'custom');
@@ -124,7 +124,7 @@ for(const implementation of ['active','passive'])for(const benchmark of ['market
  near(p.equityRequired,c.marketBase+f.marketBeta*4+f.valueBeta+f.sizeBeta);near(p.bondRequired,c.marketBase+p.bondSpread);near(p.bondRequired,b.yield);assert.equal(p.issuer,issuer);
  const before=f.gross;run('ratesHubState.shortNominal=5');near(run('systemFundModel().gross'),before);near(run('fundsPricingModel().equityRequired'),p.equityRequired+2);run('ratesHubState.shortNominal=3');
 }
-run('Object.assign(systemLesson,{fundEquityImplementation:"active",fundBenchmark:"market",fundFactorMix:"valueSize",bondIssuer:"corporate",householdRequiredReturn:2});systemLesson.householdRealRateMode="shared"');
+run('Object.assign(systemLesson,{fundEquityImplementation:"active",fundBenchmark:"market",fundFactorMix:"valueSize",bondIssuer:"corporate",householdRequiredReturn:1});systemLesson.householdRealRateMode="shared"');
 near(run('fundsPricingModel().equityRequired'),8.5);near(run('fundsPricingModel().bondRequired'),5);
 // Each main participant exposes a relevant numeric mechanism within its own card.
 for(const id of ['households','banks','cb','state','firms','funds']){const view=run('essentialContent('+JSON.stringify(id)+')');assert.ok(!/undefined|NaN|Infinity/.test(view),id);assert.ok(view.includes('data-rates-open'),id)}
@@ -194,3 +194,13 @@ for(const [mode,natural,real,nominal,loan] of [['neutral',1,1,3,6],['cooling',1.
  const markup=run('ecbPolicyRateChannel()');assert.ok(run('ecbNaturalRateContext()').includes('Before ECB reacts'));assert.ok(!markup.includes('Unchanged across all three scenarios'));
 }
 run('ratesHubState.scenario="base";setPolicyStance("neutral")');
+
+// Household market controls choose the same global policy scenario while preferences stay personal.
+for(const required of [0,1,2])for(const mode of ['neutral','cooling','supporting']){
+ run('systemLesson.householdRequiredReturn='+required+';setHouseholdPolicyScenario('+JSON.stringify(mode)+')');
+ const m=run('householdWaitingModel()'),g=run('householdMRSModel()'),curve=run('marketRateCurve()'),v=run("essentialContent('households')");
+ assert.equal(run('systemLesson.householdRealRateMode'),'shared');near(m.required,required);near(m.offered,curve.realBase);near(g.balanceMRS,g.gross);near(g.optimumLater+g.gross*g.optimumNow,g.budgetLater);
+ assert.equal((v.match(/data-policy-stance=/g)||[]).length,3);assert.ok(v.includes('data-policy-stance="'+mode+'" aria-pressed="true"'));assert.ok(!v.includes('data-sys-key="householdRealRate"'));assert.ok(!/15%|30%|NaN|undefined|Infinity/.test(v));
+ if(m.offered===required)near(g.balance,0);else assert.equal(Math.sign(g.balance),Math.sign(m.offered-required));
+}
+run('systemLesson.householdRequiredReturn=1;setHouseholdPolicyScenario("neutral");householdPreviousRates=null');
