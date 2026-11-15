@@ -161,8 +161,8 @@ for(const scenario of ['base','saving','investment'])for(const [mode,gap] of [['
  assert.equal(m.mode,mode);near(m.realPolicy,m.rStar+gap);near(m.policy,m.realPolicy+m.expectedInflation);near(m.curve.ecbNominal,m.policy);near(m.curve.overnight,m.policy+.1);near(m.loan,m.fundingBase+m.charges);near(m.loan,run("bankContractPricing(bankDualPricingModel(),'variable').fundingTotal"));
  assert.equal(cycle.hot,mode==='cooling');assert.equal(cycle.cold,mode==='supporting');assert.equal(cycle.neutral,mode==='neutral');near(cycle.output,mode==='cooling'?105:mode==='supporting'?95:100);
  for(const view of [panel,cb]){assert.equal((view.match(/data-policy-stance=/g)||[]).length,3);assert.ok(view.includes('data-policy-stance="'+mode+'" aria-pressed="true"'));assert.ok(!/undefined|NaN|Infinity/.test(view));}
- assert.ok(!/More saving|More investment|rh-ecb-path|rh-ecb-transmission/.test(panel));assert.equal((panel.match(/data-rates-key="scenario"/g)||[]).length,1);assert.ok(!panel.includes('data-rates-key="policy"'));
- assert.ok(channel.indexOf('Real policy response')<channel.indexOf('Expected inflation'));assert.ok(channel.indexOf('Expected inflation')<channel.indexOf('Nominal ECB rate'));assert.ok(channel.indexOf('Nominal ECB rate')<channel.indexOf('Overnight market'));assert.ok(channel.indexOf('Overnight market')<channel.indexOf('Variable bank loan'));assert.equal((channel.match(/class="sr-step"/g)||[]).length,5);assert.ok(channel.includes('data-open-bank-contract="variable"'));
+ assert.ok(!/More saving|More investment|rh-ecb-path|rh-ecb-transmission/.test(panel));assert.equal((panel.match(/data-rates-key="scenario"/g)||[]).length,0);assert.ok(!panel.includes('data-rates-key="policy"'));
+ assert.ok(channel.indexOf('Real policy rate')<channel.indexOf('Expected inflation'));assert.ok(channel.indexOf('Expected inflation')<channel.indexOf('Nominal ECB rate'));assert.ok(channel.indexOf('Nominal ECB rate')<channel.indexOf('Overnight market'));assert.ok(channel.indexOf('Overnight market')<channel.indexOf('Variable bank loan'));assert.equal((channel.match(/class="sr-step"/g)||[]).length,5);assert.ok(channel.includes('data-open-bank-contract="variable"'));
  if(mode==='cooling')assert.ok(channel.includes('↑ '+run('sysN('+m.policy+')')+'%'));if(mode==='supporting')assert.ok(channel.includes('↓ '+run('sysN('+m.policy+')')+'%'));
 }
 run('ratesHubState.scenario="base";setPolicyStance("neutral")');
@@ -177,7 +177,7 @@ for(const [mode,start] of [['neutral',0],['cooling',5],['supporting',-5]]){
  run('ratesHubState.scenario="base";setPolicyStance('+JSON.stringify(mode)+')');const m=run('ecbGapAdjustmentModel()'),view=run('ecbGapAdjustmentGraphic()'),cb=run("essentialContent('cb')");
  near(m.initialGap,start);near(m.targetGap,0);near(m.natural,mode==='cooling'?1.1:mode==='supporting'?.9:1);near(m.returnReal,m.natural);near(m.responseReal,run('ratesHubModel().realPolicy'));
  assert.ok(view.includes('data-gap-start="'+start+'"'));assert.ok(view.includes('data-gap-target="0"'));assert.ok(view.includes('Illustrative adjustment'));assert.ok(view.includes('not a calibrated forecast or fixed timeline'));assert.ok(!/undefined|NaN|Infinity/.test(view));
- assert.ok(cb.indexOf('sr-ecb-channel')<cb.indexOf('ecbs-gap-adjustment'));assert.ok(cb.indexOf('ecbs-gap-adjustment')<cb.indexOf('QE → newly created reserves'));
+ assert.ok(cb.indexOf('ecbs-shock-chain')<cb.indexOf('ecbs-output-gap'));assert.ok(cb.indexOf('ecbs-output-gap')<cb.indexOf('sr-ecb-channel'));assert.ok(cb.indexOf('sr-ecb-channel')<cb.indexOf('ecbs-gap-adjustment'));assert.ok(cb.indexOf('ecbs-gap-adjustment')<cb.indexOf('QE → newly created reserves'));
 }
 run('setPolicyStance("neutral")');
 
@@ -191,6 +191,6 @@ for(const [mode,natural,real,nominal,loan] of [['neutral',1,1,3,6],['cooling',1.
  if(mode==='supporting'){assert.ok(m.beforeReal>m.rStar);assert.ok(m.realPolicy<m.rStar)}
  for(const card of ['banks','firms','state','funds','households','cb'])assert.ok(!/undefined|NaN|Infinity/.test(run('essentialContent('+JSON.stringify(card)+')')),card);
  const company=run('systemCompanyModel()'),cost=run('companyCostBuildUpModel()');near(company.debtRate,c.marketBase+1.5);near(company.wacc,.4*company.debtRate*.75+.6*cost.equityBuilt);
- const markup=run('ecbPolicyRateChannel()');assert.ok(markup.includes('Before ECB reacts'));assert.ok(!markup.includes('Unchanged across all three scenarios'));
+ const markup=run('ecbPolicyRateChannel()');assert.ok(run('ecbNaturalRateContext()').includes('Before ECB reacts'));assert.ok(!markup.includes('Unchanged across all three scenarios'));
 }
 run('ratesHubState.scenario="base";setPolicyStance("neutral")');
