@@ -153,3 +153,15 @@ if(!process.argv.includes('--views'))console.log('PASS: '+crossCardCases+' cross
 
 // Negative real-policy rates stay inside the chart's plotting area.
 for(const state of [{scenario:'saving',policy:1.2},{scenario:'base',policy:3},{scenario:'investment',policy:6.8}]){const chart=run('ratesHubChart(ratesHubModel('+JSON.stringify(state)+'))'),policy=chart.match(/<path class="rh-policy" d="M[\d.]+ ([\d.-]+) H/);assert.ok(policy);assert.ok(Number(policy[1])>=40&&Number(policy[1])<=250);if(state.policy<2)assert.ok(/>[-−]2<\/text>/.test(chart))}
+
+// ECB transmission compares policy with the scenario's neutral nominal rate.
+for(const scenario of ['base','saving','investment'])for(const gap of [-2,0,2]){
+ const first=run('ratesHubModel('+JSON.stringify({scenario,policy:3})+')'),neutral=first.rStar+first.expectedInflation,m=run('ratesHubModel('+JSON.stringify({scenario,policy:neutral+gap})+')'),view=run('ratesHubStance('+JSON.stringify(m)+')');
+ assert.ok(view.includes('data-policy-intent="cool" data-active="'+(gap>0)+'"'));
+ assert.ok(view.includes('data-policy-intent="support" data-active="'+(gap<0)+'"'));
+ assert.ok(view.includes('&gt; '+run('sysN('+neutral+')')+'%'));assert.ok(view.includes('&lt; '+run('sysN('+neutral+')')+'%'));
+ assert.ok(view.includes('Financing costs')&&view.includes('Spending &amp; investment'));
+ near(m.realPolicy-m.rStar,gap);
+}
+run('Object.assign(ratesHubState,{scenario:"base",policy:3,shortNominal:3})');
+{const view=run('ratesHubPanel()');assert.ok(view.includes('data-sys-node="cb">ECB policy ↗'));for(const label of ['Support demand','Neutral','Cool demand'])assert.ok(view.includes(label));}
