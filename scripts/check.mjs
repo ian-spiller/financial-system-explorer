@@ -154,14 +154,20 @@ if(!process.argv.includes('--views'))console.log('PASS: '+crossCardCases+' cross
 // Negative real-policy rates stay inside the chart's plotting area.
 for(const state of [{scenario:'saving',policy:1.2},{scenario:'base',policy:3},{scenario:'investment',policy:6.8}]){const chart=run('ratesHubChart(ratesHubModel('+JSON.stringify(state)+'))'),policy=chart.match(/<path class="rh-policy" d="M[\d.]+ ([\d.-]+) H/);assert.ok(policy);assert.ok(Number(policy[1])>=40&&Number(policy[1])<=250);if(state.policy<2)assert.ok(/>[-−]2<\/text>/.test(chart))}
 
-// ECB transmission compares policy with the scenario's neutral nominal rate.
-for(const scenario of ['base','saving','investment'])for(const gap of [-2,0,2]){
- const first=run('ratesHubModel('+JSON.stringify({scenario,policy:3})+')'),neutral=first.rStar+first.expectedInflation,m=run('ratesHubModel('+JSON.stringify({scenario,policy:neutral+gap})+')'),view=run('ratesHubStance('+JSON.stringify(m)+')');
- assert.ok(view.includes('data-policy-intent="cool" data-active="'+(gap>0)+'"'));
- assert.ok(view.includes('data-policy-intent="support" data-active="'+(gap<0)+'"'));
- assert.ok(view.includes('&gt; '+run('sysN('+neutral+')')+'%'));assert.ok(view.includes('&lt; '+run('sysN('+neutral+')')+'%'));
- assert.ok(view.includes('Financing costs')&&view.includes('Spending &amp; investment'));
- near(m.realPolicy-m.rStar,gap);
+// Named policy scenarios are shared by Interest rates and the ECB calculation.
+for(const scenario of ['base','saving','investment'])for(const [mode,gap] of [['neutral',0],['cooling',2],['supporting',-2]]){
+ run('ratesHubState.scenario='+JSON.stringify(scenario)+';setPolicyStance('+JSON.stringify(mode)+')');
+ const m=run('ecbPolicyChannelModel()'),cycle=run('systemCycleModel()'),panel=run('ratesHubPanel()'),cb=run("essentialContent('cb')"),channel=run('ecbPolicyRateChannel()');
+ assert.equal(m.mode,mode);near(m.realPolicy,m.rStar+gap);near(m.policy,m.realPolicy+m.expectedInflation);near(m.curve.ecbNominal,m.policy);near(m.curve.overnight,m.policy+.1);near(m.loan,m.fundingBase+m.charges);near(m.loan,run("bankContractPricing(bankDualPricingModel(),'variable').fundingTotal"));
+ assert.equal(cycle.hot,mode==='cooling');assert.equal(cycle.cold,mode==='supporting');assert.equal(cycle.neutral,mode==='neutral');near(cycle.output,mode==='cooling'?105:mode==='supporting'?95:100);
+ for(const view of [panel,cb]){assert.equal((view.match(/data-policy-stance=/g)||[]).length,3);assert.ok(view.includes('data-policy-stance="'+mode+'" aria-pressed="true"'));assert.ok(!/undefined|NaN|Infinity/.test(view));}
+ assert.ok(!/More saving|More investment|rh-ecb-path|rh-ecb-transmission/.test(panel));assert.equal((panel.match(/data-rates-key="scenario"/g)||[]).length,1);assert.ok(!panel.includes('data-rates-key="policy"'));
+ assert.ok(channel.indexOf('Real policy rate')<channel.indexOf('Expected inflation'));assert.ok(channel.indexOf('Expected inflation')<channel.indexOf('Nominal ECB rate'));assert.ok(channel.indexOf('Nominal ECB rate')<channel.indexOf('Overnight market'));assert.ok(channel.indexOf('Overnight market')<channel.indexOf('Variable bank loan'));assert.equal((channel.match(/class="sr-step"/g)||[]).length,5);assert.ok(channel.includes('data-open-bank-contract="variable"'));
+ if(mode==='cooling')assert.ok(channel.includes('↑ '+run('sysN('+m.policy+')')+'%'));if(mode==='supporting')assert.ok(channel.includes('↓ '+run('sysN('+m.policy+')')+'%'));
 }
-run('Object.assign(ratesHubState,{scenario:"base",policy:3,shortNominal:3})');
-{const view=run('ratesHubPanel()');assert.ok(view.includes('data-sys-node="cb">ECB policy ↗'));for(const label of ['Support demand','Neutral','Cool demand'])assert.ok(view.includes(label));}
+run('ratesHubState.scenario="base";setPolicyStance("neutral")');
+{const m=run('ecbPolicyChannelModel()');near(m.realPolicy,1);near(m.policy,3);near(m.curve.overnight,3.1);near(m.loan,6);}
+
+// Event binding also tolerates a view with no matching controls.
+ctx.document={querySelectorAll:()=>[],querySelector:()=>null};
+run("bindSystemLesson()");delete ctx.document;
