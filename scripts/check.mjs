@@ -228,3 +228,12 @@ run('systemLesson.householdRequiredReturn=1;setHouseholdPolicyScenario("neutral"
   for(const m of view.matchAll(/data-(?:sys|rates)-node="([^"]*)"/g))assert.ok(run('Object.hasOwn(N,'+JSON.stringify(m[1])+')'),id+' -> '+m[1]);
  }
 }
+
+// ECB reserves are the alternative asset; interbank and swap references remain separate.
+for(const mode of ['neutral','cooling','supporting']){
+ run('ratesHubState.scenario="base";setPolicyStance('+JSON.stringify(mode)+')');const m=run('bankDualPricingModel()'),c=run('marketRateCurve()'),v=run("essentialContent('banks')");
+ near(m.opportunityReference,c.ecbNominal);near(m.market,c.overnight);near(m.fundingAdjustment,m.fundingBase-c.ecbNominal);near(m.fundingAdjustment,.2);near(m.opportunityBase,m.fundingBase);near(m.opportunityReference+m.fundingAdjustment,m.fundingBase);
+ near(run('bankRateQuotes.short'),c.overnight);near(run('bankRateQuotes.fixed'),c.marketBase);assert.ok(v.includes('ECB deposit facility'));assert.ok(v.includes('Funding reconciliation'));assert.ok(!v.includes('Overnight loan<br>to another bank'));
+ for(const contract of ['variable','fixed']){const p=run('bankContractPricing(bankDualPricingModel(),'+JSON.stringify(contract)+')');near(p.opportunityTotal,p.fundingTotal)}
+}
+run('setPolicyStance("neutral")');
