@@ -13,12 +13,24 @@ const run=s=>vm.runInContext(s,ctx);
 const near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<t, a+' != '+b);
 const views={};
 for(const id of ['households','banks','cb','state','firms','funds','equities','bonds']){views[id]=run('essentialContent('+JSON.stringify(id)+')');assert.ok(!/undefined|NaN|Infinity/.test(views[id]),id)}
+
+// A single hypothetical neutral baseline feeds all cards, not live market data.
+{
+ const m=run('ratesHubModel()'),c=run('marketRateCurve()'),g=run('systemGovernmentModel()'),s=run('companySurplusValueModel()'),v=run('companyProjectValuation(companyValueViewModel(),0)');
+ near(m.rStar,1);near(m.realPolicy,1);near(m.policy,3);near(m.expectedInflation,2);near(m.quantity,75);near(m.investment,65);near(m.stance,0);
+ near(c.overnight,3.1);near(c.marketBase,3.5);near(g.marketYield,3.9);near(g.nextInterest,6.2);
+ near(s.wacc,6.6);near(s.surplus,8.4);near(s.npv,34.813698511233305);near(v.value,134.8136985112333);near(v.debt,40);near(v.equityValue,94.8136985112333);
+ near(run('householdWaitingModel().offered'),1);near(run('systemFundModel().gross'),11);near(run('systemFundModel().benchmark'),8);
+ assert.ok(html.includes('Teaching example · not current market rates'));
+ for(const id of ['households','banks','cb','state','firms','funds','equities','bonds'])assert.ok(views[id].includes('Teaching example · not current market rates'),id);
+ const panel=run('ratesHubPanel()');assert.ok(panel.includes('Teaching example · not current market rates'));assert.ok(panel.includes('ECB 3% · neutral'));
+}
 assert.equal(run('nodes.length'),6);
 assert.ok(run('flows.every(f=>Object.hasOwn(N,f.a)&&Object.hasOwn(N,f.b)&&(f.refs||[]).every(k=>sources[k]))'));
 assert.ok(run('flows.every(f=>{const r=connectionRoute(f);return r.blocked===0&&r.points.every(Number.isFinite)})'));
-near(run('bankDualPricingModel().fundingBase'),4.2);
-near(run("bankContractPricing(bankDualPricingModel(),'variable').fundingTotal"),7);
-near(run("bankContractPricing(bankDualPricingModel(),'fixed').fundingTotal"),7.32);
+near(run('bankDualPricingModel().fundingBase'),3.2);
+near(run("bankContractPricing(bankDualPricingModel(),'variable').fundingTotal"),6);
+near(run("bankContractPricing(bankDualPricingModel(),'fixed').fundingTotal"),6.32);
 for(const year of [0,1,2,3]){run('systemLesson.companyYear='+year);const v=run('companyProjectValuation()');near(v.value,v.capital+v.npv);near(v.value,v.debt+v.equityValue);near(v.debt,v.capital*.4);near(v.equityInvested,v.capital*.6);near(v.equityValue,v.equityInvested+v.npv);assert.ok(v.projects.slice(1).every(p=>p.npv===0));views['firm-year-'+year]=run("essentialContent('firms')")}
 
 // Initial financing is 40 debt + 60 contributed equity; NPV belongs to equity.
@@ -38,8 +50,8 @@ for(const route of ['#toString','#constructor','#flow/constructor','#story/0','#
 assert.equal(run("publicationRoute('#flow/loanH').id"),'loanH');
 assert.equal(run("publicationRoute('#rates').kind"),'rates');assert.ok(!/onmouseenter|onmouseleave/.test(run('initRatesHub.toString()')));assert.ok(run('ratesMapTile()').includes('Interest rates'));
 
-for(const scenario of ['base','saving','investment','deficit'])for(const policy of [2,4,6]){run('Object.assign(ratesHubState,'+JSON.stringify({scenario,policy})+')');const m=run('ratesHubModel()');near(m.privateSaving,m.investment+m.deficit);near((m.quantity-25-m.savingShift)/25,m.rStar);near((115+m.investmentShift+m.deficit-m.quantity)/25,m.rStar);near(m.realPolicy,m.policy-m.expectedInflation);const v=run('ratesHubPanel()');assert.ok(!/undefined|NaN|Infinity/.test(v));assert.equal((v.match(/class="rh-chart"/g)||[]).length,1);assert.equal((v.match(/data-rates-node=/g)||[]).length,6);assert.ok(!/class="rh-actor|class="rh-flow/.test(v));for(const id of ['households','firms','state','cb','banks','funds'])assert.ok(v.includes('data-rates-node="'+id+'"'));assert.ok(v.includes('Saving supply</text>')&&v.includes('Financing demand</text>'));assert.equal(v.includes('class="rh-policy-gap"'),Math.abs(m.stance)>.001);views['rates-'+scenario+'-'+policy]=v}
-{const a=run("ratesHubModel({scenario:'base',policy:4})"),s=run("ratesHubModel({scenario:'saving',policy:4})"),i=run("ratesHubModel({scenario:'investment',policy:4})"),g=run("ratesHubModel({scenario:'deficit',policy:4})");assert.ok(s.rStar<a.rStar&&i.rStar>a.rStar&&g.rStar>a.rStar&&g.investment<a.investment)}
+for(const scenario of ['base','saving','investment','deficit'])for(const policy of [1,3,5]){run('Object.assign(ratesHubState,'+JSON.stringify({scenario,policy})+')');const m=run('ratesHubModel()');near(m.privateSaving,m.investment+m.deficit);near((m.quantity-50-m.savingShift)/25,m.rStar);near((90+m.investmentShift+m.deficit-m.quantity)/25,m.rStar);near(m.realPolicy,m.policy-m.expectedInflation);const v=run('ratesHubPanel()');assert.ok(!/undefined|NaN|Infinity/.test(v));assert.equal((v.match(/class="rh-chart"/g)||[]).length,1);assert.equal((v.match(/data-rates-node=/g)||[]).length,6);assert.ok(!/class="rh-actor|class="rh-flow/.test(v));for(const id of ['households','firms','state','cb','banks','funds'])assert.ok(v.includes('data-rates-node="'+id+'"'));assert.ok(v.includes('Saving supply</text>')&&v.includes('Financing demand</text>'));assert.equal(v.includes('class="rh-policy-gap"'),Math.abs(m.stance)>.001);views['rates-'+scenario+'-'+policy]=v}
+{const a=run("ratesHubModel({scenario:'base',policy:3})"),s=run("ratesHubModel({scenario:'saving',policy:3})"),i=run("ratesHubModel({scenario:'investment',policy:3})"),g=run("ratesHubModel({scenario:'deficit',policy:3})");assert.ok(s.rStar<a.rStar&&i.rStar>a.rStar&&g.rStar>a.rStar&&g.investment<a.investment)}
 run('ratesHubState.open=true;state.selected=null;state.flow=null');views.ratesMapBridge=run('ratesMapBridge()');run('ratesHubState.open=false;state.selected=null;state.flow=null');views.ratesMapClosed=run('ratesMapBridge()');assert.equal((views.ratesMapClosed.match(/data-rates-relation=/g)||[]).length,6);views.ratesMapTile=run('ratesMapTile()');assert.ok(views.ratesMapTile.includes('rh-center-body'));assert.ok(views.ratesMapBridge.includes('Not payment flows'));
 for(const id of ['cb'])assert.ok(run('essentialContent('+JSON.stringify(id)+')').includes('data-rates-open'));
 views.compactMap=run('publicationCompactMap()');assert.equal((views.compactMap.match(/data-compact-node=/g)||[]).length,6);
@@ -72,15 +84,15 @@ if(process.argv.includes('--views'))process.stdout.write(JSON.stringify(views));
 
 {const v=run("essentialContent('households')");assert.ok(!/hhw-choice-note|hhw-route-links|hhw-caption|rates-card-bridge/.test(v));}
 
-run('Object.assign(ratesHubState,{scenario:"base",policy:4,expectedShort:4});bankLoanContract.type="fixed";systemLesson.equityBeta=1;systemLesson.bondCorporateSpread=1.5;systemLesson.bondGovernmentSpread=.4;systemLesson.companyDebtSource="bond"');
+run('Object.assign(ratesHubState,{scenario:"base",policy:3,expectedShort:3});bankLoanContract.type="fixed";systemLesson.equityBeta=1;systemLesson.bondCorporateSpread=1.5;systemLesson.bondGovernmentSpread=.4;systemLesson.companyDebtSource="bond"');
 
 // Present value of annual economic surplus equals the standard project NPV.
 for(const contract of ['variable','fixed'])for(const beta of [.5,1,1.5]){run('bankLoanContract.type='+JSON.stringify(contract)+';systemLesson.equityBeta='+beta);const s=run('companySurplusValueModel()'),base=run('companyEndValueModel()');near(s.charge,s.investment*s.wacc/100);near(s.cash,s.charge+s.surplus);near(s.npv,s.rows.reduce((sum,y)=>sum+y.pv,0));near(s.npv,base.classicNPV);near(s.value,s.investment+s.npv);assert.equal(s.rows.length,5);for(const y of s.rows){near(y.pv,y.surplus*y.factor);near(y.factor,(1+s.wacc/100)**(-y.year))}}
-run('Object.assign(ratesHubState,{scenario:"base",policy:4,expectedShort:4});bankLoanContract.type="fixed";systemLesson.equityBeta=1;systemLesson.bondCorporateSpread=1.5;systemLesson.bondGovernmentSpread=.4;systemLesson.companyDebtSource="bond"');
-{const s=run('companySurplusValueModel()');near(s.investment,100);near(s.wacc,7.5);near(s.charge,7.5);near(s.surplus,7.5);near(s.npv,30.34413676498839)}
+run('Object.assign(ratesHubState,{scenario:"base",policy:3,expectedShort:3});bankLoanContract.type="fixed";systemLesson.equityBeta=1;systemLesson.bondCorporateSpread=1.5;systemLesson.bondGovernmentSpread=.4;systemLesson.companyDebtSource="bond"');
+{const s=run('companySurplusValueModel()');near(s.investment,100);near(s.wacc,6.6);near(s.charge,6.6);near(s.surplus,8.4);near(s.npv,34.813698511233305)}
 
 // One curve feeds every nominal pricing lesson, including fixed/variable bank loans.
-for(const policy of [2,4,6])for(const expected of [3,4,5])for(const source of ['bond','bank'])for(const contract of ['variable','fixed'])for(const beta of [.5,1,1.5]){
+for(const policy of [1,3,5])for(const expected of [2,3,4])for(const source of ['bond','bank'])for(const contract of ['variable','fixed'])for(const beta of [.5,1,1.5]){
  run('systemLesson.companyDebtSource='+JSON.stringify(source)+';ratesHubState.policy='+policy+';ratesHubState.expectedShort='+expected+';bankLoanContract.type='+JSON.stringify(contract)+';systemLesson.equityBeta='+beta);
  const c=run('marketRateCurve()'),b=run('companyCostBuildUpModel()'),e=run('systemEquityModel()'),bank=run('bankContractPricing()'),shared=run('fundsReturnPathExample()'),bond=run('systemBondModel()'),gov=run('systemGovernmentModel()');
  near(c.overnight,policy+.1);near(c.marketBase,expected+.5);near(shared.marketBase,c.marketBase);near(e.riskFree,c.marketBase);near(bond.reference,c.marketBase);near(b.equityBase,c.marketBase);
@@ -91,29 +103,29 @@ for(const policy of [2,4,6])for(const expected of [3,4,5])for(const source of ['
  const view=run("essentialContent('firms')");assert.ok(!/undefined|NaN|Infinity|\+−|\+ -/.test(view));assert.equal((view.match(/class="ccbu-result"/g)||[]).length,2);
  const project=run('companySurplusValueModel()');near(project.npv,project.classicNPV);
 }
-run('Object.assign(ratesHubState,{scenario:"base",policy:4,expectedShort:4});bankLoanContract.type="fixed";systemLesson.equityBeta=1;systemLesson.bondCorporateSpread=1.5;systemLesson.bondGovernmentSpread=.4;systemLesson.companyDebtSource="bond"');
+run('Object.assign(ratesHubState,{scenario:"base",policy:3,expectedShort:3});bankLoanContract.type="fixed";systemLesson.equityBeta=1;systemLesson.bondCorporateSpread=1.5;systemLesson.bondGovernmentSpread=.4;systemLesson.companyDebtSource="bond"');
 
 // The simple example starts neutral, then adds each component once.
-run('Object.assign(ratesHubState,{scenario:"base",policy:4,shortNominal:4});systemLesson.equityBeta=1;systemLesson.bondCorporateSpread=1.5');
-{const r=run('ratesHubModel()'),c=run('marketRateCurve()'),e=run('fundsReturnPathExample()');near(r.realPolicy,r.rStar);near(c.ecbNominal,r.rStar+r.expectedInflation);near(c.realBase,2);near(c.shortNominal,4);near(c.marketBase,4.5);near(e.bondYield,6);near(e.equityReturn,9.5);near(c.marketBase,c.realBase+c.expectedInflation+c.termPremium);near(e.bondYield,c.marketBase+e.bondCredit+e.bondLiquidity);near(e.equityReturn,c.marketBase+e.equityMarket+e.equityValue+e.equitySize);const view=run('ratesHubPanel()');assert.ok(view.includes('ECB 4% · neutral'));assert.ok(!/rrp-average|rrp-path|rpm-bridge|Recovery|Expected annual|average|data-path-year/i.test(view));assert.equal((view.match(/data-rate-block=/g)||[]).length,6);assert.equal((view.match(/class="rrb-box/g)||[]).length,6);for(const id of ['cb','firms','bonds','equities'])assert.ok(view.includes('data-sys-node="'+id+'"'));}
-for(const policy of [2,4,6]){run('ratesHubState.policy='+policy+';ratesHubState.shortNominal='+policy);const c=run('marketRateCurve()');near(c.realBase,policy-2);near(c.marketBase,policy+.5);near(run('systemEquityModel().riskFree'),c.marketBase);near(run('systemBondModel().reference'),c.marketBase);near(run('bankRateQuotes.fixed'),c.marketBase);assert.ok(!/undefined|NaN|Infinity/.test(run('ratesHubPanel()')));}
-run('Object.assign(ratesHubState,{scenario:"base",policy:4,shortNominal:4})');
+run('Object.assign(ratesHubState,{scenario:"base",policy:3,shortNominal:3});systemLesson.equityBeta=1;systemLesson.bondCorporateSpread=1.5');
+{const r=run('ratesHubModel()'),c=run('marketRateCurve()'),e=run('fundsReturnPathExample()');near(r.realPolicy,r.rStar);near(c.ecbNominal,r.rStar+r.expectedInflation);near(c.realBase,1);near(c.shortNominal,3);near(c.marketBase,3.5);near(e.bondYield,5);near(e.equityReturn,8.5);near(c.marketBase,c.realBase+c.expectedInflation+c.termPremium);near(e.bondYield,c.marketBase+e.bondCredit+e.bondLiquidity);near(e.equityReturn,c.marketBase+e.equityMarket+e.equityValue+e.equitySize);const view=run('ratesHubPanel()');assert.ok(view.includes('ECB 3% · neutral'));assert.ok(!/rrp-average|rrp-path|rpm-bridge|Recovery|Expected annual|average|data-path-year/i.test(view));assert.equal((view.match(/data-rate-block=/g)||[]).length,6);assert.equal((view.match(/class="rrb-box/g)||[]).length,6);for(const id of ['cb','firms','bonds','equities'])assert.ok(view.includes('data-sys-node="'+id+'"'));}
+for(const policy of [1,3,5]){run('ratesHubState.policy='+policy+';ratesHubState.shortNominal='+policy);const c=run('marketRateCurve()');near(c.realBase,policy-2);near(c.marketBase,policy+.5);near(run('systemEquityModel().riskFree'),c.marketBase);near(run('systemBondModel().reference'),c.marketBase);near(run('bankRateQuotes.fixed'),c.marketBase);assert.ok(!/undefined|NaN|Infinity/.test(run('ratesHubPanel()')));}
+run('Object.assign(ratesHubState,{scenario:"base",policy:3,shortNominal:3})');
 
 // Shared household benchmark follows the real curve; custom teaching choices stay independent.
 run('systemLesson.householdRealRateMode="shared"');
-for(const policy of [2,4,6]){run('ratesHubState.policy='+policy+';ratesHubState.shortNominal='+policy);const c=run('marketRateCurve()'),h=run('householdWaitingModel()');near(h.offered,c.realBase);near(h.offeredFuture,1+c.realBase/100)}
-run('systemLesson.householdRealRate=15;ratesHubState.policy=4;ratesHubState.shortNominal=4');near(run('householdWaitingModel().offered'),15);assert.equal(run('systemLesson.householdRealRateMode'),'custom');
-run('systemLesson.householdRealRateMode="shared"');near(run('householdWaitingModel().offered'),2);
+for(const policy of [1,3,5]){run('ratesHubState.policy='+policy+';ratesHubState.shortNominal='+policy);const c=run('marketRateCurve()'),h=run('householdWaitingModel()');near(h.offered,c.realBase);near(h.offeredFuture,1+c.realBase/100)}
+run('systemLesson.householdRealRate=15;ratesHubState.policy=3;ratesHubState.shortNominal=3');near(run('householdWaitingModel().offered'),15);assert.equal(run('systemLesson.householdRealRateMode'),'custom');
+run('systemLesson.householdRealRateMode="shared"');near(run('householdWaitingModel().offered'),1);
 
 // Expected sleeve returns use chosen exposures, while realized attribution uses its own observed period.
 for(const implementation of ['active','passive'])for(const benchmark of ['market','style'])for(const mix of ['value','valueSize'])for(const issuer of ['government','corporate']){
  run('Object.assign(systemLesson,'+JSON.stringify({fundEquityImplementation:implementation,fundBenchmark:benchmark,fundFactorMix:mix,bondIssuer:issuer})+')');
  const f=run('systemFundModel()'),p=run('fundsPricingModel()'),c=run('marketRateCurve()'),b=run('systemBondModel()');
  near(p.equityRequired,c.marketBase+f.marketBeta*4+f.valueBeta+f.sizeBeta);near(p.bondRequired,c.marketBase+p.bondSpread);near(p.bondRequired,b.yield);assert.equal(p.issuer,issuer);
- const before=f.gross;run('ratesHubState.shortNominal=6');near(run('systemFundModel().gross'),before);near(run('fundsPricingModel().equityRequired'),p.equityRequired+2);run('ratesHubState.shortNominal=4');
+ const before=f.gross;run('ratesHubState.shortNominal=5');near(run('systemFundModel().gross'),before);near(run('fundsPricingModel().equityRequired'),p.equityRequired+2);run('ratesHubState.shortNominal=3');
 }
 run('Object.assign(systemLesson,{fundEquityImplementation:"active",fundBenchmark:"market",fundFactorMix:"valueSize",bondIssuer:"corporate",householdRequiredReturn:2});systemLesson.householdRealRateMode="shared"');
-near(run('fundsPricingModel().equityRequired'),9.5);near(run('fundsPricingModel().bondRequired'),6);
+near(run('fundsPricingModel().equityRequired'),8.5);near(run('fundsPricingModel().bondRequired'),5);
 // Each main participant exposes a relevant numeric mechanism within its own card.
 for(const id of ['households','banks','cb','state','firms','funds']){const view=run('essentialContent('+JSON.stringify(id)+')');assert.ok(!/undefined|NaN|Infinity/.test(view),id);assert.ok(view.includes('data-rates-open'),id)}
 {const s=run("essentialContent('state')"),c=run("essentialContent('firms')");assert.ok(s.includes('data-bond-issuer="government"'));assert.ok(c.includes('data-bond-issuer="corporate"'))}
@@ -129,15 +141,15 @@ for(const scenario of ['base','saving','investment','deficit'])for(const gap of 
  near(gov.marketYield,bond.government);near(gov.nextInterest,(gov.openingDebt-gov.maturing)*gov.oldRate/100+gov.issuance*gov.marketYield/100);
  const v=run("essentialContent('firms')");assert.ok(v.includes('>'+run('sysN('+company.wacc+',3)')+'%<'));assert.ok(!/undefined|NaN|Infinity|\+−|\+ -/.test(v));crossCardCases++;
 }
-run('Object.assign(ratesHubState,{scenario:"base",policy:4,shortNominal:4});Object.assign(systemLesson,{companyDebtSource:"bond",equityBeta:1,bondCorporateSpread:1.5,bondGovernmentSpread:.4,fundScenario:"tilt",fundFee:0});bankLoanContract.type="fixed"');
+run('Object.assign(ratesHubState,{scenario:"base",policy:3,shortNominal:3});Object.assign(systemLesson,{companyDebtSource:"bond",equityBeta:1,bondCorporateSpread:1.5,bondGovernmentSpread:.4,fundScenario:"tilt",fundFee:0});bankLoanContract.type="fixed"');
 for(const implementation of ['active','passive'])for(const benchmark of ['market','style'])for(const mix of ['value','valueSize']){
  run('Object.assign(systemLesson,'+JSON.stringify({fundEquityImplementation:implementation,fundBenchmark:benchmark,fundFactorMix:mix})+')');
  const f=run('fundsPricingModel()'),v=run("equityValuationModel(systemLesson,'funds')"),c=run("equityValuationModel(systemLesson,'firms')");near(v.required,f.equityRequired);near(v.factors.value,f.value);near(v.factors.size,f.size);near(v.value,v.dividend/((v.required-v.growth)/100));near(c.required,run('systemEquityModel().required'));
  assert.ok(v.required>v.growth);
 }
 run('Object.assign(systemLesson,{fundEquityImplementation:"active",fundBenchmark:"market",fundFactorMix:"valueSize"});essentialView.marketOrigin="rates"');
-{const view=run('ecbPolicyRateChannel()');assert.ok(view.includes('data-open-bank-contract="variable"'));near(run("bankContractPricing(bankDualPricingModel(),'variable').fundingTotal"),7)}
+{const view=run('ecbPolicyRateChannel()');assert.ok(view.includes('data-open-bank-contract="variable"'));near(run("bankContractPricing(bankDualPricingModel(),'variable').fundingTotal"),6)}
 if(!process.argv.includes('--views'))console.log('PASS: '+crossCardCases+' cross-card pricing scenarios, funding identities, valuation contexts and NPV calculations.');
 
 // Negative real-policy rates stay inside the chart's plotting area.
-for(const state of [{scenario:'saving',policy:1.2},{scenario:'base',policy:4},{scenario:'investment',policy:6.8}]){const chart=run('ratesHubChart(ratesHubModel('+JSON.stringify(state)+'))'),policy=chart.match(/<path class="rh-policy" d="M[\d.]+ ([\d.-]+) H/);assert.ok(policy);assert.ok(Number(policy[1])>=40&&Number(policy[1])<=250);if(state.policy<2)assert.ok(/>[-−]2<\/text>/.test(chart))}
+for(const state of [{scenario:'saving',policy:1.2},{scenario:'base',policy:3},{scenario:'investment',policy:6.8}]){const chart=run('ratesHubChart(ratesHubModel('+JSON.stringify(state)+'))'),policy=chart.match(/<path class="rh-policy" d="M[\d.]+ ([\d.-]+) H/);assert.ok(policy);assert.ok(Number(policy[1])>=40&&Number(policy[1])<=250);if(state.policy<2)assert.ok(/>[-−]2<\/text>/.test(chart))}
