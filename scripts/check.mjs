@@ -171,3 +171,12 @@ run('ratesHubState.scenario="base";setPolicyStance("neutral")');
 // Event binding also tolerates a view with no matching controls.
 ctx.document={querySelectorAll:()=>[],querySelector:()=>null};
 run("bindSystemLesson()");delete ctx.document;
+
+// Gap-closing graphics show a schematic target and policy normalization, not a forecast.
+for(const [mode,start] of [['neutral',0],['cooling',5],['supporting',-5]]){
+ run('ratesHubState.scenario="base";setPolicyStance('+JSON.stringify(mode)+')');const m=run('ecbGapAdjustmentModel()'),view=run('ecbGapAdjustmentGraphic()'),cb=run("essentialContent('cb')");
+ near(m.initialGap,start);near(m.targetGap,0);near(m.natural,1);near(m.returnReal,m.natural);near(m.responseReal,run('ratesHubModel().realPolicy'));
+ assert.ok(view.includes('data-gap-start="'+start+'"'));assert.ok(view.includes('data-gap-target="0"'));assert.ok(view.includes('Illustrative adjustment'));assert.ok(view.includes('not a calibrated forecast or fixed timeline'));assert.ok(!/undefined|NaN|Infinity/.test(view));
+ assert.ok(cb.indexOf('sr-ecb-channel')<cb.indexOf('ecbs-gap-adjustment'));assert.ok(cb.indexOf('ecbs-gap-adjustment')<cb.indexOf('QE → newly created reserves'));
+}
+run('setPolicyStance("neutral")');

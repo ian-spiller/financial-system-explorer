@@ -41,6 +41,8 @@ These primary and educational references support the mechanisms used in the map.
 
 ## Central bank
 
+- [Chicago Fed · Output gaps, expectations and persistence](https://www.chicagofed.org/publications/chicago-fed-letter/2017/377)
+
 - [Bank of England · Money creation](https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy)
 - [ECB · Monetary transmission](https://www.ecb.europa.eu/mopo/intro/transmission/html/index.en.html)
 - [Federal Reserve · Policy rates](https://www.federalreserve.gov/monetarypolicy/monetary-policy-what-are-its-goals-how-does-it-work.htm)
