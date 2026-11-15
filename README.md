@@ -4,7 +4,7 @@ A visual, interactive explanation of how money, financing and interest rates con
 
 **Interactive map:** [Open Financial System Explorer](https://ian-spiller.github.io/financial-system-explorer/)
 
-**Video (1:59):** [Watch the overview](https://ian-spiller.github.io/financial-system-explorer/video/) · [Download MP4](assets/financial-system-explorer-overview.mp4)
+**Video (1:57):** [Watch the overview](https://ian-spiller.github.io/financial-system-explorer/video/) · [Download MP4](assets/financial-system-explorer-overview.mp4?v=20261115)
 
 ![Conceptual overview of Financial System Explorer](assets/social-preview.png)
 
