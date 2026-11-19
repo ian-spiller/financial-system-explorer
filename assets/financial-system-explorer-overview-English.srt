@@ -1,0 +1,44 @@
+1
+00:00:00,000 --> 00:00:04,000
+What connects savings to company value?
+Follow one story through the financial system.
+
+2
+00:00:04,000 --> 00:00:12,000
+You choose when to spend.
+Saving postpones consumption. Borrowing brings it forward.
+
+3
+00:00:12,000 --> 00:00:20,000
+Time and risk have a price.
+Saving meets financing demand. Inflation and risk shape required returns.
+
+4
+00:00:20,000 --> 00:00:30,000
+The ECB changes the conditions.
+Policy can cool or support demand. QE creates reserves through bond purchases.
+
+5
+00:00:30,000 --> 00:00:51,000
+Lend long. Fund short.
+Liquidity and solvency are different. Funding and hedging shape the loan rate.
+
+6
+00:00:51,000 --> 00:01:08,000
+Revenue, services and borrowing.
+EU27 data show the budget mix. Deficits and refinancing drive new bond issuance.
+
+7
+00:01:08,000 --> 00:01:24,000
+Profit is not the cash investors get.
+Build FCFF, then find the capital charge. The remaining surplus creates NPV.
+
+8
+00:01:24,000 --> 00:01:55,000
+Choose the risks. Then explain the result.
+Goals and risk guide the portfolio. Compare the result with a relevant benchmark.
+
+9
+00:01:55,000 --> 00:01:59,000
+One system. Connected decisions.
+Explore the system behind the formulas.

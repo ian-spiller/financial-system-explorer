@@ -37,7 +37,7 @@ Rates, company cash flows, bank pricing and portfolio outcomes are **hypothetica
 
 [Complete previous published version](https://github.com/ian-spiller/financial-system-explorer/tree/archive/published-before-upgrade-2026-11-19) — preserved before this update.
 
-[Overview video](https://ian-spiller.github.io/financial-system-explorer/video/) · [Download MP4](assets/financial-system-explorer-overview.mp4?v=20261115). The video shows the earlier published version.
+[Updated overview video (1:59)](https://ian-spiller.github.io/financial-system-explorer/video/) · [Download MP4](assets/financial-system-explorer-overview.mp4?v=20261119) · [English captions](assets/financial-system-explorer-overview-English.srt). The video shows the current explorer, including the EU government profile, FCFF and Markowitz allocation.
 
 ## Checks and hosting
 
