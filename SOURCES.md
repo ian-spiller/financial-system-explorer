@@ -182,3 +182,78 @@ The consumption-to-price bridge was also checked against CFA Institute, *2024 Le
 - [CFA Institute: Capital Market Expectations, Part II](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/capital-market-expectations-part-ii) — term, credit and liquidity contributions; credit spread versus expected return.
 
 - [ECB: Interest-rate risk and the term premium](https://www.ecb.europa.eu/press/key/date/2017/html/ecb.sp171011.en.html) — compensation for duration risk and the effect of central-bank bond purchases.
+
+
+## EU government budget composition — 2024
+
+Eurostat datasets gov_10a_main and gov_10a_exp, geography EU27_2020, sector S13, year 2024, unit MIO_EUR; retrieved 17 November 2026. The profile covers all levels of general government in the EU aggregate, not the EU institutions budget.
+
+- Revenue and total budget coverage: https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table?lang=en
+- Spending by function (COFOG): https://ec.europa.eu/eurostat/databrowser/view/gov_10a_exp/default/table?lang=en
+- Exact extracted values, calculations, classifications and revision/rounding notes: assets/data/eu-government-2024.json
+
+Original API responses and an audit are preserved outside the distributable site in work/research/eu-budget-2024/.
+
+
+## Company operating profit to free cash flow — working-copy upgrade
+
+- [CFA Institute: Free Cash Flow Valuation, 2026 Level II](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/free-cash-flow-valuation) — FCFF from EBIT, non-cash depreciation, fixed-capital investment and working-capital investment; FCFF versus FCFE and appropriate discount rates.
+- [Aswath Damodaran, NYU Stern: Cash Flows](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/cashflows.htm) — why non-cash expenses are added back, reinvestment is deducted, and operating working capital excludes cash and reflects supplier credit.
+
+Reviewed 17 November 2026. The displayed numbers reuse the app’s hypothetical companyAnnualCashModel; they are not empirical company data. Research and verification notes are in work/research/company-cash-flow/ outside the distributable site.
+
+
+## QE transaction and reserve money — working-copy upgrade, 17 November 2026
+
+- [ECB: Money and inflation, 25 September 2023](https://www.ecb.europa.eu/press/key/date/2023/html/ecb.sp230925_1~7ad8ef22e2.en.html), section “Asset purchases and broad money growth” — reserve settlement, non-bank versus bank sellers, and the absence of a mechanical reserve-to-loan multiplier.
+- [ECB: How the asset purchase programme works](https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me-more/html/app.en.html) — asset-price, portfolio-rebalancing and signalling channels, financing conditions and demand.
+- [Bank of England: Quantitative easing](https://www.bankofengland.co.uk/monetary-policy/quantitative-easing) — digitally created reserves used to buy bonds.
+- [Bank of England: How money is created](https://www.bankofengland.co.uk/explainers/how-is-money-created) — bank lending creates deposits; reserves settle interbank payments.
+- [ECB: Minimum reserves](https://www.ecb.europa.eu/mopo/implement/mr/html/index.en.html) — required holdings at national central banks.
+
+The example describes a QE transaction, not the current purchase stance or a measured policy effect. Amount 100 is an illustrative unit; models and balances are checked in scripts/check.mjs. Research notes and screenshots are kept in work/research/qe-20261117/ and work/qa/qe-20261117/.
+
+- [ECB: What are minimum reserve requirements?](https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me/html/minimum_reserve_req.en.html) — fulfilment on average over the maintenance period; used only for the qualitative reserve definition in the QE disclosure.
+
+
+### Bank liquidity and solvency — working-copy extension
+
+- [ECB Banking Supervision — Why do banks need capital?](https://www.bankingsupervision.europa.eu/about/banking-supervision-explained/html/hold_capital.en.html): bank assets, debt funding, equity and loss absorption. Updated 21 July 2025; checked 17 November 2026.
+- [ECB Banking Supervision — What does it mean when a bank is failing or likely to fail?](https://www.bankingsupervision.europa.eu/about/banking-supervision-explained/html/banks_failing.en.html): payment inability, liabilities exceeding assets and regulatory breaches are separate failure grounds. Updated 20 February 2026; checked 17 November 2026.
+- The three bank snapshots use chosen teaching amounts, not empirical balance-sheet estimates or regulatory ratios. Their deposit/bond split follows the existing model funding weights.
+
+### Bank cushions and loan pricing
+
+- [Bank of England — A bank within a bank: how a commercial bank’s treasury function affects the interest rates set for loans and deposits](https://www.bankofengland.co.uk/-/media/boe/files/quarterly-bulletin/2015/a-bank-within-a-bank-how-a-commercial-banks-treasury-function-affects.pdf), Quarterly Bulletin 2015 Q2: liquidity-buffer costs in transfer prices; expected credit losses, capital charges, operating costs and margins in loan pricing. Checked 17 November 2026. The 0.3 pp liquidity and 1 pp capital/profit amounts are teaching assumptions already present in this project, not numbers from the article.
+
+
+### Funds: risks and diversification
+
+- [CFA Institute — Portfolio Risk and Return: Part I](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-1): correlations, weights and diversification benefits.
+- [CFA Institute — Portfolio Risk and Return: Part II](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-2): systematic and nonsystematic risk, return-generating models and CAPM.
+- Public refresher summaries checked 17 November 2026. Counts and price shocks in the interactive example are explicitly chosen teaching inputs, not observations or estimates from these readings.
+
+
+### Markowitz and risk-free portfolio combinations
+
+- [Markowitz — Portfolio Selection: Efficient Diversification of Investments (1959), Yale/Cowles publisher material](https://www.jstor.org/stable/j.ctt1bh4c8h): mean–variance portfolio choice and efficient combinations.
+- [Cowles Foundation — Portfolio Selection](https://cowles.yale.edu/research/cfm-16-portfolio-selection-efficient-diversification-investments): book catalogue and chapter structure.
+- [CFA Institute — Portfolio Risk and Return I (2026)](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-1) and [Part II (2026)](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-2): correlation, efficient portfolios, risk-free combinations, and distinction between portfolio-choice theory and CAPM pricing.
+- Public summaries/excerpts checked 17 November 2026. Assumed volatilities/correlations, expected-return calibration and risk-free proxy are documented in EDUCATIONAL-NOTES.md.
+
+
+### Goals, risk capacity and willingness; portfolio preferences
+- CFA Institute, Basics of Portfolio Planning and Construction (2026 public refresher summary): https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/basics-of-portfolio-planning-and-construction — distinguishes willingness and capacity, and horizon/liquidity constraints.
+- CFA Institute, Portfolio Risk and Return Part I (2026 public refresher summary): https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-1 — preferences, indifference curves, efficient frontiers and portfolio choice.
+- William F. Sharpe, Portfolio Choice, Stanford online chapter: https://web.stanford.edu/~wfsharpe/mia/rr/mia_rr2.htm — mean-variance preferences and indifference curves.
+These sources support the framework; the numerical preference profiles are teaching assumptions, not sourced risk assessments.
+
+- Funds allocation decisions and passive/active implementation: [CFA Overview of Asset Allocation](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/overview-asset-allocation). Benchmark validity and investable passive alternative: [CFA Portfolio Performance Evaluation](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-performance-evaluation) and [GIPS Guidance Statement on Benchmarks](https://www.gipsstandards.org/wp-content/uploads/2021/03/benchmark_firms_gs_2021.pdf). Checked 19 November 2026.
+
+- Concrete Funds benchmark identities: [S&P 500](https://www.spglobal.com/spdji/en/indices/equity/sp-500/), [S&P SmallCap 600](https://www.spglobal.com/spdji/en/indices/equity/sp-600/), [S&P 500 Investment Grade Corporate Bond Index](https://www.spglobal.com/spdji/en/indices/fixed-income/sp-500-investment-grade-corporate-bond-index/) and [S&P U.S. Treasury Bond Index](https://www.spglobal.com/spdji/en/indices/fixed-income/sp-us-treasury-bond-index/). Identities verified 19 November 2026. Numerical inputs are teaching assumptions; index performance was not estimated.
+
+- Expanded Funds universe: [MSCI Europe](https://www.msci.com/indexes/index/990500/msci-europe-index), [MSCI EM ex China](https://www.msci.com/indexes/index/713021/msci-em-emerging-markets-ex-china-index), [MSCI China](https://www.msci.com/indexes/index/302400/msci-china-index), [S&P GSCI Physical Gold](https://www.spglobal.com/spdji/en/indices/commodities/sp-gsci-physical-gold-index/) and [S&P GSCI](https://www.spglobal.com/spdji/en/indices/commodities/sp-gsci/). Identities checked 19 November 2026. Hypothetical moments are separately documented, not drawn from current index performance.
+
+- Whole-portfolio policy benchmark and attribution: [GIPS Guidance Statement on Benchmarks](https://www.gipsstandards.org/wp-content/uploads/2021/03/benchmark_firms_gs_2021.pdf) supports explicit components, weights and rebalancing of custom blended benchmarks. [CFA Portfolio Performance Evaluation](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-performance-evaluation) distinguishes asset-allocation and manager decisions and requires attribution to reconcile returns. Scott D. Stewart, [Manager Selection](https://www.cfainstitute.org/sites/default/files/-/media/documents/book/rf-publication/2013/rf-v2013-n4-1-pdf.pdf), CFA Research Foundation, 2013, printed pp. 63–65, equations 8–10 and Table 6.1, gives allocation, selection and interaction; the display combines selection+interaction as within-class management. Checked 19 November 2026. All new period outcomes and costs are explicitly hypothetical assumptions documented in EDUCATIONAL-NOTES.md.
+
+- Household saving → portfolio choice: [CFA Basics of Portfolio Planning and Construction](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/basics-of-portfolio-planning-and-construction), especially objectives, ability versus willingness, liquidity and time-horizon constraints; [CFA Overview of Asset Allocation](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/overview-asset-allocation), on aligning portfolio allocation with financial goals and circumstances. Checked 19 November 2026. The existing two-period consumption numbers are unchanged model calculations, not market observations or personal recommendations.

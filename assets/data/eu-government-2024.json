@@ -1,0 +1,170 @@
+{
+  "year": 2024,
+  "geography": "EU27_2020",
+  "scope": "General government (S13), all levels of government; EU aggregate, not the EU institutions budget or an unweighted country average",
+  "retrieved": "2026-11-17",
+  "units": "Million EUR",
+  "mainUpdated": "2026-10-21T11:00:00+0200",
+  "cofogUpdated": "2026-10-21T23:00:00+0200",
+  "totals": {
+    "revenue": 8301124.2,
+    "spending": 8867694.6,
+    "balance": -566570.4,
+    "cofogSpending": 8854269.3
+  },
+  "revenue": [
+    {
+      "code": "D61REC",
+      "value": 2518393.2,
+      "share": 30.337977595853825,
+      "label": "Social contributions",
+      "displayShare": 30.3
+    },
+    {
+      "code": "D5REC",
+      "value": 2388822.9,
+      "share": 28.77710105819161,
+      "label": "Income & wealth taxes",
+      "displayShare": 28.8
+    },
+    {
+      "code": "D2REC",
+      "value": 2305688,
+      "share": 27.77561140453723,
+      "label": "VAT & other production taxes",
+      "displayShare": 27.8
+    },
+    {
+      "code": "P11_P12_P131",
+      "value": 618045.2,
+      "share": 7.445319273743668,
+      "label": "Sales, fees & other output",
+      "displayShare": 7.4
+    },
+    {
+      "code": "OTHER",
+      "value": 470174.9000000004,
+      "share": 5.663990667673667,
+      "label": "Other revenue",
+      "displayShare": 5.7
+    }
+  ],
+  "spending": [
+    {
+      "code": "GF10",
+      "label": "Social protection",
+      "value": 3541403.1,
+      "status": null,
+      "share": 39.99655962576155,
+      "shortLabel": "Social protection",
+      "displayShare": 40
+    },
+    {
+      "code": "GF07",
+      "label": "Health",
+      "value": 1329508.7,
+      "status": null,
+      "share": 15.015453618515984,
+      "shortLabel": "Health",
+      "displayShare": 15
+    },
+    {
+      "code": "GF01",
+      "label": "General public services",
+      "value": 1094922.2,
+      "status": null,
+      "share": 12.366036799897195,
+      "shortLabel": "General public services",
+      "displayShare": 12.4
+    },
+    {
+      "code": "GF04",
+      "label": "Economic affairs",
+      "value": 953715.1,
+      "status": null,
+      "share": 10.7712456859653,
+      "shortLabel": "Transport, energy & economic support",
+      "displayShare": 10.8
+    },
+    {
+      "code": "GF09",
+      "label": "Education",
+      "value": 859652.3,
+      "status": null,
+      "share": 9.708901670745433,
+      "shortLabel": "Education",
+      "displayShare": 9.7
+    },
+    {
+      "code": "GF03",
+      "label": "Public order and safety",
+      "value": 313889,
+      "status": null,
+      "share": 3.545058201471238,
+      "shortLabel": "Public order & safety",
+      "displayShare": 3.5
+    },
+    {
+      "code": "GF02",
+      "label": "Defence",
+      "value": 266360.4,
+      "status": null,
+      "share": 3.008270823657916,
+      "shortLabel": "Defence",
+      "displayShare": 3
+    },
+    {
+      "code": "GF08",
+      "label": "Recreation, culture and religion",
+      "value": 213149.5,
+      "status": null,
+      "share": 2.4073076250346257,
+      "shortLabel": "Culture, recreation & religion",
+      "displayShare": 2.4
+    },
+    {
+      "code": "GF05",
+      "label": "Environmental protection",
+      "value": 148611.3,
+      "status": null,
+      "share": 1.6784140504965213,
+      "shortLabel": "Environment",
+      "displayShare": 1.7
+    },
+    {
+      "code": "GF06",
+      "label": "Housing and community amenities",
+      "value": 133058,
+      "status": null,
+      "share": 1.502755286650249,
+      "shortLabel": "Housing & community",
+      "displayShare": 1.5
+    }
+  ],
+  "coverage": {
+    "revenue": 93.61084897984647,
+    "deficit": 6.389151020153536
+  },
+  "sources": [
+    {
+      "dataset": "gov_10a_main",
+      "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_main?lang=EN&geo=EU27_2020&time=2024&sector=S13&unit=MIO_EUR",
+      "table": "https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table?lang=en"
+    },
+    {
+      "dataset": "gov_10a_exp",
+      "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_exp?lang=EN&geo=EU27_2020&time=2024&sector=S13&na_item=TE&unit=MIO_EUR",
+      "table": "https://ec.europa.eu/eurostat/databrowser/view/gov_10a_exp/default/table?lang=en"
+    }
+  ],
+  "methodology": {
+    "revenueDenominator": "TR in gov_10a_main; OTHER is the residual after D61REC, D5REC, D2REC and P11_P12_P131.",
+    "otherRevenue": "Capital taxes, property income, transfers and other receipts. Not all borrowing is revenue; the deficit is shown separately.",
+    "sales": "P11_P12_P131 includes market output, output for own final use and payments for non-market output. The UI label is Sales, fees & other output; the ticket example illustrates only the cash sales component. These are ESA national-account revenues, not exclusively cash receipts.",
+    "spendingDenominator": "TOTAL/TE in gov_10a_exp; the ten COFOG division amounts are mutually exclusive. Public-debt transactions are included in general public services, not added again.",
+    "coverageDenominator": "TE in gov_10a_main; coverage revenue/TR and deficit/-B9 both use the same TE denominator.",
+    "dataRevisions": "The main-accounts TE and COFOG TOTAL differ by 13425.3 million EUR. Composition charts each use their own table total and are separately labelled % of revenue and % of spending; no category euro amounts are fabricated by joining the two totals.",
+    "rounding": "Percentages displayed to one decimal from the raw values. Both displayed compositions sum to 100.0%. COFOG division amounts sum to their published total within 0.3 million EUR due to reporting rounding.",
+    "accountingBasis": "ESA national accounts, not a cash-only budget or earmarking of specific taxes to individual expenditure functions."
+  }
+}

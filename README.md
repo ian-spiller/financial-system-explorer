@@ -1,67 +1,57 @@
 # Financial System Explorer
 
-A visual, interactive explanation of how money, financing and interest rates connect the financial system.
+A visual, interactive explanation of how saving, financing and interest rates connect the financial system.
 
-**Interactive map:** [Open Financial System Explorer](https://ian-spiller.github.io/financial-system-explorer/)
+**[Open the interactive map](https://ian-spiller.github.io/financial-system-explorer/)**
 
-**Video (1:57):** [Watch the overview](https://ian-spiller.github.io/financial-system-explorer/video/) · [Download MP4](assets/financial-system-explorer-overview.mp4?v=20261115)
+The existing site URL always opens the current published version.
 
-![Conceptual overview of Financial System Explorer](assets/social-preview.png)
+![Conceptual overview](assets/social-preview.png)
 
-**Open locally:** download this project and open [index.html](index.html) in a modern browser. No installation or build step is needed.
+## Explore the system
 
-## What you can explore
+- **Households:** consumption today versus tomorrow, saving, borrowing and the transition to portfolio choice.
+- **Commercial banks:** maturity transformation, liquidity versus solvency, funding, hedging and loan pricing.
+- **Central bank:** demand, inflation, the ECB response and the balance-sheet mechanics of QE.
+- **Government:** actual EU27 revenue and spending shares, followed by a teaching example of deficits, refinancing and debt-interest costs.
+- **Companies:** operating profit → free cash flow to the firm → cost of capital → surplus → NPV.
+- **Funds:** goals, risk capacity and willingness → Markowitz allocation → policy benchmark → active/passive implementation → realized-return attribution.
 
-- **Households:** consumption today versus tomorrow, MRS, saving, borrowing and the lifetime budget.
-- **Commercial banks:** maturity transformation, liquidity and rate risk, funding costs and loan pricing.
-- **Central bank:** demand, inflation, policy rates and the balance-sheet mechanics of QE.
-- **Government:** deficits, refinancing and the feedback between interest costs and debt.
-- **Companies:** visible market-reference and compensation build-ups for debt and equity, their contributions to WACC, then invested capital → annual surplus → NPV → firm value.
-- **Funds:** investor goals, allocation, active/passive implementation, benchmarks and factor attribution.
-
-Stock and bond valuation are linked from Funds and the shared **Interest rates** overview. The central tile connects planned saving, company investment, public deficits, ECB policy stance and required returns. Two rate cards connect to one graph. A shared control above the two rate cards selects Neutral, Cooling or Supporting, synchronized with the ECB and household market-return controls. Household preferences remain independent. There, real policy + expected inflation gives the nominal ECB rate, then overnight and variable bank-loan pricing; compact numerical boxes then show short real base + expected inflation + term premium → common five-year reference, branching into bond and equity required returns. ECB policy anchors the short-rate scenario. The same numerical mechanisms appear within all six lessons. Their inputs also link directly to their place in this overview: saving and financing demand, the ECB rate, the market reference, or bond and equity required returns. The relevant path is highlighted, and a return button brings readers back to the same input in the originating lesson. Funds follows investor goals → allocation and required returns → implementation → benchmark and realized-return attribution. Click or tap the central tile to open it; hovering only highlights it. Explore participants in the order you choose.
+The central **Interest rates** view connects saving supply and financing demand to natural and policy rates, market references and required returns. Bond and stock valuation open from relevant cards. Shared Neutral, Cooling and Supporting scenarios update the connected examples.
 
 ## Use the map
 
-Click or tap a participant. On narrow screens the map becomes a readable participant flow. Use **Tab** to move between controls, **Enter** or **Space** to activate them, and **Escape** to close a dialog.
+Click or tap a participant or Interest rates. Follow the contextual links to related calculations. Tab moves between controls; Enter or Space activates them; Escape closes a dialog. Direct links such as #banks, #firms, #funds, #state, #cb, #households and #rates open the corresponding view with its initial assumptions.
 
-Hosted card links use hashes such as `#banks`, `#firms`, `#funds`, `#bonds`, `#cb` and the shared overview `#rates`. Links open the initial example; they do not save every input choice. **About this map** opens project information and sources.
+Download the project and open [index.html](index.html) locally. No installation, account or build step is needed.
 
-## Hosting
+## Data and teaching assumptions
 
-This static site is ready for GitHub Pages. The source is self-contained and can also be opened locally.
+The government composition uses Eurostat's EU27 general-government data for **2024**, retrieved on **17 November 2026**. These are national-account measures, not a cash-only budget or the budget of EU institutions. The revenue and expenditure charts use their respective published totals.
 
-If the repository or domain changes, update the site metadata with:
+Rates, company cash flows, bank pricing and portfolio outcomes are **hypothetical teaching examples**, not current quotes or observed investment results. They illustrate connected mechanisms rather than a fully calibrated economy.
 
-`node scripts/set-site-url.mjs https://your-actual-site.example/`
+[Model notes](EDUCATIONAL-NOTES.md) · [Sources](SOURCES.md)
 
-The social preview is an original conceptual illustration.
+## Previous version and video
 
-## Development and checks
+[Complete previous published version](https://github.com/ian-spiller/financial-system-explorer/tree/archive/published-before-upgrade-2026-11-19) — preserved before this update.
 
-The application is deliberately self-contained in `index.html`: HTML, CSS, SVG and plain JavaScript. It has no framework, analytics, cookies, account system or external data feed. Source links open external websites.
+[Overview video](https://ian-spiller.github.io/financial-system-explorer/video/) · [Download MP4](assets/financial-system-explorer-overview.mp4?v=20261115). The video shows the earlier published version.
 
-Run the supplied checks with Node.js 20+ and Python 3.10+:
+## Checks and hosting
 
-`node scripts/check.mjs`
+The site uses self-contained HTML, CSS, SVG and JavaScript. GitHub Pages publishes the main branch at the existing URL. It has no analytics, cookies or external data feed.
 
-`python scripts/check-html.py`
+Run the model checks with Node.js 20+ and Python 3.10+:
 
-Checks cover 432 cross-card pricing scenarios, model identities, loan pricing, NPV, factor attribution, valuation-link context, negative real-rate chart bounds, deep-link validation and HTML structure. They do not replace a visual browser review. The repository workflow runs these checks on pushes and pull requests.
+- node scripts/check.mjs
+- python scripts/check-html.py
 
-## Scope and assumptions
+Checks cover cross-card pricing scenarios, financial identities, portfolio optimization and attribution, routing, local assets and rendered HTML. Browser review complements these checks.
 
-This is an educational model with a euro-area focus, not a complete representation of every market or jurisdiction. Numbers are fictional teaching assumptions, not current quotes or personal recommendations. Some lessons share the bank quote; other lessons deliberately use separate budgets, securities or return periods.
-
-See [EDUCATIONAL-NOTES.md](EDUCATIONAL-NOTES.md) for the model boundaries and [SOURCES.md](SOURCES.md) for references. Developed through an iterative human–AI collaboration.
-
-## Feedback
-
-Corrections are welcome. Please identify the participant, the selected inputs and the statement or calculation you would change. For layout issues, include the browser, screen width and a screenshot.
+Corrections are welcome: identify the card, selected inputs and calculation or statement concerned.
 
 ## License
 
-[MIT](LICENSE), copyright 2026 ian-spiller. The license covers this project's code and original graphics; referenced publications retain their own rights.
-
-
-The nominal pricing lessons share one set of hypothetical teaching inputs, not current market data. The neutral starting point is a 1% short real base + 2% expected inflation = a 3% short nominal base and ECB setting. One 0.5 percentage-point term premium produces the common five-year reference of 3.5%. Separate branches add bond credit/liquidity contributions or equity factor contributions. The defaults give corporate bonds 5%, equity 8.5% and company WACC 6.6%. Annual operating cash of 15 less the capital charge of 6.6 leaves surplus of 8.4; its five-year present value is NPV 34.813699 and firm value is 134.813699. Banks use the same inputs: overnight 3.1%, deposit funding 3%, weighted funding cost 3.2%, variable loan 6% and five-year fixed loan 6.32%. The sovereign yield is 3.9%; refinancing raises the next annual interest bill to 6.2. There is no annual path or averaging in the interface. The ECB control assumes a parallel change to a flat short-rate scenario; this is a teaching assumption, not a general one-for-one long-rate transmission rule. Historical factor-attribution inputs remain a separate observed-period example.
+[MIT](LICENSE), copyright 2026 ian-spiller. Referenced publications retain their own rights. Developed through an iterative human–AI collaboration.
